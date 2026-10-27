@@ -21,6 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ActivitiesActivity" android:exported="false" />
+        <activity android:name=".AllTasksActivity" android:exported="false" />
+        <activity android:name=".TaskDetailActivity" android:exported="false" />
+        <activity android:name=".TaskEditActivity" android:exported="false" />
     </application>
 
 </manifest>

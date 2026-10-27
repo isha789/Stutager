@@ -2,4 +2,19 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="primary_blue">#0066FF</color>
+    <color name="primary_blue_dark">#004FE0</color>
+    <color name="background_light">#F8F9FA</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="text_dark">#1A1A1A</color>
+    <color name="text_gray">#666666</color>
+    <color name="badge_blue_bg">#E6F0FF</color>
+    <color name="badge_blue_text">#0066FF</color>
+    <color name="badge_yellow_bg">#FFF4E5</color>
+    <color name="badge_yellow_text">#B25900</color>
+    <color name="badge_green_bg">#E6F8ED</color>
+    <color name="badge_green_text">#008736</color>
+    <color name="badge_red_bg">#FFEBEB</color>
+    <color name="badge_red_text">#D32F2F</color>
+    <color name="divider_color">#E0E0E0</color>
 </resources>
