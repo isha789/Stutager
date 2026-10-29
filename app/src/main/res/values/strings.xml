@@ -42,4 +42,6 @@
     <string name="type_treball">Treball</string>
     <string name="type_examen">Examen</string>
     <string name="save_btn">Desa</string>
+    <string name="task_type_desc">Tipus de tasca</string>
+    <string name="task_action_desc">Acció de tasca</string>
 </resources>
