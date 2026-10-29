@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
     <color name="primary_blue">#087BFA</color>
     <color name="primary_blue_dark">#0556B3</color>
     <color name="dark_blue">#093B91</color>
     <color name="light_blue_bg">#F4F8FC</color>
     <color name="light_blue_chip">#E8F2FF</color>
+    <color name="background_light">#F8F9FA</color>
     <color name="text_dark">#0D1B2A</color>
     <color name="text_gray">#526681</color>
     <color name="text_light_gray">#8A99AD</color>
@@ -22,6 +25,9 @@
     <color name="badge_yellow_text">#B45309</color>
     <color name="badge_green_bg">#E6F4EA</color>
     <color name="badge_green_text">#137333</color>
+    <color name="badge_red_bg">#FFEBEB</color>
+    <color name="badge_red_text">#D32F2F</color>
+    <color name="divider_color">#E0E0E0</color>
 
     <color name="icon_red">#E53935</color>
 </resources>
