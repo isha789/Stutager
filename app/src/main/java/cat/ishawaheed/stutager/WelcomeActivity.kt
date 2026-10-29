@@ -28,9 +28,10 @@ class WelcomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Registra't button
+        // Registra't button -> opens RegisterActivity (Page 5)
         findViewById<Button>(R.id.btnRegistrat)?.setOnClickListener {
-            Toast.makeText(this, "S'ha clicat Registra't", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
 
         // Continua com a convidat button -> opens MainActivity (Page 4)

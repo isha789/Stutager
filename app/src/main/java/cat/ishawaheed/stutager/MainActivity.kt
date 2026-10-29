@@ -1,14 +1,14 @@
 package cat.ishawaheed.stutager
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
@@ -24,44 +24,37 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val chipAll = findViewById<TextView>(R.id.chipAll)
-        val chipTreballs = findViewById<TextView>(R.id.chipTreballs)
-        val chipExamens = findViewById<TextView>(R.id.chipExamens)
-
-        fun selectChip(selected: TextView) {
-            listOf(chipAll, chipTreballs, chipExamens).forEach { chip ->
-                if (chip == selected) {
-                    chip.setBackgroundResource(R.drawable.bg_chip_selected)
-                    chip.setTextColor(getColor(R.color.white_background))
-                } else {
-                    chip.setBackgroundResource(R.drawable.bg_chip_unselected)
-                    chip.setTextColor(getColor(R.color.text_gray))
-                }
-            }
+        // Back button
+        findViewById<ImageView>(R.id.btnBack).setOnClickListener {
+            finish()
         }
 
-        chipAll?.setOnClickListener { selectChip(chipAll) }
-        chipTreballs?.setOnClickListener { selectChip(chipTreballs) }
-        chipExamens?.setOnClickListener { selectChip(chipExamens) }
-
-        findViewById<ImageView>(R.id.btnMenu)?.setOnClickListener {
-            Toast.makeText(this, "Menú principal", Toast.LENGTH_SHORT).show()
+        // Menu button -> All Tasks (Screen 9)
+        findViewById<ImageView>(R.id.btnMenu).setOnClickListener {
+            startActivity(Intent(this, AllTasksActivity::class.java))
         }
 
-        findViewById<LinearLayout>(R.id.cardPrototipDSAM)?.setOnClickListener {
-            Toast.makeText(this, "Prototip DSAM seleccionat", Toast.LENGTH_SHORT).show()
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewTasks)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        val sampleTasks = listOf(
+            TaskItem("Prototip DSAM", "Mòdul: DSAM", "📅 30 oct 2026", "En curs", false, BadgeType.BLUE),
+            TaskItem("Examen Kotlin", "Mòdul: Programació", "📅 4 nov 2026", "Pendent", true, BadgeType.YELLOW),
+            TaskItem("Java fitxers", "Mòdul: Programació", "📅 6 nov 2026", "Pendent", false, BadgeType.YELLOW)
+        )
+
+        recyclerView.adapter = TaskAdapter(sampleTasks) { _ ->
+            startActivity(Intent(this, TaskDetailActivity::class.java))
         }
 
-        findViewById<LinearLayout>(R.id.cardExamenKotlin)?.setOnClickListener {
-            Toast.makeText(this, "Examen Kotlin seleccionat", Toast.LENGTH_SHORT).show()
+        // Add Activity -> Screen 6
+        findViewById<FloatingActionButton>(R.id.btnAddActivity).setOnClickListener {
+            startActivity(Intent(this, TaskEditActivity::class.java))
         }
 
-        findViewById<LinearLayout>(R.id.cardJavaFitxers)?.setOnClickListener {
-            Toast.makeText(this, "Java fitxers seleccionat", Toast.LENGTH_SHORT).show()
-        }
-
-        findViewById<FloatingActionButton>(R.id.fabAddActivity)?.setOnClickListener {
-            Toast.makeText(this, "Nova activitat (veure 6)", Toast.LENGTH_SHORT).show()
+        // All Tasks -> Screen 9
+        findViewById<FloatingActionButton>(R.id.btnAllTasks).setOnClickListener {
+            startActivity(Intent(this, AllTasksActivity::class.java))
         }
     }
 }

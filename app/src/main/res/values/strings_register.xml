@@ -1,0 +1,11 @@
+<resources>
+    <string name="register_title">Crea el teu compte</string>
+    <string name="register_subtitle">Uneix-te a EntregaDAM i comença a organitzar-te.</string>
+    <string name="label_fullname">Nom complet</string>
+    <string name="hint_fullname">Laia García</string>
+    <string name="hint_password">Ex. contrasenya segura</string>
+    <string name="label_confirm_password">Confirma la contrasenya</string>
+    <string name="btn_create_account">Crea el compte</string>
+    <string name="already_have_account">Ja tens compte? Inicia sessió</string>
+    <string name="register_footer">Comença el teu camí acadèmic amb bon peu.</string>
+</resources>

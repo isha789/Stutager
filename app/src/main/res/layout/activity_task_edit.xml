@@ -16,10 +16,11 @@
 
         <ImageView
             android:id="@+id/btnBack"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/back_desc"
+            android:padding="4dp"
             android:src="@drawable/ic_back"
             app:tint="@color/text_dark" />
 
@@ -39,109 +40,131 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="16dp">
+        android:fillViewport="true">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:text="@string/new_activity_subtitle"
-                android:textColor="@color/text_gray"
-                android:textSize="14sp" />
-
-            <!-- Title Field -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/title_label"
-                android:textColor="@color/text_dark"
-                android:textSize="14sp" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/chip_unselected_bg"
-                android:fontFamily="sans-serif"
-                android:hint="@string/title_hint"
-                android:paddingHorizontal="12dp"
-                android:textColor="@color/text_dark"
-                android:textSize="14sp" />
-
-            <!-- Module Field -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/module_label"
-                android:textColor="@color/text_dark"
-                android:textSize="14sp" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/chip_unselected_bg"
-                android:fontFamily="sans-serif"
-                android:hint="@string/module_hint"
-                android:paddingHorizontal="12dp"
-                android:textColor="@color/text_dark"
-                android:textSize="14sp" />
-
-            <!-- Tipus -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/type_label"
-                android:textColor="@color/text_dark"
-                android:textSize="14sp" />
+            android:padding="16dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_max="480dp">
 
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/primary_blue"
-                    android:text="@string/type_treball"
-                    android:textColor="@color/white" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/new_activity_subtitle"
+                    android:textColor="@color/text_gray"
+                    android:textSize="14sp" />
 
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/white"
-                    android:text="@string/type_examen"
-                    android:textColor="@color/text_dark" />
+                <TextView
+                    android:id="@+id/labelTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:labelFor="@+id/etTitle"
+                    android:text="@string/title_label"
+                    android:textColor="@color/text_dark"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="16dp"
+                    android:autofillHints="name"
+                    android:background="@drawable/chip_unselected_bg"
+                    android:fontFamily="sans-serif"
+                    android:hint="@string/title_hint"
+                    android:inputType="text"
+                    android:paddingHorizontal="12dp"
+                    android:textColor="@color/text_dark"
+                    android:textColorHint="@color/text_gray"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/labelModule"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:labelFor="@+id/etModule"
+                    android:text="@string/module_label"
+                    android:textColor="@color/text_dark"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/etModule"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="16dp"
+                    android:autofillHints="name"
+                    android:background="@drawable/chip_unselected_bg"
+                    android:fontFamily="sans-serif"
+                    android:hint="@string/module_hint"
+                    android:inputType="text"
+                    android:paddingHorizontal="12dp"
+                    android:textColor="@color/text_dark"
+                    android:textColorHint="@color/text_gray"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/type_label"
+                    android:textColor="@color/text_dark"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/dark_blue"
+                        android:minHeight="48dp"
+                        android:text="@string/type_treball"
+                        android:textColor="@color/white" />
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/white"
+                        android:minHeight="48dp"
+                        android:text="@string/type_examen"
+                        android:textColor="@color/text_dark" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:maxWidth="360dp"
+                    android:text="@string/save_btn"
+                    app:backgroundTint="@color/dark_blue"
+                    app:cornerRadius="12dp" />
+
             </LinearLayout>
-
-            <!-- Save Button -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSave"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/save_btn"
-                app:backgroundTint="@color/primary_blue"
-                app:cornerRadius="12dp" />
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
 </LinearLayout>

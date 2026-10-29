@@ -4,184 +4,208 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     android:background="@color/white_background"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
     tools:context=".LoginActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:padding="24dp">
 
-        <!-- Top Header Navigation -->
-        <ImageView
-            android:id="@+id/btnBack"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:padding="6dp"
-            android:src="@drawable/ic_arrow_back"
-            app:tint="@color/dark_blue"
-            android:contentDescription="Tornar"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackgroundBorderless"/>
-
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="32dp">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="480dp">
 
-            <!-- Graduation Cap Logo -->
+            <!-- Top Header Navigation -->
             <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:src="@drawable/ic_graduation_cap"
-                app:tint="@color/dark_blue"
-                android:contentDescription="Graduation Cap"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/app_name"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                android:textColor="@color/dark_blue"
-                android:layout_marginTop="8dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/login_welcome"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_dark"
-                android:layout_marginTop="12dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/login_subtitle"
-                android:textSize="14sp"
-                android:textColor="@color/text_gray"
-                android:textAlignment="center"
-                android:layout_marginTop="4dp"/>
-        </LinearLayout>
-
-        <!-- Form Field 1: Correu electrònic -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_email"
-            android:textSize="14sp"
-            android:textColor="@color/text_dark"
-            android:textStyle="bold"
-            android:layout_marginBottom="6dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/bg_input_field"
-            android:paddingHorizontal="14dp"
-            android:layout_marginBottom="20dp">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_email"
-                app:tint="@color/text_gray"
-                android:contentDescription="Email icon"/>
-
-            <EditText
-                android:id="@+id/etEmail"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/hint_email"
-                android:inputType="textEmailAddress"
-                android:background="@null"
-                android:layout_marginStart="10dp"
-                android:textSize="15sp"
-                android:textColor="@color/text_dark"
-                android:textColorHint="@color/text_light_gray"/>
-        </LinearLayout>
-
-        <!-- Form Field 2: Contrasenya -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_password"
-            android:textSize="14sp"
-            android:textColor="@color/text_dark"
-            android:textStyle="bold"
-            android:layout_marginBottom="6dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/bg_input_field"
-            android:paddingHorizontal="14dp"
-            android:layout_marginBottom="12dp">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_lock"
-                app:tint="@color/text_gray"
-                android:contentDescription="Lock icon"/>
-
-            <EditText
-                android:id="@+id/etPassword"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:hint="••••••••"
-                android:inputType="textPassword"
-                android:background="@null"
-                android:layout_marginStart="10dp"
-                android:textSize="15sp"
-                android:textColor="@color/text_dark"
-                android:textColorHint="@color/text_light_gray"/>
-
-            <ImageView
-                android:id="@+id/btnTogglePassword"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_eye"
-                app:tint="@color/text_gray"
-                android:contentDescription="Toggle password"
+                android:id="@+id/btnBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:focusable="true"/>
+                android:contentDescription="Tornar"
+                android:focusable="true"
+                android:padding="12dp"
+                android:src="@drawable/ic_arrow_back"
+                app:tint="@color/dark_blue" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="32dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <!-- Graduation Cap Logo -->
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:contentDescription="Graduation Cap"
+                    android:src="@drawable/ic_graduation_cap"
+                    app:tint="@color/dark_blue" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/app_name"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/login_welcome"
+                    android:textColor="@color/text_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/login_subtitle"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_gray"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Form Field 1: Correu electrònic -->
+            <TextView
+                android:id="@+id/labelEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:fontFamily="sans-serif-medium"
+                android:labelFor="@+id/etEmail"
+                android:text="@string/label_email"
+                android:textColor="@color/text_dark"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_input_field"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="14dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:contentDescription="Email icon"
+                    android:src="@drawable/ic_email"
+                    app:tint="@color/text_gray" />
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:autofillHints="emailAddress"
+                    android:background="@null"
+                    android:hint="@string/hint_email"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/text_dark"
+                    android:textColorHint="@color/text_gray"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <!-- Form Field 2: Contrasenya -->
+            <TextView
+                android:id="@+id/labelPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:fontFamily="sans-serif-medium"
+                android:labelFor="@+id/etPassword"
+                android:text="@string/label_password"
+                android:textColor="@color/text_dark"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_input_field"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="14dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:contentDescription="Lock icon"
+                    android:src="@drawable/ic_lock"
+                    app:tint="@color/text_gray" />
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:autofillHints="password"
+                    android:background="@null"
+                    android:hint="••••••••"
+                    android:inputType="textPassword"
+                    android:textColor="@color/text_dark"
+                    android:textColorHint="@color/text_gray"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/btnTogglePassword"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:contentDescription="Toggle password"
+                    android:focusable="true"
+                    android:padding="14dp"
+                    android:src="@drawable/ic_eye"
+                    app:tint="@color/text_gray" />
+            </LinearLayout>
+
+            <!-- Forgot Password Link -->
+            <TextView
+                android:id="@+id/tvForgotPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:minHeight="48dp"
+                android:gravity="center_vertical"
+                android:text="@string/forgot_password"
+                android:textColor="@color/dark_blue"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!-- Enter Button -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnEntra"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/bg_pill_blue"
+                android:maxWidth="360dp"
+                android:textAllCaps="false"
+                android:text="@string/btn_enter"
+                android:textColor="@color/white_background"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
         </LinearLayout>
-
-        <!-- Forgot Password Link -->
-        <TextView
-            android:id="@+id/tvForgotPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/forgot_password"
-            android:textSize="14sp"
-            android:textColor="@color/primary_blue"
-            android:textStyle="bold"
-            android:layout_marginBottom="32dp"/>
-
-        <!-- Enter Button -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnEntra"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:text="@string/btn_enter"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/white_background"
-            android:textAllCaps="false"
-            android:background="@drawable/bg_pill_blue"/>
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

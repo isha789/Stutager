@@ -1,354 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_background"
-    tools:context=".MainActivity">
+    android:background="@color/background_light"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
 
-        <!-- Top Header Bar -->
-        <RelativeLayout
+        <!-- Top Bar with Back Button on the left -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="20dp">
+            android:fitsSystemWindows="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="12dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/back_desc"
+                android:padding="4dp"
+                android:src="@drawable/ic_back"
+                app:tint="@color/text_dark" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/activities_title"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/dark_blue"/>
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/app_name"
+                android:textColor="@color/dark_blue"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/btnMenu"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:padding="6dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/menu_desc"
+                android:padding="4dp"
                 android:src="@drawable/ic_menu"
-                app:tint="@color/dark_blue"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:contentDescription="Menu"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackgroundBorderless"/>
-        </RelativeLayout>
-
-        <!-- Search Input Field -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/bg_input_field"
-            android:paddingHorizontal="14dp"
-            android:layout_marginBottom="18dp">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_search"
-                app:tint="@color/text_gray"
-                android:contentDescription="Search icon"/>
-
-            <EditText
-                android:id="@+id/etSearch"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/hint_search_activities"
-                android:inputType="text"
-                android:background="@null"
-                android:layout_marginStart="10dp"
-                android:textSize="15sp"
-                android:textColor="@color/text_dark"
-                android:textColorHint="@color/text_light_gray"/>
+                app:tint="@color/text_dark" />
         </LinearLayout>
 
-        <!-- Filter Chips Header Row -->
-        <LinearLayout
+        <!-- Search Bar -->
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="20dp">
-
-            <TextView
-                android:id="@+id/chipAll"
-                android:layout_width="0dp"
-                android:layout_height="38dp"
-                android:layout_weight="1"
-                android:text="@string/tab_all"
-                android:textColor="@color/white_background"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:background="@drawable/bg_chip_selected"
-                android:layout_marginEnd="6dp"
-                android:clickable="true"
-                android:focusable="true"/>
-
-            <TextView
-                android:id="@+id/chipTreballs"
-                android:layout_width="0dp"
-                android:layout_height="38dp"
-                android:layout_weight="1"
-                android:text="@string/tab_assignments"
-                android:textColor="@color/text_gray"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:background="@drawable/bg_chip_unselected"
-                android:layout_marginEnd="6dp"
-                android:clickable="true"
-                android:focusable="true"/>
-
-            <TextView
-                android:id="@+id/chipExamens"
-                android:layout_width="0dp"
-                android:layout_height="38dp"
-                android:layout_weight="1"
-                android:text="@string/tab_exams"
-                android:textColor="@color/text_gray"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:background="@drawable/bg_chip_unselected"
-                android:clickable="true"
-                android:focusable="true"/>
-        </LinearLayout>
-
-        <!-- Activity Cards List -->
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:fillViewport="true">
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
+            app:cardUseCompatPadding="false">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="10dp">
 
-                <!-- Card 1: Prototip DSAM -->
-                <LinearLayout
-                    android:id="@+id/cardPrototipDSAM"
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:contentDescription="Search icon"
+                    android:src="@drawable/ic_search"
+                    app:tint="@color/text_gray" />
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/bg_card_rounded"
-                    android:padding="16dp"
-                    android:layout_marginBottom="12dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground">
-
-                    <ImageView
-                        android:layout_width="44dp"
-                        android:layout_height="44dp"
-                        android:src="@drawable/ic_document_blue"
-                        android:contentDescription="Document Blue"/>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginStart="14dp"
-                        android:layout_marginEnd="8dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Prototip DSAM"
-                            android:textColor="@color/text_dark"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="30 oct 2026"
-                            android:textColor="@color/text_gray"
-                            android:textSize="13sp"
-                            android:layout_marginTop="2dp"/>
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/badge_in_progress"
-                        android:textColor="@color/badge_blue_text"
-                        android:background="@drawable/bg_badge_en_curs"
-                        android:paddingHorizontal="10dp"
-                        android:paddingVertical="4dp"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:layout_marginEnd="10dp"/>
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_chevron_right"
-                        app:tint="@color/text_light_gray"
-                        android:contentDescription="Arrow"/>
-                </LinearLayout>
-
-                <!-- Card 2: Examen Kotlin -->
-                <LinearLayout
-                    android:id="@+id/cardExamenKotlin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/bg_card_rounded"
-                    android:padding="16dp"
-                    android:layout_marginBottom="12dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground">
-
-                    <ImageView
-                        android:layout_width="44dp"
-                        android:layout_height="44dp"
-                        android:src="@drawable/ic_document_red"
-                        android:contentDescription="Document Red"/>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginStart="14dp"
-                        android:layout_marginEnd="8dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Examen Kotlin"
-                            android:textColor="@color/text_dark"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="4 nov 2026"
-                            android:textColor="@color/text_gray"
-                            android:textSize="13sp"
-                            android:layout_marginTop="2dp"/>
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/badge_pending"
-                        android:textColor="@color/badge_yellow_text"
-                        android:background="@drawable/bg_badge_pendent"
-                        android:paddingHorizontal="10dp"
-                        android:paddingVertical="4dp"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:layout_marginEnd="10dp"/>
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_chevron_right"
-                        app:tint="@color/text_light_gray"
-                        android:contentDescription="Arrow"/>
-                </LinearLayout>
-
-                <!-- Card 3: Java fitxers -->
-                <LinearLayout
-                    android:id="@+id/cardJavaFitxers"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/bg_card_rounded"
-                    android:padding="16dp"
-                    android:layout_marginBottom="12dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground">
-
-                    <ImageView
-                        android:layout_width="44dp"
-                        android:layout_height="44dp"
-                        android:src="@drawable/ic_document_code"
-                        android:contentDescription="Document Code"/>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginStart="14dp"
-                        android:layout_marginEnd="8dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Java fitxers"
-                            android:textColor="@color/text_dark"
-                            android:textSize="16sp"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="6 nov 2026"
-                            android:textColor="@color/text_gray"
-                            android:textSize="13sp"
-                            android:layout_marginTop="2dp"/>
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/badge_pending"
-                        android:textColor="@color/badge_yellow_text"
-                        android:background="@drawable/bg_badge_pendent"
-                        android:paddingHorizontal="10dp"
-                        android:paddingVertical="4dp"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:layout_marginEnd="10dp"/>
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_chevron_right"
-                        app:tint="@color/text_light_gray"
-                        android:contentDescription="Arrow"/>
-                </LinearLayout>
-
+                    android:layout_marginStart="10dp"
+                    android:text="@string/search_activities_hint"
+                    android:textColor="@color/text_gray"
+                    android:textSize="16sp" />
             </LinearLayout>
-        </ScrollView>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Filter Chips -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/chip_selected_bg"
+                android:fontFamily="sans-serif-medium"
+                android:minHeight="48dp"
+                android:gravity="center"
+                android:paddingHorizontal="16dp"
+                android:text="@string/filter_all"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/chip_unselected_bg"
+                android:fontFamily="sans-serif-medium"
+                android:minHeight="48dp"
+                android:gravity="center"
+                android:paddingHorizontal="16dp"
+                android:text="@string/filter_works"
+                android:textColor="@color/text_dark"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/chip_unselected_bg"
+                android:fontFamily="sans-serif-medium"
+                android:minHeight="48dp"
+                android:gravity="center"
+                android:paddingHorizontal="16dp"
+                android:text="@string/filter_exams"
+                android:textColor="@color/text_dark"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- RecyclerView for tasks -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewTasks"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="80dp" />
     </LinearLayout>
 
-    <!-- Floating Action Button (+ Nova activitat) -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddActivity"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="24dp"
-        android:src="@drawable/ic_add"
-        app:tint="@color/white_background"
-        app:backgroundTint="@color/primary_blue"
-        app:fabSize="normal"
-        android:contentDescription="Crea una nova activitat"/>
+        android:orientation="vertical">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnAllTasks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/fab_all_tasks_desc"
+            app:contentDescription="@string/fab_all_tasks_desc"
+            android:src="@drawable/ic_view"
+            app:backgroundTint="@color/card_background"
+            app:tint="@color/dark_blue" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnAddActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/fab_add_activity_desc"
+            app:contentDescription="@string/fab_add_activity_desc"
+            android:src="@drawable/ic_add"
+            app:backgroundTint="@color/dark_blue"
+            app:tint="@color/white" />
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
