@@ -1,0 +1,17 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="40dp"
+    android:viewportWidth="200"
+    android:viewportHeight="40">
+  <!-- Wavy line with small trees / hills at bottom like in sketch 2 -->
+  <path
+      android:strokeColor="#087BFA"
+      android:strokeWidth="1.5"
+      android:strokeLineCap="round"
+      android:pathData="M10,25 Q30,15 60,25 T120,25 T190,25"/>
+  <path
+      android:strokeColor="#087BFA"
+      android:strokeWidth="1.5"
+      android:strokeLineCap="round"
+      android:pathData="M45,20 L45,12 M42,16 L45,12 L48,16 M155,20 L155,10 M150,15 L155,10 L160,15"/>
+</vector>

@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="primary_blue">#087BFA</color>
+    <color name="primary_blue_dark">#0556B3</color>
+    <color name="dark_blue">#093B91</color>
+    <color name="light_blue_bg">#F4F8FC</color>
+    <color name="light_blue_chip">#E8F2FF</color>
+    <color name="text_dark">#0D1B2A</color>
+    <color name="text_gray">#526681</color>
+    <color name="text_light_gray">#8A99AD</color>
+    <color name="white_background">#FFFFFF</color>
+
+    <!-- Card & Input Borders -->
+    <color name="card_background">#FFFFFF</color>
+    <color name="card_border">#D0DBEA</color>
+    <color name="input_border">#CBD5E1</color>
+
+    <!-- Badges -->
+    <color name="badge_blue_bg">#E0EDFF</color>
+    <color name="badge_blue_text">#0052CC</color>
+    <color name="badge_yellow_bg">#FFF3D6</color>
+    <color name="badge_yellow_text">#B45309</color>
+    <color name="badge_green_bg">#E6F4EA</color>
+    <color name="badge_green_text">#137333</color>
+
+    <color name="icon_red">#E53935</color>
 </resources>

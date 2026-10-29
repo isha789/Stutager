@@ -1,0 +1,72 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="160dp"
+    android:viewportWidth="200"
+    android:viewportHeight="160">
+
+  <!-- Blue outline hand-drawn style calendar board & desk plant -->
+  <!-- Desk Base line -->
+  <path
+      android:strokeColor="#087BFA"
+      android:strokeWidth="2.5"
+      android:strokeLineCap="round"
+      android:pathData="M20,140 C60,138 140,142 180,140"/>
+
+  <!-- Plant pot left -->
+  <path
+      android:strokeColor="#087BFA"
+      android:strokeWidth="2"
+      android:strokeLineJoin="round"
+      android:pathData="M35,140 L38,122 L50,122 L53,140 Z"/>
+  <path
+      android:strokeColor="#087BFA"
+      android:strokeWidth="2"
+      android:strokeLineCap="round"
+      android:pathData="M44,122 C40,110 32,105 30,108 M44,122 C48,110 56,105 58,108 M44,122 L44,105"/>
+
+  <!-- Plant pot right -->
+  <path
+      android:strokeColor="#087BFA"
+      android:strokeWidth="2"
+      android:strokeLineJoin="round"
+      android:pathData="M147,140 L150,122 L162,122 L165,140 Z"/>
+  <path
+      android:strokeColor="#087BFA"
+      android:strokeWidth="2"
+      android:strokeLineCap="round"
+      android:pathData="M156,122 C152,110 144,105 142,108 M156,122 C160,110 168,105 170,108 M156,122 L156,105"/>
+
+  <!-- Main Calendar Board Frame -->
+  <path
+      android:strokeColor="#087BFA"
+      android:strokeWidth="2.5"
+      android:strokeLineJoin="round"
+      android:fillColor="#F0F6FF"
+      android:pathData="M65,45 L135,45 C139,45 142,48 142,52 L142,125 C142,129 139,132 135,132 L65,132 C61,132 58,129 58,125 L58,52 C58,48 61,45 65,45 Z"/>
+
+  <!-- Calendar Rings -->
+  <path
+      android:strokeColor="#087BFA"
+      android:strokeWidth="2"
+      android:pathData="M72,37 L72,48 M88,37 L88,48 M112,37 L112,48 M128,37 L128,48"/>
+
+  <!-- Checkmarks on Calendar -->
+  <path
+      android:strokeColor="#087BFA"
+      android:strokeWidth="2"
+      android:strokeLineCap="round"
+      android:strokeLineJoin="round"
+      android:pathData="M72,65 L76,69 L84,60  M92,65 L96,69 L104,60  M112,65 L116,69 L124,60"/>
+  <path
+      android:strokeColor="#087BFA"
+      android:strokeWidth="2"
+      android:strokeLineCap="round"
+      android:strokeLineJoin="round"
+      android:pathData="M72,85 L76,89 L84,80  M92,85 L96,89 L104,80  M112,85 L116,89 L124,80"/>
+  <path
+      android:strokeColor="#087BFA"
+      android:strokeWidth="2"
+      android:strokeLineCap="round"
+      android:strokeLineJoin="round"
+      android:pathData="M72,105 L76,109 L84,100 M92,105 L96,109 L104,100 M112,105 L116,109 L124,100"/>
+</vector>

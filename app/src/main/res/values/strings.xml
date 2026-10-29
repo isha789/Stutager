@@ -1,3 +1,40 @@
 <resources>
-    <string name="app_name">Stutager</string>
+    <string name="app_name">EntregaDAM</string>
+
+    <!-- Screen 1: Ajuda Inicial -->
+    <string name="help_title">EntregaDAM</string>
+    <string name="help_subtitle">Organitza els teus treballs i exàmens de manera senzilla.</string>
+    <string name="step1_title">Afegeix</string>
+    <string name="step1_desc">Crea les teves activitats.</string>
+    <string name="step2_title">Organitza</string>
+    <string name="step2_desc">Filtra i prioritza el que toca.</string>
+    <string name="step3_title">Actualitza</string>
+    <string name="step3_desc">Mantén el teu progrés sempre al dia.</string>
+    <string name="btn_start">Comença →</string>
+
+    <!-- Screen 2: Benvinguda -->
+    <string name="welcome_tagline">Planifica · Organitza · Assoleix</string>
+    <string name="btn_login">Inicia sessió</string>
+    <string name="btn_register">Registra\'t</string>
+    <string name="btn_guest">Continua com a convidat</string>
+    <string name="welcome_footer">El teu aliat acadèmic.</string>
+
+    <!-- Screen 3: Inici de sessió -->
+    <string name="login_welcome">Benvingut de nou!</string>
+    <string name="login_subtitle">Entra per continuar amb el teu progrés.</string>
+    <string name="label_email">Correu electrònic</string>
+    <string name="hint_email">nom@exemple.cat</string>
+    <string name="label_password">Contrasenya</string>
+    <string name="forgot_password">Has oblidat la contrasenya?</string>
+    <string name="btn_enter">Entra →</string>
+
+    <!-- Screen 4: Activitats -->
+    <string name="activities_title">EntregaDAM</string>
+    <string name="hint_search_activities">Cerca activitats...</string>
+    <string name="tab_all">Totes</string>
+    <string name="tab_assignments">Treballs</string>
+    <string name="tab_exams">Exàmens</string>
+    <string name="badge_in_progress">En curs</string>
+    <string name="badge_pending">Pendent</string>
+    <string name="badge_completed">Completada</string>
 </resources>
