@@ -30,8 +30,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Menu button -> All Tasks (Screen 9)
-        findViewById<ImageView>(R.id.btnMenu).setOnClickListener {
+        /*findViewById<ImageView>(R.id.btnMenu).setOnClickListener {
             startActivity(Intent(this, AllTasksActivity::class.java))
+        }*/
+        // Accés provisional a Preferències
+        findViewById<ImageView>(R.id.btnMenu).setOnClickListener {
+            startActivity(Intent(this, PreferencesActivity::class.java))
         }
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewTasks)

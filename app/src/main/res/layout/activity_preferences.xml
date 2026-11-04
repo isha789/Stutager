@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white_background"
+    android:padding="24dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/preferencesContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/backPreferencesButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="start"
+                android:padding="12dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/preferences_back"
+                app:srcCompat="@drawable/ic_arrow_back"
+                app:tint="@color/dark_blue" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="8dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="12dp"
+                    android:importantForAccessibility="no"
+                    app:srcCompat="@drawable/ic_settings"
+                    app:tint="@color/dark_blue" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/preferences_title"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="32dp"
+                android:gravity="center"
+                android:text="@string/preferences_subtitle"
+                android:textColor="@color/text_gray"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginEnd="12dp"
+                    android:importantForAccessibility="no"
+                    app:srcCompat="@drawable/ic_sun"
+                    app:tint="@color/dark_blue" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/preferences_theme"
+                    android:textColor="@color/text_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/themeToggleGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginBottom="32dp"
+                app:singleSelection="true"
+                app:selectionRequired="true"
+                app:checkedButton="@id/themeLightButton">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/themeLightButton"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:text="@string/theme_light"
+                    android:textAllCaps="false"
+                    app:icon="@drawable/ic_sun"
+                    app:iconGravity="textStart"
+                    app:iconSize="20dp"
+                    app:cornerRadius="12dp"
+                    android:textColor="@color/toggle_foreground"
+                    app:backgroundTint="@color/toggle_background"
+                    app:iconTint="@color/toggle_foreground"
+                    app:strokeColor="@color/input_border"
+                    app:strokeWidth="1dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/themeDarkButton"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:text="@string/theme_dark"
+                    android:textAllCaps="false"
+                    app:icon="@drawable/ic_moon"
+                    app:iconGravity="textStart"
+                    app:iconSize="20dp"
+                    app:cornerRadius="12dp"
+                    android:textColor="@color/toggle_foreground"
+                    app:backgroundTint="@color/toggle_background"
+                    app:iconTint="@color/toggle_foreground"
+                    app:strokeColor="@color/input_border"
+                    app:strokeWidth="1dp"/>
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginEnd="12dp"
+                    android:importantForAccessibility="no"
+                    app:srcCompat="@drawable/ic_sort"
+                    app:tint="@color/dark_blue" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/preferences_order_title"
+                    android:textColor="@color/text_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/sortToggleGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginBottom="32dp"
+                app:singleSelection="true"
+                app:selectionRequired="true"
+                app:checkedButton="@id/sortDateButton">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/sortDateButton"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:text="@string/sort_date"
+                    android:textAllCaps="false"
+                    android:textColor="@color/toggle_foreground"
+                    app:backgroundTint="@color/toggle_background"
+                    app:cornerRadius="12dp"
+                    app:strokeColor="@color/input_border"
+                    app:strokeWidth="1dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/sortPriorityButton"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:text="@string/sort_priority"
+                    android:textAllCaps="false"
+                    android:textColor="@color/toggle_foreground"
+                    app:backgroundTint="@color/toggle_background"
+                    app:cornerRadius="12dp"
+                    app:strokeColor="@color/input_border"
+                    app:strokeWidth="1dp" />
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="24dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginEnd="12dp"
+                    android:importantForAccessibility="no"
+                    app:srcCompat="@drawable/ic_view"
+                    app:tint="@color/dark_blue" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/showCompletedSwitch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:checked="true"
+                    android:text="@string/preferences_show_completed"
+                    android:textColor="@color/text_dark"
+                    android:textSize="16sp"
+                    app:switchPadding="12dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/savePreferencesButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="56dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/save_btn"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/dark_blue"
+        app:cornerRadius="16dp" />
+
+</LinearLayout>

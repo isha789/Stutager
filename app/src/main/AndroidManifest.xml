@@ -47,6 +47,9 @@
         <activity android:name=".TaskDetailActivity" android:exported="false" />
         <activity android:name=".TaskEditActivity" android:exported="false" />
         <activity android:name=".RegisterActivity" android:exported="false" />
+        <activity
+            android:name=".PreferencesActivity"
+            android:exported="false" />
 
     </application>
 

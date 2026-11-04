@@ -83,4 +83,14 @@
     <string name="save_btn">Desa</string>
     <string name="task_type_desc">Tipus de tasca</string>
     <string name="task_action_desc">Acció de tasca</string>
+    <string name="preferences_title">Preferències</string>
+    <string name="preferences_subtitle">Personalitza l’app al teu gust.</string>
+    <string name="preferences_back">Torna enrere</string>
+    <string name="preferences_theme">Tema</string>
+    <string name="theme_light">Clar</string>
+    <string name="theme_dark">Fosc</string>
+    <string name="preferences_order_title">Ordre de les activitats</string>
+    <string name="sort_date">Data</string>
+    <string name="sort_priority">Prioritat</string>
+    <string name="preferences_show_completed">Mostra les activitats completades</string>
 </resources>
