@@ -71,6 +71,11 @@
     <string name="notes_content">Fer el prototip de les pantalles principals. Incloure navegació i flux bàsic. Revisar amb el professor.</string>
     <string name="edit_btn">Edita</string>
     <string name="delete_btn">Elimina</string>
+    <string name="cancel_btn">Cancel·la</string>
+    <string name="delete_dialog_title">Eliminar activitat</string>
+    <string name="delete_dialog_title_q">Eliminar activitat?</string>
+    <string name="delete_dialog_message">Vols eliminar «%1$s»? Aquesta acció no es pot desfer.</string>
+    <string name="delete_dialog_message_target">Vols eliminar %1$s?\nAquesta acció no es pot desfer.</string>
     <string name="new_activity_title">Nova activitat</string>
     <string name="new_activity_subtitle">Afegeix una activitat al teu calendari.</string>
     <string name="title_label">Títol</string>
