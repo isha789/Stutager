@@ -50,6 +50,10 @@
         <activity
             android:name=".PreferencesActivity"
             android:exported="false" />
+        <activity
+            android:name=".FiltersActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
 
     </application>
 

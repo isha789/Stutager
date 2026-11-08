@@ -49,5 +49,9 @@ class AllTasksActivity : AppCompatActivity() {
         findViewById<FloatingActionButton>(R.id.btnAddActivity).setOnClickListener {
             startActivity(Intent(this, TaskEditActivity::class.java))
         }
+
+        findViewById<View>(R.id.btnFilters)?.setOnClickListener {
+            startActivity(Intent(this, FiltersActivity::class.java))
+        }
     }
 }

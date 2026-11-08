@@ -93,4 +93,43 @@
     <string name="sort_date">Data</string>
     <string name="sort_priority">Prioritat</string>
     <string name="preferences_show_completed">Mostra les activitats completades</string>
+    <string name="filters_title">Filtres i resultats</string>
+    <string name="filters_subtitle">Troba les activitats que necessites.</string>
+    <string name="filters_apply">Aplica</string>
+    <string name="filters_status_label">Estat</string>
+    <string name="filters_priority_label">Prioritat</string>
+    <string name="filters_clear">Neteja</string>
+    <string name="filters_results_count">2 resultats</string>
+    <string name="filters_module_dsam">DSAM</string>
+    <string name="filters_first_metadata">30 oct 2026 · Prioritat alta</string>
+    <string name="filters_second_title">Informe accessibilitat</string>
+    <string name="filters_second_metadata">8 nov 2026 · Prioritat mitjana</string>
+    <string name="filter_tots">Tots</string>
+    <string name="priority_alta_short">Alta</string>
+    <string name="priority_mitjana_short">Mitjana</string>
+    <string name="date_prototip_clean">30 oct 2026</string>
+    <string name="date_second_clean">8 nov 2026</string>
+
+    <string-array name="filter_status_options">
+        <item>Pendents i en curs</item>
+        <item>Tots els estats</item>
+        <item>Pendent</item>
+        <item>En curs</item>
+        <item>Completada</item>
+    </string-array>
+
+    <string-array name="filter_priority_options">
+        <item>Totes</item>
+        <item>Alta</item>
+        <item>Mitjana</item>
+        <item>Baixa</item>
+    </string-array>
+
+    <string-array name="filter_module_options">
+        <item>DSAM</item>
+        <item>Tots els mòduls</item>
+        <item>Programació</item>
+        <item>Accés a dades</item>
+        <item>Digitalització</item>
+    </string-array>
 </resources>

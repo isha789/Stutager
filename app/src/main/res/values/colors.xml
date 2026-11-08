@@ -30,4 +30,5 @@
     <color name="divider_color">#E0E0E0</color>
 
     <color name="icon_red">#E53935</color>
+    <color name="icon_orange">#D97706</color>
 </resources>

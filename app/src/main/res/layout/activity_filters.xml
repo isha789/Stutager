@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/filtersContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="20dp">
+
+        <!-- Capçalera -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/backFiltersButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/preferences_back"
+                android:padding="12dp"
+                app:srcCompat="@drawable/ic_arrow_back"
+                app:tint="@color/dark_blue" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/filters_title"
+                android:textColor="@color/dark_blue"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="48dp"
+                android:layout_height="1dp" />
+
+        </LinearLayout>
+
+        <!-- Cercador -->
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/filterSearchEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_input_field"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="12dp"
+            android:drawableTint="@color/dark_blue"
+            android:hint="@string/search_tasks_hint"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            android:textColor="@color/text_dark"
+            android:textColorHint="@color/text_gray"
+            android:textSize="15sp" />
+
+        <!-- Requadre de filtres -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card_rounded"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <!-- Mòdul -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="76dp"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@id/moduleFilterSpinner"
+                    android:text="@string/module_label"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/moduleFilterSpinner"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_spinner_outline"
+                    android:entries="@array/filter_module_options"
+                    android:minHeight="44dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="36dp"
+                    android:spinnerMode="dropdown" />
+
+            </LinearLayout>
+
+            <!-- Tipus -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="76dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/type_label"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/typeFilterToggleGroup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:checkedButton="@id/typeFilterWorksButton"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/typeFilterAllButton"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:minWidth="0dp"
+                        android:minHeight="44dp"
+                        android:paddingStart="2dp"
+                        android:paddingEnd="2dp"
+                        android:text="@string/filter_tots"
+                        android:textAllCaps="false"
+                        android:textColor="@color/toggle_foreground"
+                        android:textSize="12sp"
+                        app:backgroundTint="@color/toggle_background"
+                        app:cornerRadius="12dp"
+                        app:strokeColor="@color/input_border"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/typeFilterWorksButton"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:minWidth="0dp"
+                        android:minHeight="44dp"
+                        android:paddingStart="2dp"
+                        android:paddingEnd="2dp"
+                        android:text="@string/type_treball"
+                        android:textAllCaps="false"
+                        android:textColor="@color/toggle_foreground"
+                        android:textSize="12sp"
+                        app:backgroundTint="@color/toggle_background"
+                        app:cornerRadius="12dp"
+                        app:strokeColor="@color/input_border"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/typeFilterExamsButton"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:minWidth="0dp"
+                        android:minHeight="44dp"
+                        android:paddingStart="2dp"
+                        android:paddingEnd="2dp"
+                        android:text="@string/type_examen"
+                        android:textAllCaps="false"
+                        android:textColor="@color/toggle_foreground"
+                        android:textSize="12sp"
+                        app:backgroundTint="@color/toggle_background"
+                        app:cornerRadius="12dp"
+                        app:strokeColor="@color/input_border"
+                        app:strokeWidth="1dp" />
+
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            </LinearLayout>
+
+            <!-- Estat -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="76dp"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@id/statusFilterSpinner"
+                    android:text="@string/filters_status_label"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/statusFilterSpinner"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_spinner_outline"
+                    android:entries="@array/filter_status_options"
+                    android:minHeight="44dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="36dp"
+                    android:spinnerMode="dropdown" />
+
+            </LinearLayout>
+
+            <!-- Prioritat -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="76dp"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@id/priorityFilterSpinner"
+                    android:text="@string/filters_priority_label"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/priorityFilterSpinner"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_spinner_outline"
+                    android:entries="@array/filter_priority_options"
+                    android:minHeight="44dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="36dp"
+                    android:spinnerMode="dropdown" />
+
+            </LinearLayout>
+
+            <!-- Botons Neteja / Aplica -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/clearFiltersButton"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:text="@string/filters_clear"
+                    android:textAllCaps="false"
+                    android:textColor="@color/dark_blue"
+                    app:backgroundTint="@color/white_background"
+                    app:cornerRadius="12dp"
+                    app:strokeColor="@color/dark_blue"
+                    app:strokeWidth="1dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/applyFiltersButton"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:text="@string/filters_apply"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    app:backgroundTint="@color/dark_blue"
+                    app:cornerRadius="12dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Separador -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp"
+            android:background="@color/divider_color" />
+
+        <TextView
+            android:id="@+id/filterResultsCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filters_results_count"
+            android:textColor="@color/dark_blue"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <!-- Etiquetes dels filtres d’exemple -->
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/moduleFilterChip"
+                style="@style/Widget.Material3.Chip.Input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filters_module_dsam"
+                android:textColor="@color/dark_blue"
+                app:chipBackgroundColor="@color/light_blue_chip"
+                app:closeIconTint="@color/dark_blue"
+                app:closeIconVisible="true"
+                app:ensureMinTouchTargetSize="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/typeFilterChip"
+                style="@style/Widget.Material3.Chip.Input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/type_treball"
+                android:textColor="@color/dark_blue"
+                app:chipBackgroundColor="@color/light_blue_chip"
+                app:closeIconTint="@color/dark_blue"
+                app:closeIconVisible="true"
+                app:ensureMinTouchTargetSize="true" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- Primer resultat d’exemple -->
+        <LinearLayout
+            android:id="@+id/firstFilterResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card_rounded"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="14dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="12dp"
+                android:importantForAccessibility="no"
+                app:srcCompat="@drawable/ic_document_blue"
+                app:tint="@color/dark_blue" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/task_title_prototip"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/module_dsam"
+                    android:textColor="@color/text_gray"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:importantForAccessibility="no"
+                        app:srcCompat="@drawable/ic_calendar"
+                        app:tint="@color/dark_blue" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="12dp"
+                        android:text="@string/date_prototip_clean"
+                        android:textColor="@color/text_gray"
+                        android:textSize="13sp" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:importantForAccessibility="no"
+                        app:srcCompat="@drawable/ic_flag"
+                        app:tint="@color/badge_red_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/priority_alta_short"
+                        android:textColor="@color/badge_red_text"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_badge_en_curs"
+                    android:paddingStart="10dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/status_in_progress"
+                    android:textColor="@color/badge_blue_text"
+                    android:textSize="12sp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="8dp"
+                    android:importantForAccessibility="no"
+                    app:srcCompat="@drawable/ic_chevron_right"
+                    app:tint="@color/dark_blue" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Segon resultat d’exemple -->
+        <LinearLayout
+            android:id="@+id/secondFilterResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_card_rounded"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="14dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="12dp"
+                android:importantForAccessibility="no"
+                app:srcCompat="@drawable/ic_document_blue"
+                app:tint="@color/dark_blue" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filters_second_title"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/module_dsam"
+                    android:textColor="@color/text_gray"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:importantForAccessibility="no"
+                        app:srcCompat="@drawable/ic_calendar"
+                        app:tint="@color/dark_blue" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="12dp"
+                        android:text="@string/date_second_clean"
+                        android:textColor="@color/text_gray"
+                        android:textSize="13sp" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:importantForAccessibility="no"
+                        app:srcCompat="@drawable/ic_flag"
+                        app:tint="@color/icon_orange" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/priority_mitjana_short"
+                        android:textColor="@color/icon_orange"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_badge_pendent"
+                    android:paddingStart="10dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="10dp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/status_pending"
+                    android:textColor="@color/badge_yellow_text"
+                    android:textSize="12sp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="8dp"
+                    android:importantForAccessibility="no"
+                    app:srcCompat="@drawable/ic_chevron_right"
+                    app:tint="@color/dark_blue" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
