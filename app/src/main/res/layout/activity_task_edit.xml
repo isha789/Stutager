@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light"
+    android:background="@color/white_background"
     android:orientation="vertical">
 
     <!-- Top Bar -->
@@ -14,26 +14,30 @@
         android:orientation="horizontal"
         android:padding="16dp">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btnBack"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/back_desc"
-            android:padding="4dp"
-            android:src="@drawable/ic_back"
-            app:tint="@color/text_dark" />
+            android:padding="12dp"
+            app:srcCompat="@drawable/ic_arrow_back"
+            app:tint="@color/dark_blue" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_weight="1"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/new_activity_title"
-            android:textColor="@color/text_dark"
-            android:textSize="20sp"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/dark_blue"
+            android:textSize="26sp"
             android:textStyle="bold" />
+
+        <Space
+            android:layout_width="48dp"
+            android:layout_height="1dp" />
+
     </LinearLayout>
 
     <ScrollView
@@ -42,129 +46,457 @@
         android:layout_weight="1"
         android:fillViewport="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
+            android:id="@+id/taskEditContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="24dp">
 
-            <LinearLayout
-                android:layout_width="0dp"
+            <!-- Title & Subtitle -->
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_max="480dp">
+                android:gravity="center"
+                android:text="@string/edit_activity_title"
+                android:textColor="@color/dark_blue"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/new_activity_subtitle"
-                    android:textColor="@color/text_gray"
-                    android:textSize="14sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="24dp"
+                android:gravity="center"
+                android:text="@string/edit_activity_subtitle"
+                android:textColor="@color/text_gray"
+                android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/labelTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="6dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:labelFor="@+id/etTitle"
-                    android:text="@string/title_label"
-                    android:textColor="@color/text_dark"
-                    android:textSize="14sp" />
-
-                <EditText
-                    android:id="@+id/etTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginBottom="16dp"
-                    android:autofillHints="name"
-                    android:background="@drawable/chip_unselected_bg"
-                    android:fontFamily="sans-serif"
-                    android:hint="@string/title_hint"
-                    android:inputType="text"
-                    android:paddingHorizontal="12dp"
-                    android:textColor="@color/text_dark"
-                    android:textColorHint="@color/text_gray"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/labelModule"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="6dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:labelFor="@+id/etModule"
-                    android:text="@string/module_label"
-                    android:textColor="@color/text_dark"
-                    android:textSize="14sp" />
-
-                <EditText
-                    android:id="@+id/etModule"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginBottom="16dp"
-                    android:autofillHints="name"
-                    android:background="@drawable/chip_unselected_bg"
-                    android:fontFamily="sans-serif"
-                    android:hint="@string/module_hint"
-                    android:inputType="text"
-                    android:paddingHorizontal="12dp"
-                    android:textColor="@color/text_dark"
-                    android:textColorHint="@color/text_gray"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="6dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="@string/type_label"
-                    android:textColor="@color/text_dark"
-                    android:textSize="14sp" />
+            <!-- Field 1: Títol -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="72dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:orientation="horizontal">
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
 
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/dark_blue"
-                        android:minHeight="48dp"
-                        android:text="@string/type_treball"
-                        android:textColor="@color/white" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:labelFor="@+id/etTitle"
+                        android:text="@string/title_label"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/white"
-                        android:minHeight="48dp"
-                        android:text="@string/type_examen"
-                        android:textColor="@color/text_dark" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="4dp"
+                        android:importantForAccessibility="no"
+                        app:srcCompat="@drawable/ic_document_blue"
+                        app:tint="@color/dark_blue" />
+
                 </LinearLayout>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnSave"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="16dp"
-                    android:maxWidth="360dp"
-                    android:text="@string/save_btn"
-                    app:backgroundTint="@color/dark_blue"
-                    app:cornerRadius="12dp" />
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:autofillHints="name"
+                    android:background="@drawable/bg_spinner_outline"
+                    android:hint="@string/title_hint"
+                    android:inputType="text"
+                    android:paddingHorizontal="14dp"
+                    android:text="@string/task_title_prototip"
+                    android:textColor="@color/text_dark"
+                    android:textColorHint="@color/text_gray"
+                    android:textSize="15sp" />
 
             </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Field 2: Mòdul -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:labelFor="@+id/moduleSpinner"
+                        android:text="@string/module_label"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="4dp"
+                        android:importantForAccessibility="no"
+                        app:srcCompat="@drawable/ic_book"
+                        app:tint="@color/dark_blue" />
+
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/moduleSpinner"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_spinner_outline"
+                    android:entries="@array/form_module_options"
+                    android:minHeight="48dp"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="36dp"
+                    android:spinnerMode="dropdown" />
+
+            </LinearLayout>
+
+            <!-- Field 3: Tipus -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/type_label"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="4dp"
+                        android:importantForAccessibility="no"
+                        app:srcCompat="@drawable/ic_task"
+                        app:tint="@color/dark_blue" />
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/typeToggleGroup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    app:checkedButton="@+id/typeWorksButton"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/typeWorksButton"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:minWidth="0dp"
+                        android:minHeight="44dp"
+                        android:text="@string/type_treball"
+                        android:textAllCaps="false"
+                        android:textColor="@color/toggle_foreground"
+                        android:textSize="14sp"
+                        app:backgroundTint="@color/toggle_background"
+                        app:cornerRadius="12dp"
+                        app:strokeColor="@color/input_border"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/typeExamsButton"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_weight="1"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:minWidth="0dp"
+                        android:minHeight="44dp"
+                        android:text="@string/type_examen"
+                        android:textAllCaps="false"
+                        android:textColor="@color/toggle_foreground"
+                        android:textSize="14sp"
+                        app:backgroundTint="@color/toggle_background"
+                        app:cornerRadius="12dp"
+                        app:strokeColor="@color/input_border"
+                        app:strokeWidth="1dp" />
+
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            </LinearLayout>
+
+            <!-- Field 4: Data -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:labelFor="@+id/etDate"
+                        android:text="@string/date_label"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="4dp"
+                        android:importantForAccessibility="no"
+                        app:srcCompat="@drawable/ic_calendar"
+                        app:tint="@color/dark_blue" />
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etDate"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_spinner_outline"
+                    android:drawableEnd="@drawable/ic_calendar"
+                    android:drawableTint="@color/dark_blue"
+                    android:hint="@string/hint_date"
+                    android:inputType="date"
+                    android:paddingHorizontal="14dp"
+                    android:text="@string/hint_date"
+                    android:textColor="@color/text_dark"
+                    android:textColorHint="@color/text_gray"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <!-- Field 5: Prioritat -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:labelFor="@+id/prioritySpinner"
+                        android:text="@string/filters_priority_label"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="4dp"
+                        android:importantForAccessibility="no"
+                        app:srcCompat="@drawable/ic_flag"
+                        app:tint="@color/dark_blue" />
+
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/prioritySpinner"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_spinner_outline"
+                    android:entries="@array/form_priority_options"
+                    android:minHeight="48dp"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="36dp"
+                    android:spinnerMode="dropdown" />
+
+            </LinearLayout>
+
+            <!-- Field 6: Estat -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:labelFor="@+id/statusSpinner"
+                        android:text="@string/filters_status_label"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="4dp"
+                        android:importantForAccessibility="no"
+                        app:srcCompat="@drawable/ic_clock"
+                        app:tint="@color/dark_blue" />
+
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/statusSpinner"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_spinner_outline"
+                    android:entries="@array/form_status_options"
+                    android:minHeight="48dp"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="36dp"
+                    android:spinnerMode="dropdown" />
+
+            </LinearLayout>
+
+            <!-- Field 7: Notes -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="28dp"
+                android:gravity="top"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:labelFor="@+id/etNotes"
+                        android:text="@string/notes_title"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="4dp"
+                        android:importantForAccessibility="no"
+                        app:srcCompat="@drawable/ic_notes"
+                        app:tint="@color/dark_blue" />
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etNotes"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_spinner_outline"
+                    android:gravity="top|start"
+                    android:hint="@string/hint_notes_content"
+                    android:inputType="textMultiLine"
+                    android:minHeight="80dp"
+                    android:padding="14dp"
+                    android:text="@string/hint_notes_content"
+                    android:textColor="@color/text_dark"
+                    android:textColorHint="@color/text_gray"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <!-- Botons inferiors -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="12dp"
+                android:minHeight="50dp"
+                android:text="@string/save_changes_btn"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/dark_blue"
+                app:cornerRadius="16dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCancel"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:minHeight="50dp"
+                android:text="@string/cancel_btn"
+                android:textAllCaps="false"
+                android:textColor="@color/dark_blue"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/white_background"
+                app:cornerRadius="16dp"
+                app:strokeColor="@color/dark_blue"
+                app:strokeWidth="1.5dp" />
+
+        </LinearLayout>
     </ScrollView>
 
 </LinearLayout>
