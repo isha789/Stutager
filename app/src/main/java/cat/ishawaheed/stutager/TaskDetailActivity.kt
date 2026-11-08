@@ -24,7 +24,9 @@ class TaskDetailActivity : AppCompatActivity() {
         }
 
         findViewById<MaterialButton>(R.id.btnEdit).setOnClickListener {
-            startActivity(Intent(this, TaskEditActivity::class.java))
+            val intent = Intent(this, TaskEditActivity::class.java)
+            intent.putExtra("is_edit", true)
+            startActivity(intent)
         }
 
         findViewById<MaterialButton>(R.id.btnDelete).setOnClickListener {

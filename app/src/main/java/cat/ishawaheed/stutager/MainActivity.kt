@@ -53,7 +53,9 @@ class MainActivity : AppCompatActivity() {
 
         // Add Activity -> Screen 6
         findViewById<FloatingActionButton>(R.id.btnAddActivity).setOnClickListener {
-            startActivity(Intent(this, TaskEditActivity::class.java))
+            val intent = Intent(this, TaskEditActivity::class.java)
+            intent.putExtra("is_edit", false)
+            startActivity(intent)
         }
 
         // All Tasks -> Screen 9

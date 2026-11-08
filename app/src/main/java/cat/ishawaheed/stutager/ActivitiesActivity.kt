@@ -32,7 +32,9 @@ class ActivitiesActivity : AppCompatActivity() {
         }
 
         findViewById<FloatingActionButton>(R.id.btnAddActivity).setOnClickListener {
-            startActivity(Intent(this, TaskEditActivity::class.java))
+            val intent = Intent(this, TaskEditActivity::class.java)
+            intent.putExtra("is_edit", false)
+            startActivity(intent)
         }
 
         findViewById<FloatingActionButton>(R.id.btnAllTasks).setOnClickListener {
