@@ -19,20 +19,15 @@ class TaskEditActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_task_edit)
 
-        val taskEditContent = findViewById<View>(R.id.taskEditContent)
-        if (taskEditContent != null) {
-            val initialLeft = taskEditContent.paddingLeft
-            val initialTop = taskEditContent.paddingTop
-            val initialRight = taskEditContent.paddingRight
-            val initialBottom = taskEditContent.paddingBottom
-
-            ViewCompat.setOnApplyWindowInsetsListener(taskEditContent) { v, insets ->
+        val rootLayout = findViewById<View>(R.id.rootLayout)
+        if (rootLayout != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(rootLayout) { v, insets ->
                 val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
                 v.setPadding(
-                    initialLeft + systemBars.left,
-                    initialTop + systemBars.top,
-                    initialRight + systemBars.right,
-                    initialBottom + systemBars.bottom
+                    systemBars.left,
+                    systemBars.top,
+                    systemBars.right,
+                    systemBars.bottom,
                 )
                 insets
             }

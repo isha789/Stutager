@@ -4,15 +4,12 @@
     android:viewportWidth="200"
     android:viewportHeight="160">
 
-  <!-- Blue outline hand-drawn style calendar board & desk plant -->
-  <!-- Desk Base line -->
   <path
       android:strokeColor="#087BFA"
       android:strokeWidth="2.5"
       android:strokeLineCap="round"
       android:pathData="M20,140 C60,138 140,142 180,140"/>
 
-  <!-- Plant pot left -->
   <path
       android:strokeColor="#087BFA"
       android:strokeWidth="2"
@@ -24,7 +21,6 @@
       android:strokeLineCap="round"
       android:pathData="M44,122 C40,110 32,105 30,108 M44,122 C48,110 56,105 58,108 M44,122 L44,105"/>
 
-  <!-- Plant pot right -->
   <path
       android:strokeColor="#087BFA"
       android:strokeWidth="2"
@@ -36,7 +32,6 @@
       android:strokeLineCap="round"
       android:pathData="M156,122 C152,110 144,105 142,108 M156,122 C160,110 168,105 170,108 M156,122 L156,105"/>
 
-  <!-- Main Calendar Board Frame -->
   <path
       android:strokeColor="#087BFA"
       android:strokeWidth="2.5"
@@ -44,13 +39,11 @@
       android:fillColor="#F0F6FF"
       android:pathData="M65,45 L135,45 C139,45 142,48 142,52 L142,125 C142,129 139,132 135,132 L65,132 C61,132 58,129 58,125 L58,52 C58,48 61,45 65,45 Z"/>
 
-  <!-- Calendar Rings -->
   <path
       android:strokeColor="#087BFA"
       android:strokeWidth="2"
       android:pathData="M72,37 L72,48 M88,37 L88,48 M112,37 L112,48 M128,37 L128,48"/>
 
-  <!-- Checkmarks on Calendar -->
   <path
       android:strokeColor="#087BFA"
       android:strokeWidth="2"

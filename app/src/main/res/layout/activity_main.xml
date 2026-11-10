@@ -13,7 +13,6 @@
         android:fitsSystemWindows="true"
         android:orientation="vertical">
 
-        <!-- Top Bar with Back Button on the left -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,7 +53,6 @@
                 app:tint="@color/text_dark" />
         </LinearLayout>
 
-        <!-- Search Bar -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -89,7 +87,6 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Filter Chips -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -136,7 +133,6 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <!-- RecyclerView for tasks -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTasks"
             android:layout_width="match_parent"

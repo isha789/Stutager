@@ -13,13 +13,10 @@
     <color name="text_light_gray">#8A99AD</color>
     <color name="white_background">#FFFFFF</color>
 
-    <!-- Card & Input Borders -->
     <color name="card_background">#FFFFFF</color>
-    <color name="card_border">#D0DBEA</color>
-    <color name="input_border">#CBD5E1</color>
-
-    <!-- Badges -->
+    <color name="card_border">#D0DBEA</color><color name="input_border">#CBD5E1</color>
     <color name="badge_blue_bg">#E0EDFF</color>
+
     <color name="badge_blue_text">#0052CC</color>
     <color name="badge_yellow_bg">#FFF3D6</color>
     <color name="badge_yellow_text">#B45309</color>
@@ -31,4 +28,20 @@
 
     <color name="icon_red">#E53935</color>
     <color name="icon_orange">#D97706</color>
+
+    <color name="icon_title">#334155</color>
+    <color name="icon_module">#6B21A8</color>
+    <color name="icon_type">#0F766E</color>
+    <color name="icon_date">#1D4ED8</color>
+    <color name="icon_priority">#C2410C</color>
+    <color name="icon_status">#B45309</color>
+    <color name="icon_notes">#334155</color>
+
+    <color name="icon_title_bg">#F1F5F9</color>
+    <color name="icon_module_bg">#F3E8FF</color>
+    <color name="icon_type_bg">#CCFBF1</color>
+    <color name="icon_date_bg">#DBEAFE</color>
+    <color name="icon_priority_bg">#FFEDD5</color>
+    <color name="icon_status_bg">#FEF3C7</color>
+    <color name="icon_notes_bg">#F1F5F9</color>
 </resources>

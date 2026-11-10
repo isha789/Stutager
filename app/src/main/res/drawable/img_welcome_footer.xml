@@ -3,7 +3,6 @@
     android:height="40dp"
     android:viewportWidth="200"
     android:viewportHeight="40">
-  <!-- Wavy line with small trees / hills at bottom like in sketch 2 -->
   <path
       android:strokeColor="#087BFA"
       android:strokeWidth="1.5"

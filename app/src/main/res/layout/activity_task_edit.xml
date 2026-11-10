@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_background"
     android:orientation="vertical">
 
-    <!-- Top Bar -->
     <LinearLayout
+        android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -46,459 +47,491 @@
         android:layout_weight="1"
         android:fillViewport="true">
 
-        <LinearLayout
-            android:id="@+id/taskEditContent"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:paddingHorizontal="20dp"
             android:paddingBottom="24dp">
 
-            <!-- Title & Subtitle -->
-            <TextView
-                android:id="@+id/tvFormTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/edit_activity_title"
-                android:textColor="@color/dark_blue"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvFormSubtitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="24dp"
-                android:gravity="center"
-                android:text="@string/edit_activity_subtitle"
-                android:textColor="@color/text_gray"
-                android:textSize="14sp" />
-
-            <!-- Field 1: Títol -->
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/taskEditContent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="18dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_max="480dp">
+
+                <TextView
+                    android:id="@+id/tvFormTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/new_activity_title"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvFormSubtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="24dp"
+                    android:gravity="center"
+                    android:text="@string/new_activity_subtitle"
+                    android:textColor="@color/text_gray"
+                    android:textSize="14sp" />
 
                 <LinearLayout
-                    android:layout_width="72dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="18dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="72dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:labelFor="@+id/etTitle"
-                        android:text="@string/title_label"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:layout_marginTop="4dp"
+                        android:gravity="center_horizontal"
                         android:importantForAccessibility="no"
-                        app:srcCompat="@drawable/ic_document_blue"
-                        app:tint="@color/dark_blue" />
+                        android:orientation="vertical">
 
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:labelFor="@+id/etTitle"
+                            android:text="@string/title_label"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/etTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
-                    android:autofillHints="name"
-                    android:background="@drawable/bg_spinner_outline"
-                    android:hint="@string/title_hint"
-                    android:inputType="text"
-                    android:paddingHorizontal="14dp"
-                    android:text="@string/task_title_prototip"
-                    android:textColor="@color/text_dark"
-                    android:textColorHint="@color/text_gray"
-                    android:textSize="15sp" />
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/bg_icon_container"
+                            android:backgroundTint="@color/icon_title_bg"
+                            android:importantForAccessibility="no"
+                            android:padding="7dp"
+                            app:srcCompat="@drawable/ic_document_blue"
+                            app:tint="@color/icon_title" />
 
-            </LinearLayout>
+                    </LinearLayout>
 
-            <!-- Field 2: Mòdul -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="18dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="72dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:labelFor="@+id/moduleSpinner"
-                        android:text="@string/module_label"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:layout_marginTop="4dp"
-                        android:importantForAccessibility="no"
-                        app:srcCompat="@drawable/ic_book"
-                        app:tint="@color/dark_blue" />
-
-                </LinearLayout>
-
-                <Spinner
-                    android:id="@+id/moduleSpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_spinner_outline"
-                    android:entries="@array/form_module_options"
-                    android:minHeight="48dp"
-                    android:paddingStart="14dp"
-                    android:paddingEnd="36dp"
-                    android:spinnerMode="dropdown" />
-
-            </LinearLayout>
-
-            <!-- Field 3: Tipus -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="18dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="72dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/type_label"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:layout_marginTop="4dp"
-                        android:importantForAccessibility="no"
-                        app:srcCompat="@drawable/ic_task"
-                        app:tint="@color/dark_blue" />
-
-                </LinearLayout>
-
-                <com.google.android.material.button.MaterialButtonToggleGroup
-                    android:id="@+id/typeToggleGroup"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
-                    app:checkedButton="@+id/typeWorksButton"
-                    app:selectionRequired="true"
-                    app:singleSelection="true">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/typeWorksButton"
-                        style="?attr/materialButtonOutlinedStyle"
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etTitle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:insetTop="0dp"
-                        android:insetBottom="0dp"
-                        android:minWidth="48dp"
                         android:minHeight="48dp"
-                        android:text="@string/type_treball"
-                        android:textAllCaps="false"
-                        android:textColor="@color/toggle_foreground"
-                        android:textSize="14sp"
-                        app:backgroundTint="@color/toggle_background"
-                        app:cornerRadius="12dp"
-                        app:strokeColor="@color/input_border"
-                        app:strokeWidth="1dp" />
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:autofillHints="name"
+                        android:background="@drawable/bg_spinner_outline"
+                        android:hint="@string/title_hint"
+                        android:inputType="text"
+                        android:paddingHorizontal="14dp"
+                        android:text="@string/task_title_prototip"
+                        android:textColor="@color/text_dark"
+                        android:textColorHint="@color/text_gray"
+                        android:textSize="15sp" />
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/typeExamsButton"
-                        style="?attr/materialButtonOutlinedStyle"
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="72dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:importantForAccessibility="no"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:labelFor="@+id/moduleSpinner"
+                            android:text="@string/module_label"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/bg_icon_container"
+                            android:backgroundTint="@color/icon_module_bg"
+                            android:importantForAccessibility="no"
+                            android:padding="7dp"
+                            app:srcCompat="@drawable/ic_book"
+                            app:tint="@color/icon_module" />
+
+                    </LinearLayout>
+
+                    <Spinner
+                        android:id="@+id/moduleSpinner"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
                         android:layout_weight="1"
-                        android:insetTop="0dp"
-                        android:insetBottom="0dp"
-                        android:minWidth="48dp"
+                        android:background="@drawable/bg_spinner_outline"
+                        android:entries="@array/form_module_options"
                         android:minHeight="48dp"
-                        android:text="@string/type_examen"
-                        android:textAllCaps="false"
-                        android:textColor="@color/toggle_foreground"
-                        android:textSize="14sp"
-                        app:backgroundTint="@color/toggle_background"
-                        app:cornerRadius="12dp"
-                        app:strokeColor="@color/input_border"
-                        app:strokeWidth="1dp" />
-
-                </com.google.android.material.button.MaterialButtonToggleGroup>
-
-            </LinearLayout>
-
-            <!-- Field 4: Data -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="18dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="72dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:labelFor="@+id/etDate"
-                        android:text="@string/date_label"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:layout_marginTop="4dp"
-                        android:importantForAccessibility="no"
-                        app:srcCompat="@drawable/ic_calendar"
-                        app:tint="@color/dark_blue" />
+                        android:paddingStart="14dp"
+                        android:paddingEnd="36dp"
+                        android:spinnerMode="dropdown" />
 
                 </LinearLayout>
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/etDate"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_spinner_outline"
-                    android:drawableEnd="@drawable/ic_calendar"
-                    android:drawableTint="@color/dark_blue"
-                    android:hint="@string/hint_date"
-                    android:inputType="date"
-                    android:paddingHorizontal="14dp"
-                    android:text="@string/hint_date"
-                    android:textColor="@color/text_dark"
-                    android:textColorHint="@color/text_gray"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
-
-            <!-- Field 5: Prioritat -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="18dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
                 <LinearLayout
-                    android:layout_width="72dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="18dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="72dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:labelFor="@+id/prioritySpinner"
-                        android:text="@string/filters_priority_label"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:layout_marginTop="4dp"
+                        android:gravity="center_horizontal"
                         android:importantForAccessibility="no"
-                        app:srcCompat="@drawable/ic_flag"
-                        app:tint="@color/dark_blue" />
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/type_label"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/bg_icon_container"
+                            android:backgroundTint="@color/icon_type_bg"
+                            android:importantForAccessibility="no"
+                            android:padding="7dp"
+                            app:srcCompat="@drawable/ic_list"
+                            app:tint="@color/icon_type" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButtonToggleGroup
+                        android:id="@+id/typeToggleGroup"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        app:checkedButton="@+id/typeWorksButton"
+                        app:selectionRequired="true"
+                        app:singleSelection="true">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/typeWorksButton"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="@string/type_treball"
+                            android:textAllCaps="false"
+                            android:textColor="@color/toggle_foreground"
+                            android:textSize="14sp"
+                            app:backgroundTint="@color/toggle_background"
+                            app:cornerRadius="12dp"
+                            app:strokeColor="@color/input_border"
+                            app:strokeWidth="1dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/typeExamsButton"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"
+                            android:text="@string/type_examen"
+                            android:textAllCaps="false"
+                            android:textColor="@color/toggle_foreground"
+                            android:textSize="14sp"
+                            app:backgroundTint="@color/toggle_background"
+                            app:cornerRadius="12dp"
+                            app:strokeColor="@color/input_border"
+                            app:strokeWidth="1dp" />
+
+                    </com.google.android.material.button.MaterialButtonToggleGroup>
 
                 </LinearLayout>
 
-                <Spinner
-                    android:id="@+id/prioritySpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_spinner_outline"
-                    android:entries="@array/form_priority_options"
-                    android:minHeight="48dp"
-                    android:paddingStart="14dp"
-                    android:paddingEnd="36dp"
-                    android:spinnerMode="dropdown" />
-
-            </LinearLayout>
-
-            <!-- Field 6: Estat -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="18dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
                 <LinearLayout
-                    android:layout_width="72dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="18dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="72dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:labelFor="@+id/statusSpinner"
-                        android:text="@string/filters_status_label"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:layout_marginTop="4dp"
+                        android:gravity="center_horizontal"
                         android:importantForAccessibility="no"
-                        app:srcCompat="@drawable/ic_clock"
-                        app:tint="@color/dark_blue" />
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:labelFor="@+id/etDate"
+                            android:text="@string/date_label"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/bg_icon_container"
+                            android:backgroundTint="@color/icon_date_bg"
+                            android:importantForAccessibility="no"
+                            android:padding="7dp"
+                            app:srcCompat="@drawable/ic_calendar"
+                            app:tint="@color/icon_date" />
+
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_spinner_outline"
+                        android:drawableEnd="@drawable/ic_calendar"
+                        android:drawableTint="@color/icon_date"
+                        android:hint="@string/hint_date"
+                        android:inputType="date"
+                        android:paddingHorizontal="14dp"
+                        android:text="@string/hint_date"
+                        android:textColor="@color/text_dark"
+                        android:textColorHint="@color/text_gray"
+                        android:textSize="15sp" />
 
                 </LinearLayout>
 
-                <Spinner
-                    android:id="@+id/statusSpinner"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_spinner_outline"
-                    android:entries="@array/form_status_options"
-                    android:minHeight="48dp"
-                    android:paddingStart="14dp"
-                    android:paddingEnd="36dp"
-                    android:spinnerMode="dropdown" />
-
-            </LinearLayout>
-
-            <!-- Field 7: Notes -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="28dp"
-                android:gravity="top"
-                android:orientation="horizontal">
-
                 <LinearLayout
-                    android:layout_width="72dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="18dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="72dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:labelFor="@+id/etNotes"
-                        android:text="@string/notes_title"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:layout_marginTop="4dp"
+                        android:gravity="center_horizontal"
                         android:importantForAccessibility="no"
-                        app:srcCompat="@drawable/ic_notes"
-                        app:tint="@color/dark_blue" />
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:labelFor="@+id/prioritySpinner"
+                            android:text="@string/filters_priority_label"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/bg_icon_container"
+                            android:backgroundTint="@color/icon_priority_bg"
+                            android:importantForAccessibility="no"
+                            android:padding="7dp"
+                            app:srcCompat="@drawable/ic_flag"
+                            app:tint="@color/icon_priority" />
+
+                    </LinearLayout>
+
+                    <Spinner
+                        android:id="@+id/prioritySpinner"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_spinner_outline"
+                        android:entries="@array/form_priority_options"
+                        android:minHeight="48dp"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="36dp"
+                        android:spinnerMode="dropdown" />
 
                 </LinearLayout>
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/etNotes"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_spinner_outline"
-                    android:gravity="top|start"
-                    android:hint="@string/hint_notes_content"
-                    android:inputType="textMultiLine"
-                    android:minHeight="80dp"
-                    android:padding="14dp"
-                    android:text="@string/hint_notes_content"
-                    android:textColor="@color/text_dark"
-                    android:textColorHint="@color/text_gray"
-                    android:textSize="15sp" />
+                    android:layout_marginBottom="18dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="72dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:importantForAccessibility="no"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:labelFor="@+id/statusSpinner"
+                            android:text="@string/filters_status_label"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/bg_icon_container"
+                            android:backgroundTint="@color/icon_status_bg"
+                            android:importantForAccessibility="no"
+                            android:padding="7dp"
+                            app:srcCompat="@drawable/ic_clock"
+                            app:tint="@color/icon_status" />
+
+                    </LinearLayout>
+
+                    <Spinner
+                        android:id="@+id/statusSpinner"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_spinner_outline"
+                        android:entries="@array/form_status_options"
+                        android:minHeight="48dp"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="36dp"
+                        android:spinnerMode="dropdown" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="28dp"
+                    android:gravity="top"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="72dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_horizontal"
+                        android:importantForAccessibility="no"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:labelFor="@+id/etNotes"
+                            android:text="@string/notes_title"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/bg_icon_container"
+                            android:backgroundTint="@color/icon_notes_bg"
+                            android:importantForAccessibility="no"
+                            android:padding="7dp"
+                            app:srcCompat="@drawable/ic_notes"
+                            app:tint="@color/icon_notes" />
+
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etNotes"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_spinner_outline"
+                        android:gravity="top|start"
+                        android:hint="@string/hint_notes_content"
+                        android:inputType="textMultiLine"
+                        android:minHeight="80dp"
+                        android:padding="14dp"
+                        android:text="@string/hint_notes_content"
+                        android:textColor="@color/text_dark"
+                        android:textColorHint="@color/text_gray"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSave"
+                    android:layout_gravity="center"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:minHeight="50dp"
+                    android:text="@string/save_changes_btn"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/dark_blue"
+                    app:cornerRadius="16dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCancel"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_gravity="center"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="50dp"
+                    android:text="@string/cancel_btn"
+                    android:textAllCaps="false"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/white_background"
+                    app:cornerRadius="16dp"
+                    app:strokeColor="@color/dark_blue"
+                    app:strokeWidth="1.5dp" />
 
             </LinearLayout>
-
-            <!-- Botons inferiors -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSave"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginBottom="12dp"
-                android:minHeight="50dp"
-                android:text="@string/save_changes_btn"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:backgroundTint="@color/dark_blue"
-                app:cornerRadius="16dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnCancel"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:minHeight="50dp"
-                android:text="@string/cancel_btn"
-                android:textAllCaps="false"
-                android:textColor="@color/dark_blue"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:backgroundTint="@color/white_background"
-                app:cornerRadius="16dp"
-                app:strokeColor="@color/dark_blue"
-                app:strokeWidth="1.5dp" />
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
 </LinearLayout>

@@ -15,7 +15,6 @@
         android:paddingTop="16dp"
         android:paddingBottom="20dp">
 
-        <!-- Capçalera -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,7 +47,6 @@
 
         </LinearLayout>
 
-        <!-- Cercador -->
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/filterSearchEditText"
             android:layout_width="match_parent"
@@ -69,7 +67,6 @@
             android:textColorHint="@color/text_gray"
             android:textSize="15sp" />
 
-        <!-- Requadre de filtres -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -77,7 +74,6 @@
             android:orientation="vertical"
             android:padding="14dp">
 
-            <!-- Mòdul -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -108,7 +104,6 @@
 
             </LinearLayout>
 
-            <!-- Tipus -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -200,7 +195,6 @@
 
             </LinearLayout>
 
-            <!-- Estat -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -232,7 +226,6 @@
 
             </LinearLayout>
 
-            <!-- Prioritat -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -264,7 +257,6 @@
 
             </LinearLayout>
 
-            <!-- Botons Neteja / Aplica -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -303,7 +295,6 @@
 
         </LinearLayout>
 
-        <!-- Separador -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -320,7 +311,6 @@
             android:textSize="17sp"
             android:textStyle="bold" />
 
-        <!-- Etiquetes dels filtres d’exemple -->
         <com.google.android.material.chip.ChipGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -353,7 +343,6 @@
 
         </com.google.android.material.chip.ChipGroup>
 
-        <!-- Primer resultat d’exemple -->
         <LinearLayout
             android:id="@+id/firstFilterResult"
             android:layout_width="match_parent"
@@ -466,7 +455,6 @@
 
         </LinearLayout>
 
-        <!-- Segon resultat d’exemple -->
         <LinearLayout
             android:id="@+id/secondFilterResult"
             android:layout_width="match_parent"

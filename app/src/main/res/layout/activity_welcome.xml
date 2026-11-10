@@ -24,7 +24,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_max="440dp">
 
-            <!-- Top Illustration -->
             <ImageView
                 android:layout_width="220dp"
                 android:layout_height="160dp"
@@ -32,7 +31,6 @@
                 android:contentDescription="Calendar Illustration"
                 android:src="@drawable/img_welcome_illustration" />
 
-            <!-- App Name -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -42,7 +40,6 @@
                 android:textSize="28sp"
                 android:textStyle="bold" />
 
-            <!-- Tagline -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -52,7 +49,6 @@
                 android:textColor="@color/text_gray"
                 android:textSize="14sp" />
 
-            <!-- Primary Button: Inicia sessió -->
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnIniciaSessio"
                 android:layout_width="match_parent"
@@ -73,7 +69,6 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <!-- Secondary Button: Registra't -->
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnRegistrat"
                 android:layout_width="match_parent"
@@ -93,7 +88,6 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <!-- Text Button: Continua com a convidat -->
             <LinearLayout
                 android:id="@+id/btnConvidat"
                 android:layout_width="wrap_content"
@@ -124,7 +118,6 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <!-- Footer Illustration & Text -->
             <ImageView
                 android:layout_width="160dp"
                 android:layout_height="32dp"
