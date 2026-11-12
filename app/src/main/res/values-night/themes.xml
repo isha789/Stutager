@@ -1,4 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Base.Theme.Stutager" parent="Theme.Material3.DayNight.NoActionBar">
     </style>
+
+    <!-- Theme for SplashActivity to disable Android 12+ default system splash overlay -->
+    <style name="Theme.Stutager.Splash" parent="Theme.Stutager">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
 </resources>

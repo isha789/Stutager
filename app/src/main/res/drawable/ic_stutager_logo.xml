@@ -1,0 +1,30 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Top rounded bar (Dark navy) -->
+    <path
+        android:fillColor="#111827"
+        android:pathData="M24,28 h40 a4.5,4.5 0 0 1 0,9 h-40 a4.5,4.5 0 0 1 0,-9 Z" />
+
+    <!-- Middle rounded bar (Primary blue) -->
+    <path
+        android:fillColor="#2563EB"
+        android:pathData="M24,43 h28 a4.5,4.5 0 0 1 0,9 h-28 a4.5,4.5 0 0 1 0,-9 Z" />
+
+    <!-- Bottom-left rounded bar (Light cyan/blue) -->
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M24,58 h20 a4.5,4.5 0 0 1 0,9 h-20 a4.5,4.5 0 0 1 0,-9 Z" />
+
+    <!-- Checkmark (Primary blue) -->
+    <path
+        android:strokeColor="#2563EB"
+        android:strokeWidth="9"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M48,58 L58,68 L76,48" />
+
+</vector>
