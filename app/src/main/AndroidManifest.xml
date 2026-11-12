@@ -12,10 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Stutager">
 
-        <!-- Splash Screen (New App Entry Launcher) -->
+        <!-- Splash Screen (New App Entry Launcher with Translucent Splash Theme) -->
         <activity
             android:name=".SplashActivity"
             android:exported="true"
+            android:theme="@style/Theme.Stutager.Splash"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
