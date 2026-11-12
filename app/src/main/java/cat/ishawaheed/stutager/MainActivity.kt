@@ -13,6 +13,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var recyclerView: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -29,38 +31,50 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-        // Menu button -> All Tasks (Screen 9)
-        /*findViewById<ImageView>(R.id.btnMenu).setOnClickListener {
-            startActivity(Intent(this, AllTasksActivity::class.java))
-        }*/
-        // Accés provisional a Preferències
+        // Menu button -> PreferencesActivity navigation
         findViewById<ImageView>(R.id.btnMenu).setOnClickListener {
             startActivity(Intent(this, PreferencesActivity::class.java))
         }
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewTasks)
+        recyclerView = findViewById(R.id.recyclerViewTasks)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val sampleTasks = listOf(
-            TaskItem("Prototip DSAM", "Mòdul: DSAM", "📅 30 oct 2026", "En curs", false, BadgeType.BLUE),
-            TaskItem("Examen Kotlin", "Mòdul: Programació", "📅 4 nov 2026", "Pendent", true, BadgeType.YELLOW),
-            TaskItem("Java fitxers", "Mòdul: Programació", "📅 6 nov 2026", "Pendent", false, BadgeType.YELLOW)
-        )
+        loadTasks()
 
-        recyclerView.adapter = TaskAdapter(sampleTasks) { _ ->
-            startActivity(Intent(this, TaskDetailActivity::class.java))
-        }
-
-        // Add Activity -> Screen 6
+        // Add Activity -> TaskEditActivity
         findViewById<FloatingActionButton>(R.id.btnAddActivity).setOnClickListener {
             val intent = Intent(this, TaskEditActivity::class.java)
             intent.putExtra("is_edit", false)
             startActivity(intent)
         }
 
-        // All Tasks -> Screen 9
+        // All Tasks -> AllTasksActivity
         findViewById<FloatingActionButton>(R.id.btnAllTasks).setOnClickListener {
             startActivity(Intent(this, AllTasksActivity::class.java))
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadTasks()
+    }
+
+    private fun loadTasks() {
+        val sampleTasks = listOf(
+            TaskItem("Prototip DSAM", "Mòdul: DSAM", "📅 30 oct 2026", "En curs", false, BadgeType.BLUE),
+            TaskItem("Examen Kotlin", "Mòdul: Programació", "📅 4 nov 2026", "Pendent", true, BadgeType.YELLOW),
+            TaskItem("Java fitxers", "Mòdul: Programació", "📅 6 nov 2026", "Pendent", false, BadgeType.YELLOW)
+        )
+
+        recyclerView.adapter = TaskAdapter(sampleTasks) { selectedTask ->
+            val intent = Intent(this, TaskDetailActivity::class.java).apply {
+                putExtra("task_title", selectedTask.title)
+                putExtra("task_module", selectedTask.module)
+                putExtra("task_date", selectedTask.date)
+                putExtra("task_status", selectedTask.status)
+                putExtra("is_exam", selectedTask.isExam)
+            }
+            startActivity(intent)
         }
     }
 }

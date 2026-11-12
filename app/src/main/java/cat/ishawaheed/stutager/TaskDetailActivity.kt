@@ -15,6 +15,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class TaskDetailActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task_detail)
@@ -23,9 +24,15 @@ class TaskDetailActivity : AppCompatActivity() {
             finish()
         }
 
+        // Receive task extras from Intent
+        val taskTitle = intent.getStringExtra("task_title") ?: getString(R.string.task_title_prototip)
+
+        findViewById<TextView>(R.id.tvTaskTitle)?.text = taskTitle
+
         findViewById<MaterialButton>(R.id.btnEdit).setOnClickListener {
             val intent = Intent(this, TaskEditActivity::class.java)
             intent.putExtra("is_edit", true)
+            intent.putExtra("task_title", taskTitle)
             startActivity(intent)
         }
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_activities"
+        android:icon="@drawable/ic_task"
+        android:title="@string/activities_title"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_all_tasks"
+        android:icon="@drawable/ic_list"
+        android:title="@string/fab_all_tasks_desc"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_preferences"
+        android:icon="@drawable/ic_settings"
+        android:title="Preferències"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_help"
+        android:icon="@drawable/ic_info"
+        android:title="@string/help_title"
+        app:showAsAction="never" />
+
+</menu>
