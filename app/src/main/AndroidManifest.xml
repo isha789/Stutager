@@ -12,8 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Stutager">
 
+        <!-- Splash Screen (New App Entry Launcher) -->
         <activity
-            android:name=".InitialHelpActivity"
+            android:name=".SplashActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -21,6 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".InitialHelpActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".WelcomeActivity"
