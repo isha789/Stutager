@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_background"
     android:fillViewport="true"
     android:fitsSystemWindows="true"
     tools:context=".WelcomeActivity">
@@ -25,10 +23,10 @@
             app:layout_constraintWidth_max="440dp">
 
             <ImageView
+                android:importantForAccessibility="no"
                 android:layout_width="220dp"
                 android:layout_height="160dp"
                 android:layout_marginTop="32dp"
-                android:contentDescription="Calendar Illustration"
                 android:src="@drawable/img_welcome_illustration" />
 
             <TextView
@@ -36,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/app_name"
-                android:textColor="@color/dark_blue"
+                android:textColor="?attr/colorSecondary"
                 android:textSize="28sp"
                 android:textStyle="bold" />
 
@@ -46,7 +44,7 @@
                 android:layout_marginTop="6dp"
                 android:layout_marginBottom="40dp"
                 android:text="@string/welcome_tagline"
-                android:textColor="@color/text_gray"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 android:textSize="14sp" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -58,14 +56,14 @@
                 android:background="@drawable/bg_pill_blue"
                 android:clickable="true"
                 android:drawableStart="@drawable/ic_user"
-                android:drawableTint="@color/white_background"
+                android:drawableTint="?attr/colorOnPrimary"
                 android:focusable="true"
                 android:maxWidth="360dp"
                 android:paddingStart="24dp"
                 android:paddingEnd="24dp"
                 android:textAllCaps="false"
                 android:text="@string/btn_login"
-                android:textColor="@color/white_background"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -84,7 +82,7 @@
                 android:paddingEnd="24dp"
                 android:textAllCaps="false"
                 android:text="@string/btn_register"
-                android:textColor="@color/dark_blue"
+                android:textColor="?attr/colorSecondary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -102,27 +100,27 @@
                 android:padding="12dp">
 
                 <ImageView
+                    android:importantForAccessibility="no"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:contentDescription="Eye icon"
                     android:src="@drawable/ic_eye"
-                    app:tint="@color/text_dark" />
+                    app:tint="?attr/colorOnSurface" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="@string/btn_guest"
-                    android:textColor="@color/text_dark"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="15sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
             <ImageView
+                android:importantForAccessibility="no"
                 android:layout_width="160dp"
                 android:layout_height="32dp"
                 android:layout_marginTop="16dp"
-                android:contentDescription="Footer hills line"
                 android:src="@drawable/img_welcome_footer" />
 
             <TextView
@@ -131,7 +129,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="16dp"
                 android:text="@string/welcome_footer"
-                android:textColor="@color/text_gray"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 android:textSize="13sp" />
 
         </LinearLayout>

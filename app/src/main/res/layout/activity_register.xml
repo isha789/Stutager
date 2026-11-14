@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light"
     android:orientation="vertical">
 
     <LinearLayout
@@ -15,13 +13,15 @@
 
         <ImageView
             android:id="@+id/btnBack"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/back_desc"
-            android:padding="4dp"
+            android:padding="10dp"
             android:src="@drawable/ic_back"
-            app:tint="@color/text_dark" />
+            app:tint="?attr/colorOnSurface" />
 
         <TextView
             android:layout_width="0dp"
@@ -30,7 +30,7 @@
             android:layout_weight="1"
             android:fontFamily="sans-serif-medium"
             android:text="@string/app_name"
-            android:textColor="@color/primary_blue"
+            android:textColor="?attr/colorPrimary"
             android:textSize="22sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
                 android:text="@string/register_title"
-                android:textColor="@color/text_dark"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
@@ -61,7 +61,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="24dp"
                 android:text="@string/register_subtitle"
-                android:textColor="@color/text_gray"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 android:textSize="14sp" />
 
             <TextView
@@ -69,19 +69,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
                 android:fontFamily="sans-serif-medium"
+                android:labelFor="@id/registerFullName"
                 android:text="@string/label_fullname"
-                android:textColor="@color/text_dark"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp" />
 
             <EditText
+                android:id="@+id/registerFullName"
+                android:importantForAutofill="yes"
+                android:autofillHints="personName"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/chip_unselected_bg"
+                android:inputType="textPersonName|textCapWords"
                 android:fontFamily="sans-serif"
                 android:hint="@string/hint_fullname"
+                android:textColorHint="?attr/colorOnSurfaceVariant"
                 android:paddingHorizontal="12dp"
-                android:textColor="@color/text_dark"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp" />
 
             <TextView
@@ -89,20 +98,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
                 android:fontFamily="sans-serif-medium"
+                android:labelFor="@id/registerEmail"
                 android:text="@string/label_email"
-                android:textColor="@color/text_dark"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp" />
 
             <EditText
+                android:id="@+id/registerEmail"
+                android:importantForAutofill="yes"
+                android:autofillHints="newUsername,emailAddress"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/chip_unselected_bg"
                 android:fontFamily="sans-serif"
                 android:hint="@string/hint_email"
+                android:textColorHint="?attr/colorOnSurfaceVariant"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="12dp"
-                android:textColor="@color/text_dark"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp" />
 
             <TextView
@@ -110,20 +127,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
                 android:fontFamily="sans-serif-medium"
+                android:labelFor="@id/registerPassword"
                 android:text="@string/label_password"
-                android:textColor="@color/text_dark"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp" />
 
             <EditText
+                android:id="@+id/registerPassword"
+                android:importantForAutofill="yes"
+                android:autofillHints="newPassword"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/chip_unselected_bg"
                 android:fontFamily="sans-serif"
-                android:hint="••••••"
+                android:hint="@string/password_hint"
+                android:textColorHint="?attr/colorOnSurfaceVariant"
                 android:inputType="textPassword"
                 android:paddingHorizontal="12dp"
-                android:textColor="@color/text_dark"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp" />
 
             <TextView
@@ -131,29 +156,38 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
                 android:fontFamily="sans-serif-medium"
+                android:labelFor="@id/registerConfirmPassword"
                 android:text="@string/label_confirm_password"
-                android:textColor="@color/text_dark"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp" />
 
             <EditText
+                android:id="@+id/registerConfirmPassword"
+                android:importantForAutofill="yes"
+                android:autofillHints="newPassword"
+                android:imeOptions="actionDone"
+                android:maxLines="1"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/chip_unselected_bg"
                 android:fontFamily="sans-serif"
-                android:hint="••••••"
+                android:hint="@string/password_hint"
+                android:textColorHint="?attr/colorOnSurfaceVariant"
                 android:inputType="textPassword"
                 android:paddingHorizontal="12dp"
-                android:textColor="@color/text_dark"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCreateAccount"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
                 android:layout_marginBottom="16dp"
                 android:text="@string/btn_create_account"
-                app:backgroundTint="@color/primary_blue"
+                app:backgroundTint="?attr/colorPrimary"
                 app:cornerRadius="12dp" />
 
             <TextView
@@ -165,8 +199,9 @@
                 android:focusable="true"
                 android:gravity="center"
                 android:padding="8dp"
+                android:minHeight="48dp"
                 android:text="@string/already_have_account"
-                android:textColor="@color/primary_blue"
+                android:textColor="?attr/colorPrimary"
                 android:textSize="14sp" />
 
         </LinearLayout>

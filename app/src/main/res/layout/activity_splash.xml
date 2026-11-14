@@ -1,20 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/splashContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_background"
+    android:background="?attr/colorSurface"
     tools:context=".SplashActivity">
 
     <!-- Stutager / EntregaDAM Logo -->
     <ImageView
         android:id="@+id/ivSplashLogo"
+        android:importantForAccessibility="no"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:src="@drawable/ic_stutager_logo"
-        android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toTopOf="@id/tvSplashTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/app_name"
-        android:textColor="@color/dark_blue"
+        android:textColor="?attr/colorSecondary"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/tvSplashSubtitle"
@@ -43,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:text="@string/help_subtitle"
-        android:textColor="@color/text_gray"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

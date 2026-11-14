@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_background"
     android:fillViewport="true">
 
     <LinearLayout
@@ -23,13 +21,15 @@
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/backFiltersButton"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/preferences_back"
                 android:padding="12dp"
                 app:srcCompat="@drawable/ic_arrow_back"
-                app:tint="@color/dark_blue" />
+                app:tint="?attr/colorSecondary" />
 
             <TextView
                 android:layout_width="0dp"
@@ -37,7 +37,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/filters_title"
-                android:textColor="@color/dark_blue"
+                android:textColor="?attr/colorSecondary"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
@@ -49,6 +49,7 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/filterSearchEditText"
+            android:importantForAutofill="no"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -56,15 +57,15 @@
             android:background="@drawable/bg_input_field"
             android:drawableStart="@drawable/ic_search"
             android:drawablePadding="12dp"
-            android:drawableTint="@color/dark_blue"
+            android:drawableTint="?attr/colorSecondary"
             android:hint="@string/search_tasks_hint"
             android:imeOptions="actionSearch"
-            android:inputType="text"
+            android:inputType="text|textCapSentences"
             android:maxLines="1"
             android:minHeight="48dp"
             android:padding="12dp"
-            android:textColor="@color/text_dark"
-            android:textColorHint="@color/text_gray"
+            android:textColor="?attr/colorOnSurface"
+            android:textColorHint="?attr/colorOnSurfaceVariant"
             android:textSize="15sp" />
 
         <LinearLayout
@@ -85,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:labelFor="@id/moduleFilterSpinner"
                     android:text="@string/module_label"
-                    android:textColor="@color/dark_blue"
+                    android:textColor="?attr/colorSecondary"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -115,7 +116,7 @@
                     android:layout_width="76dp"
                     android:layout_height="wrap_content"
                     android:text="@string/type_label"
-                    android:textColor="@color/dark_blue"
+                    android:textColor="?attr/colorSecondary"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -146,7 +147,7 @@
                         android:textSize="12sp"
                         app:backgroundTint="@color/toggle_background"
                         app:cornerRadius="12dp"
-                        app:strokeColor="@color/input_border"
+                        app:strokeColor="?attr/colorOutline"
                         app:strokeWidth="1dp" />
 
                     <com.google.android.material.button.MaterialButton
@@ -167,7 +168,7 @@
                         android:textSize="12sp"
                         app:backgroundTint="@color/toggle_background"
                         app:cornerRadius="12dp"
-                        app:strokeColor="@color/input_border"
+                        app:strokeColor="?attr/colorOutline"
                         app:strokeWidth="1dp" />
 
                     <com.google.android.material.button.MaterialButton
@@ -188,7 +189,7 @@
                         android:textSize="12sp"
                         app:backgroundTint="@color/toggle_background"
                         app:cornerRadius="12dp"
-                        app:strokeColor="@color/input_border"
+                        app:strokeColor="?attr/colorOutline"
                         app:strokeWidth="1dp" />
 
                 </com.google.android.material.button.MaterialButtonToggleGroup>
@@ -207,7 +208,7 @@
                     android:layout_height="wrap_content"
                     android:labelFor="@id/statusFilterSpinner"
                     android:text="@string/filters_status_label"
-                    android:textColor="@color/dark_blue"
+                    android:textColor="?attr/colorSecondary"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -238,7 +239,7 @@
                     android:layout_height="wrap_content"
                     android:labelFor="@id/priorityFilterSpinner"
                     android:text="@string/filters_priority_label"
-                    android:textColor="@color/dark_blue"
+                    android:textColor="?attr/colorSecondary"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -267,28 +268,28 @@
                     android:id="@+id/clearFiltersButton"
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
                     android:layout_weight="1"
                     android:minHeight="48dp"
                     android:text="@string/filters_clear"
                     android:textAllCaps="false"
-                    android:textColor="@color/dark_blue"
-                    app:backgroundTint="@color/white_background"
+                    android:textColor="?attr/colorSecondary"
+                    app:backgroundTint="?attr/colorSurface"
                     app:cornerRadius="12dp"
-                    app:strokeColor="@color/dark_blue"
+                    app:strokeColor="?attr/colorSecondary"
                     app:strokeWidth="1dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/applyFiltersButton"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:minHeight="48dp"
                     android:text="@string/filters_apply"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    app:backgroundTint="@color/dark_blue"
+                    android:textColor="?attr/colorOnSecondary"
+                    app:backgroundTint="?attr/colorSecondary"
                     app:cornerRadius="12dp" />
 
             </LinearLayout>
@@ -300,14 +301,14 @@
             android:layout_height="1dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="12dp"
-            android:background="@color/divider_color" />
+            android:background="?attr/colorOutlineVariant" />
 
         <TextView
-            android:id="@+id/filterResultsCount"
+            android:id="@+id/tvFilterResultsCount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/filters_results_count"
-            android:textColor="@color/dark_blue"
+            android:textColor="?attr/colorSecondary"
             android:textSize="17sp"
             android:textStyle="bold" />
 
@@ -323,9 +324,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/filters_module_dsam"
-                android:textColor="@color/dark_blue"
-                app:chipBackgroundColor="@color/light_blue_chip"
-                app:closeIconTint="@color/dark_blue"
+                android:textColor="?attr/colorSecondary"
+                app:chipBackgroundColor="?attr/colorPrimaryContainer"
+                app:closeIconTint="?attr/colorSecondary"
                 app:closeIconVisible="true"
                 app:ensureMinTouchTargetSize="true" />
 
@@ -335,9 +336,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/type_treball"
-                android:textColor="@color/dark_blue"
-                app:chipBackgroundColor="@color/light_blue_chip"
-                app:closeIconTint="@color/dark_blue"
+                android:textColor="?attr/colorSecondary"
+                app:chipBackgroundColor="?attr/colorPrimaryContainer"
+                app:closeIconTint="?attr/colorSecondary"
                 app:closeIconVisible="true"
                 app:ensureMinTouchTargetSize="true" />
 
@@ -358,7 +359,7 @@
                 android:layout_marginEnd="12dp"
                 android:importantForAccessibility="no"
                 app:srcCompat="@drawable/ic_document_blue"
-                app:tint="@color/dark_blue" />
+                app:tint="?attr/colorSecondary" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -370,7 +371,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/task_title_prototip"
-                    android:textColor="@color/dark_blue"
+                    android:textColor="?attr/colorSecondary"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -379,7 +380,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="@string/module_dsam"
-                    android:textColor="@color/text_gray"
+                    android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="13sp" />
 
                 <LinearLayout
@@ -394,7 +395,7 @@
                         android:layout_height="14dp"
                         android:importantForAccessibility="no"
                         app:srcCompat="@drawable/ic_calendar"
-                        app:tint="@color/dark_blue" />
+                        app:tint="?attr/colorSecondary" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -402,7 +403,7 @@
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="12dp"
                         android:text="@string/date_prototip_clean"
-                        android:textColor="@color/text_gray"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="13sp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -410,14 +411,14 @@
                         android:layout_height="14dp"
                         android:importantForAccessibility="no"
                         app:srcCompat="@drawable/ic_flag"
-                        app:tint="@color/badge_red_text" />
+                        app:tint="?attr/colorError" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:text="@string/priority_alta_short"
-                        android:textColor="@color/badge_red_text"
+                        android:textColor="?attr/colorError"
                         android:textSize="13sp"
                         android:textStyle="bold" />
 
@@ -440,7 +441,7 @@
                     android:paddingEnd="10dp"
                     android:paddingBottom="4dp"
                     android:text="@string/status_in_progress"
-                    android:textColor="@color/badge_blue_text"
+                    android:textColor="?attr/colorOnSecondaryContainer"
                     android:textSize="12sp" />
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -449,7 +450,7 @@
                     android:layout_marginStart="8dp"
                     android:importantForAccessibility="no"
                     app:srcCompat="@drawable/ic_chevron_right"
-                    app:tint="@color/dark_blue" />
+                    app:tint="?attr/colorSecondary" />
 
             </LinearLayout>
 
@@ -471,7 +472,7 @@
                 android:layout_marginEnd="12dp"
                 android:importantForAccessibility="no"
                 app:srcCompat="@drawable/ic_document_blue"
-                app:tint="@color/dark_blue" />
+                app:tint="?attr/colorSecondary" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -483,7 +484,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/filters_second_title"
-                    android:textColor="@color/dark_blue"
+                    android:textColor="?attr/colorSecondary"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -492,7 +493,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="@string/module_dsam"
-                    android:textColor="@color/text_gray"
+                    android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="13sp" />
 
                 <LinearLayout
@@ -507,7 +508,7 @@
                         android:layout_height="14dp"
                         android:importantForAccessibility="no"
                         app:srcCompat="@drawable/ic_calendar"
-                        app:tint="@color/dark_blue" />
+                        app:tint="?attr/colorSecondary" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -515,7 +516,7 @@
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="12dp"
                         android:text="@string/date_second_clean"
-                        android:textColor="@color/text_gray"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="13sp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -530,7 +531,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:text="@string/priority_mitjana_short"
-                        android:textColor="@color/icon_orange"
+                        android:textColor="@color/badge_yellow_text"
                         android:textSize="13sp"
                         android:textStyle="bold" />
 
@@ -562,7 +563,7 @@
                     android:layout_marginStart="8dp"
                     android:importantForAccessibility="no"
                     app:srcCompat="@drawable/ic_chevron_right"
-                    app:tint="@color/dark_blue" />
+                    app:tint="?attr/colorSecondary" />
 
             </LinearLayout>
 

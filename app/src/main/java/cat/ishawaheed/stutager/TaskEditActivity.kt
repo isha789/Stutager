@@ -18,11 +18,12 @@ class TaskEditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_task_edit)
+        findViewById<MaterialButtonToggleGroup>(R.id.typeToggleGroup).allowLabelWrapping()
 
         val rootLayout = findViewById<View>(R.id.rootLayout)
         if (rootLayout != null) {
             ViewCompat.setOnApplyWindowInsetsListener(rootLayout) { v, insets ->
-                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
                 v.setPadding(
                     systemBars.left,
                     systemBars.top,
