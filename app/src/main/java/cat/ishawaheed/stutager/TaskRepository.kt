@@ -3,25 +3,37 @@ package cat.ishawaheed.stutager
 import android.content.Context
 import androidx.core.content.edit
 
-/** Shared visibility state for the sample activities, retained across app restarts. */
+/**
+ * Comparteix les tasques de prova entre les pantalles.
+ * Desa els identificadors eliminats a SharedPreferences per conservar les
+ * eliminacions quan es torna a obrir l'aplicació.
+ */
 class TaskRepository(context: Context) {
     private val context = context.applicationContext
     private val preferences = this.context.getSharedPreferences("task_state", Context.MODE_PRIVATE)
 
+    /**
+     * Retorna una nova llista sense les tasques eliminades.
+     * Amb [summary] es mostren les tasques del resum. La llista general manté
+     * el comportament existent.
+     */
     fun tasks(summary: Boolean = false): List<TaskItem> {
         val deleted = preferences.getStringSet("deleted_ids", emptySet()).orEmpty()
         return sampleTasks().filter {
-            it.id !in deleted && (if (summary) it.id in SUMMARY_IDS else it.id != "java")
+            it.id !in deleted
         }
     }
 
+    /** Busca [id] entre les tasques visibles de les dues llistes; retorna null si no hi és. */
     fun find(id: String): TaskItem? = (tasks() + tasks(summary = true)).find { it.id == id }
 
+    /** Desa [id] com a eliminat perquè les pantalles deixin de mostrar aquesta tasca. */
     fun delete(id: String) {
         val deleted = preferences.getStringSet("deleted_ids", emptySet()).orEmpty() + id
         preferences.edit { putStringSet("deleted_ids", deleted) }
     }
 
+    /** Crea les tasques de prova amb identificadors fixos i textos dels recursos. */
     private fun sampleTasks(): List<TaskItem> = with(context) {
         listOf(
             TaskItem(getString(R.string.task_title_prototip), getString(R.string.module_dsam),

@@ -9,11 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.core.view.ViewCompat
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat
 
+/**
+ * Connecta les tasques amb les files del RecyclerView.
+ * [onItemClick] avisa l'Activity de quina tasca s'ha premut.
+ */
 class TaskAdapter(
-    private val tasks: List<TaskItem>,
+    private var tasks: List<TaskItem>,
     private val onItemClick: (TaskItem) -> Unit
 ) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
+    /** Guarda les referències als textos i a la icona d'una fila per reutilitzar-los. */
     class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ivTaskType: ImageView = itemView.findViewById(R.id.ivTaskType)
         val tvTaskTitle: TextView = itemView.findViewById(R.id.tvTaskTitle)
@@ -22,11 +27,16 @@ class TaskAdapter(
         val tvTaskBadge: TextView = itemView.findViewById(R.id.tvTaskBadge)
     }
 
+    /** Crea una fila a partir d'item_task.xml i la guarda en un ViewHolder. */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent, false)
         return TaskViewHolder(view)
     }
 
+    /**
+     * Mostra les dades de la tasca situada a [position] i prepara el seu clic.
+     * El clic normal i l'acció del lector de pantalla obren la mateixa tasca.
+     */
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = tasks[position]
         holder.tvTaskTitle.text = task.title
@@ -73,5 +83,15 @@ class TaskAdapter(
         }
     }
 
+    /** Retorna el nombre de files que ha de mostrar el RecyclerView. */
     override fun getItemCount(): Int = tasks.size
+
+    /**
+     * Guarda una còpia de [newTasks] i avisa que cal tornar a mostrar les dades.
+     * Aquesta actualització completa és senzilla per a la petita llista de prova.
+     */
+    fun updateTasks(newTasks: List<TaskItem>) {
+        tasks = newTasks.toList()
+        notifyDataSetChanged()
+    }
 }

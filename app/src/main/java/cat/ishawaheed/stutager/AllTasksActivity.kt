@@ -15,7 +15,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
+/** Mostra la llista general de tasques i els accessos als detalls, al formulari i als filtres. */
 class AllTasksActivity : AppCompatActivity() {
+    private lateinit var taskAdapter: TaskAdapter
+
+    /**
+     * Prepara el RecyclerView vertical i crea l'Adapter una sola vegada.
+     * El clic d'una fila passa el seu task_id als detalls amb un Intent.
+     * Afegir obre el formulari amb is_edit=false; Filtres obre la pantalla existent.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -35,6 +43,10 @@ class AllTasksActivity : AppCompatActivity() {
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewAllTasks)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        taskAdapter = TaskAdapter(emptyList()) { task ->
+            startActivity(Intent(this, TaskDetailActivity::class.java).putExtra(TaskRepository.EXTRA_TASK_ID, task.id))
+        }
+        recyclerView.adapter = taskAdapter
 
         findViewById<FloatingActionButton>(R.id.btnAddActivity).setOnClickListener {
             val intent = Intent(this, TaskEditActivity::class.java)
@@ -47,11 +59,24 @@ class AllTasksActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Consulta el repositori quan es torna a la pantalla i actualitza el mateix Adapter.
+     * Així es reflecteixen les eliminacions. També actualitza el comptador i mostra
+     * un missatge en lloc de la llista quan no queden tasques.
+     */
     override fun onResume() {
         super.onResume()
         val tasks = TaskRepository(this).tasks()
-        findViewById<RecyclerView>(R.id.recyclerViewAllTasks).adapter = TaskAdapter(tasks) { task ->
-            startActivity(Intent(this, TaskDetailActivity::class.java).putExtra(TaskRepository.EXTRA_TASK_ID, task.id))
+        taskAdapter.updateTasks(tasks)
+
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewAllTasks)
+        val emptyMessage = findViewById<TextView>(R.id.tvEmptyTasks)
+        if (tasks.isEmpty()) {
+            recyclerView.visibility = View.GONE
+            emptyMessage.visibility = View.VISIBLE
+        } else {
+            recyclerView.visibility = View.VISIBLE
+            emptyMessage.visibility = View.GONE
         }
         findViewById<TextView>(R.id.tvTasksCount).text = resources.getQuantityString(R.plurals.task_count, tasks.size, tasks.size)
     }
