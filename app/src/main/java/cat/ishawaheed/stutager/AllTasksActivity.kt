@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
@@ -29,8 +30,29 @@ class AllTasksActivity : AppCompatActivity() {
             WindowInsetsCompat.CONSUMED
         }
 
-        findViewById<ImageView>(R.id.btnMenu).setOnClickListener {
-            finish()
+        // Menu button -> Shows PopupMenu using menu_stutager.xml
+        findViewById<ImageView>(R.id.btnMenu).setOnClickListener { view ->
+            val popup = PopupMenu(this, view)
+            popup.menuInflater.inflate(R.menu.menu_stutager, popup.menu)
+            popup.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.menu_activities -> {
+                        startActivity(Intent(this, MainActivity::class.java))
+                        true
+                    }
+                    R.id.menu_all_tasks -> true
+                    R.id.menu_preferences -> {
+                        startActivity(Intent(this, PreferencesActivity::class.java))
+                        true
+                    }
+                    R.id.menu_help -> {
+                        startActivity(Intent(this, InitialHelpActivity::class.java))
+                        true
+                    }
+                    else -> false
+                }
+            }
+            popup.show()
         }
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewAllTasks)
