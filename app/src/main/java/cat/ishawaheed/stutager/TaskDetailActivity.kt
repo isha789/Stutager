@@ -5,6 +5,7 @@ import android.content.res.ColorStateList
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.Gravity
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -24,7 +25,7 @@ class TaskDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task_detail)
-        applySystemBarInsets()
+
         task = TaskRepository(this).find(intent.getStringExtra(TaskRepository.EXTRA_TASK_ID) ?: "prototip")
             ?: run { finish(); return }
         findViewById<TextView>(R.id.tvTaskTitle).text = task.title
@@ -64,6 +65,7 @@ class TaskDetailActivity : AppCompatActivity() {
         findViewById<MaterialButton>(R.id.btnEdit).setOnClickListener {
             val intent = Intent(this, TaskEditActivity::class.java)
             intent.putExtra("is_edit", true)
+            intent.putExtra("task_title", task.title)
             startActivity(intent)
         }
 
@@ -99,7 +101,7 @@ class TaskDetailActivity : AppCompatActivity() {
             val iconView = ImageView(context).apply {
                 setImageResource(R.drawable.ic_delete)
                 setColorFilter(themeColor(androidx.appcompat.R.attr.colorError))
-                importantForAccessibility = android.view.View.IMPORTANT_FOR_ACCESSIBILITY_NO
+                importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
                 layoutParams = LinearLayout.LayoutParams(dp(48), dp(48)).apply {
                     bottomMargin = dp(12)
                 }

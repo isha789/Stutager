@@ -27,10 +27,14 @@
 
     <string name="badge_completed">Completada</string>
 
-    <string name="menu_desc">Obre les preferències</string>
-    <string name="back_desc">Torna a la pantalla anterior</string>
-    <string name="search_activities_hint">Cerca activitats…</string>
-    <string name="search_tasks_hint">Cerca tasques…</string>
+    <string name="menu_desc">Menu</string>
+    <string name="menu_item_activities">Activitats</string>
+    <string name="menu_item_help">Ajuda</string>
+    <string name="back_desc">Back</string>
+    <string name="more_desc">More</string>
+    <string name="activities_title">EntregaDAM</string>
+    <string name="search_activities_hint">Cerca activitats...</string>
+    <string name="search_tasks_hint">Cerca tasques...</string>
     <string name="filter_all">Totes</string>
     <string name="filter_works">Treballs</string>
     <string name="filter_exams">Exàmens</string>
