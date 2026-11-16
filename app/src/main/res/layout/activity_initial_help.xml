@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_background"
     android:fillViewport="true"
     android:fitsSystemWindows="true"
     tools:context=".InitialHelpActivity">
@@ -25,19 +23,19 @@
             app:layout_constraintWidth_max="480dp">
 
             <ImageView
+                android:importantForAccessibility="no"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:layout_marginTop="28dp"
-                android:contentDescription="@string/app_name"
                 android:src="@drawable/ic_checklist"
-                app:tint="@color/primary_blue" />
+                app:tint="?attr/colorPrimary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/help_title"
-                android:textColor="@color/dark_blue"
+                android:textColor="?attr/colorSecondary"
                 android:textSize="28sp"
                 android:textStyle="bold" />
 
@@ -48,7 +46,7 @@
                 android:layout_marginBottom="36dp"
                 android:text="@string/help_subtitle"
                 android:textAlignment="center"
-                android:textColor="@color/text_gray"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 android:textSize="15sp" />
 
             <LinearLayout
@@ -64,18 +62,19 @@
                     android:layout_height="32dp"
                     android:background="@drawable/bg_pill_blue"
                     android:gravity="center"
-                    android:text="1"
-                    android:textColor="@color/white_background"
+                    android:text="@string/step_number_one"
+                    android:includeFontPadding="false"
+                    android:textColor="?attr/colorOnPrimary"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <ImageView
+                    android:importantForAccessibility="no"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="14dp"
-                    android:contentDescription="@string/step1_title"
                     android:src="@drawable/ic_add_document"
-                    app:tint="@color/dark_blue" />
+                    app:tint="?attr/colorSecondary" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -88,7 +87,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/step1_title"
-                        android:textColor="@color/dark_blue"
+                        android:textColor="?attr/colorSecondary"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -96,7 +95,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/step1_desc"
-                        android:textColor="@color/text_gray"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -114,18 +113,19 @@
                     android:layout_height="32dp"
                     android:background="@drawable/bg_pill_blue"
                     android:gravity="center"
-                    android:text="2"
-                    android:textColor="@color/white_background"
+                    android:text="@string/step_number_two"
+                    android:includeFontPadding="false"
+                    android:textColor="?attr/colorOnPrimary"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <ImageView
+                    android:importantForAccessibility="no"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="14dp"
-                    android:contentDescription="@string/step2_title"
                     android:src="@drawable/ic_list"
-                    app:tint="@color/dark_blue" />
+                    app:tint="?attr/colorSecondary" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -138,7 +138,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/step2_title"
-                        android:textColor="@color/dark_blue"
+                        android:textColor="?attr/colorSecondary"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -146,7 +146,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/step2_desc"
-                        android:textColor="@color/text_gray"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -164,18 +164,19 @@
                     android:layout_height="32dp"
                     android:background="@drawable/bg_pill_blue"
                     android:gravity="center"
-                    android:text="3"
-                    android:textColor="@color/white_background"
+                    android:text="@string/step_number_three"
+                    android:includeFontPadding="false"
+                    android:textColor="?attr/colorOnPrimary"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <ImageView
+                    android:importantForAccessibility="no"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="14dp"
-                    android:contentDescription="@string/step3_title"
                     android:src="@drawable/ic_refresh"
-                    app:tint="@color/dark_blue" />
+                    app:tint="?attr/colorSecondary" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -188,7 +189,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/step3_title"
-                        android:textColor="@color/dark_blue"
+                        android:textColor="?attr/colorSecondary"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -196,7 +197,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/step3_desc"
-                        android:textColor="@color/text_gray"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -215,7 +216,7 @@
                 android:maxWidth="360dp"
                 android:textAllCaps="false"
                 android:text="@string/btn_start"
-                android:textColor="@color/white_background"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -231,24 +232,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="●"
-                    android:textColor="@color/dark_blue"
-                    android:textSize="16sp" />
+                    android:text="@string/page_indicator_current"
+                    android:textColor="?attr/colorSecondary"
+                    android:textSize="16sp" android:importantForAccessibility="no" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="○"
-                    android:textColor="@color/text_gray"
-                    android:textSize="16sp" />
+                    android:text="@string/page_indicator_other"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textSize="16sp" android:importantForAccessibility="no" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="○"
-                    android:textColor="@color/text_gray"
-                    android:textSize="16sp" />
+                    android:text="@string/page_indicator_other"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textSize="16sp" android:importantForAccessibility="no" />
             </LinearLayout>
 
         </LinearLayout>

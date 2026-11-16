@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
@@ -26,16 +24,19 @@
 
         <activity
             android:name=".InitialHelpActivity"
+            android:theme="@style/Theme.Stutager.Surface"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".WelcomeActivity"
+            android:theme="@style/Theme.Stutager.Surface"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".LoginActivity"
+            android:theme="@style/Theme.Stutager.Surface"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
@@ -47,13 +48,15 @@
         <activity android:name=".ActivitiesActivity" android:exported="false" />
         <activity android:name=".AllTasksActivity" android:exported="false" />
         <activity android:name=".TaskDetailActivity" android:exported="false" />
-        <activity android:name=".TaskEditActivity" android:exported="false" />
-        <activity android:name=".RegisterActivity" android:exported="false" />
+        <activity android:name=".TaskEditActivity" android:exported="false" android:theme="@style/Theme.Stutager.Surface" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".RegisterActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".PreferencesActivity"
+            android:theme="@style/Theme.Stutager.Surface"
             android:exported="false" />
         <activity
             android:name=".FiltersActivity"
+            android:theme="@style/Theme.Stutager.Surface"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 

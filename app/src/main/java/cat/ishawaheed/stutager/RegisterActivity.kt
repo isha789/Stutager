@@ -11,6 +11,7 @@ class RegisterActivity :AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+        applySystemBarInsets()
 
         // Back button
         findViewById<ImageView>(R.id.btnBack).setOnClickListener {

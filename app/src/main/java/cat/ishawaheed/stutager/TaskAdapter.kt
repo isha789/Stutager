@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.core.view.ViewCompat
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat
 
 class TaskAdapter(
     private val tasks: List<TaskItem>,
@@ -18,7 +20,6 @@ class TaskAdapter(
         val tvTaskModule: TextView = itemView.findViewById(R.id.tvTaskModule)
         val tvTaskDate: TextView = itemView.findViewById(R.id.tvTaskDate)
         val tvTaskBadge: TextView = itemView.findViewById(R.id.tvTaskBadge)
-        val ivTaskAction: ImageView = itemView.findViewById(R.id.ivTaskAction)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -38,6 +39,9 @@ class TaskAdapter(
         } else {
             holder.ivTaskType.setImageResource(R.drawable.ic_task)
         }
+        holder.ivTaskType.contentDescription = holder.itemView.context.getString(
+            if (task.isExam) R.string.type_examen else R.string.type_treball
+        )
 
         when (task.badgeType) {
             BadgeType.BLUE -> {
@@ -49,17 +53,23 @@ class TaskAdapter(
                 holder.tvTaskBadge.setTextColor(holder.itemView.context.getColor(R.color.badge_yellow_text))
             }
             BadgeType.GREEN -> {
-                holder.tvTaskBadge.setBackgroundResource(R.drawable.badge_yellow) // fallback or green
+                holder.tvTaskBadge.setBackgroundResource(R.drawable.badge_green)
                 holder.tvTaskBadge.setTextColor(holder.itemView.context.getColor(R.color.badge_green_text))
             }
             BadgeType.RED -> {
-                holder.tvTaskBadge.setBackgroundResource(R.drawable.badge_yellow)
+                holder.tvTaskBadge.setBackgroundResource(R.drawable.badge_red)
                 holder.tvTaskBadge.setTextColor(holder.itemView.context.getColor(R.color.badge_red_text))
             }
         }
 
         holder.itemView.setOnClickListener {
             onItemClick(task)
+        }
+        ViewCompat.setScreenReaderFocusable(holder.itemView, true)
+        ViewCompat.replaceAccessibilityAction(holder.itemView, AccessibilityActionCompat.ACTION_CLICK,
+            holder.itemView.context.getString(R.string.open_task_desc, task.title)) { _, _ ->
+            onItemClick(task)
+            true
         }
     }
 

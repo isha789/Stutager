@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -18,6 +20,7 @@ class AllTasksActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_all_tasks)
+        findViewById<LinearLayout>(R.id.activityTabs).fitTabLabels()
 
         val rootView = findViewById<View>(R.id.main)
         ViewCompat.setOnApplyWindowInsetsListener(rootView) { v, windowInsets ->
@@ -33,19 +36,6 @@ class AllTasksActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewAllTasks)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val allTasks = listOf(
-            TaskItem("Prototip DSAM", "Mòdul: DSAM", "📅 30 oct 2026   🚩 Alta", "En curs", false, BadgeType.BLUE),
-            TaskItem("Examen Kotlin", "Mòdul: Programació", "📅 4 nov 2026   🚩 Mitjana", "Pendent", true, BadgeType.YELLOW),
-            TaskItem("AppBanc", "Mòdul: Accés a Dades", "📅 6 nov 2026   🚩 Mitjana", "Pendent", false, BadgeType.YELLOW),
-            TaskItem("Informe accessibilitat", "Mòdul: DSAM", "📅 8 nov 2026   🚩 Mitjana", "Pendent", false, BadgeType.YELLOW),
-            TaskItem("Pràctica SQLite", "Mòdul: Accés a Dades", "📅 10 nov 2026   🚩 Baixa", "Pendent", false, BadgeType.YELLOW),
-            TaskItem("Exercicis Kotlin", "Mòdul: Programació", "📅 20 oct 2026   🚩 Baixa", "Completada", false, BadgeType.GREEN)
-        )
-
-        recyclerView.adapter = TaskAdapter(allTasks) { _ ->
-            startActivity(Intent(this, TaskDetailActivity::class.java))
-        }
-
         findViewById<FloatingActionButton>(R.id.btnAddActivity).setOnClickListener {
             val intent = Intent(this, TaskEditActivity::class.java)
             intent.putExtra("is_edit", false)
@@ -55,5 +45,14 @@ class AllTasksActivity : AppCompatActivity() {
         findViewById<View>(R.id.btnFilters)?.setOnClickListener {
             startActivity(Intent(this, FiltersActivity::class.java))
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val tasks = TaskRepository(this).tasks()
+        findViewById<RecyclerView>(R.id.recyclerViewAllTasks).adapter = TaskAdapter(tasks) { task ->
+            startActivity(Intent(this, TaskDetailActivity::class.java).putExtra(TaskRepository.EXTRA_TASK_ID, task.id))
+        }
+        findViewById<TextView>(R.id.tvTasksCount).text = resources.getQuantityString(R.plurals.task_count, tasks.size, tasks.size)
     }
 }

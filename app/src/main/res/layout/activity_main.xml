@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light"
     android:fitsSystemWindows="true">
 
     <LinearLayout
@@ -23,14 +21,16 @@
 
             <ImageView
                 android:id="@+id/btnBack"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_marginEnd="12dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/back_desc"
-                android:padding="4dp"
+                android:padding="10dp"
                 android:src="@drawable/ic_back"
-                app:tint="@color/text_dark" />
+                app:tint="?attr/colorOnSurface" />
 
             <TextView
                 android:layout_width="0dp"
@@ -38,19 +38,21 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-medium"
                 android:text="@string/app_name"
-                android:textColor="@color/dark_blue"
+                android:textColor="?attr/colorSecondary"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/btnMenu"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/menu_desc"
-                android:padding="4dp"
+                android:padding="10dp"
                 android:src="@drawable/ic_menu"
-                app:tint="@color/text_dark" />
+                app:tint="?attr/colorOnSurface" />
         </LinearLayout>
 
         <androidx.cardview.widget.CardView
@@ -60,34 +62,25 @@
             android:layout_marginBottom="12dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="1dp"
-            app:cardUseCompatPadding="false">
+            app:cardUseCompatPadding="false"
+            app:cardBackgroundColor="?attr/colorSurface">
 
-            <LinearLayout
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
                 android:paddingHorizontal="12dp"
-                android:paddingVertical="10dp">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:contentDescription="Search icon"
-                    android:src="@drawable/ic_search"
-                    app:tint="@color/text_gray" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/search_activities_hint"
-                    android:textColor="@color/text_gray"
-                    android:textSize="16sp" />
-            </LinearLayout>
+                android:paddingVertical="10dp"
+                android:drawablePadding="10dp"
+                android:text="@string/search_activities_hint"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:textSize="16sp"
+                app:drawableStartCompat="@drawable/ic_search_20"
+                app:drawableTint="?attr/colorOnSurfaceVariant" />
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
+            android:id="@+id/activityTabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -104,7 +97,7 @@
                 android:gravity="center"
                 android:paddingHorizontal="16dp"
                 android:text="@string/filter_all"
-                android:textColor="@color/white"
+                android:textColor="?attr/colorOnSecondary"
                 android:textSize="14sp" />
 
             <TextView
@@ -117,7 +110,7 @@
                 android:gravity="center"
                 android:paddingHorizontal="16dp"
                 android:text="@string/filter_works"
-                android:textColor="@color/text_dark"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp" />
 
             <TextView
@@ -129,7 +122,7 @@
                 android:gravity="center"
                 android:paddingHorizontal="16dp"
                 android:text="@string/filter_exams"
-                android:textColor="@color/text_dark"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -140,7 +133,7 @@
             android:layout_weight="1"
             android:clipToPadding="false"
             android:paddingHorizontal="16dp"
-            android:paddingBottom="80dp" />
+            android:paddingBottom="160dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -158,10 +151,9 @@
             android:clickable="true"
             android:focusable="true"
             android:contentDescription="@string/fab_all_tasks_desc"
-            app:contentDescription="@string/fab_all_tasks_desc"
             android:src="@drawable/ic_view"
-            app:backgroundTint="@color/card_background"
-            app:tint="@color/dark_blue" />
+            app:backgroundTint="?attr/colorSurface"
+            app:tint="?attr/colorSecondary" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnAddActivity"
@@ -170,10 +162,9 @@
             android:clickable="true"
             android:focusable="true"
             android:contentDescription="@string/fab_add_activity_desc"
-            app:contentDescription="@string/fab_add_activity_desc"
             android:src="@drawable/ic_add"
-            app:backgroundTint="@color/dark_blue"
-            app:tint="@color/white" />
+            app:backgroundTint="?attr/colorSecondary"
+            app:tint="?attr/colorOnSecondary" />
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white_background"
     android:padding="24dp">
 
     <ScrollView
@@ -21,6 +19,8 @@
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/backPreferencesButton"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_gravity="start"
@@ -28,7 +28,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/preferences_back"
                 app:srcCompat="@drawable/ic_arrow_back"
-                app:tint="@color/dark_blue" />
+                app:tint="?attr/colorSecondary" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -43,13 +43,13 @@
                     android:layout_marginEnd="12dp"
                     android:importantForAccessibility="no"
                     app:srcCompat="@drawable/ic_settings"
-                    app:tint="@color/dark_blue" />
+                    app:tint="?attr/colorSecondary" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/preferences_title"
-                    android:textColor="@color/dark_blue"
+                    android:textColor="?attr/colorSecondary"
                     android:textSize="26sp"
                     android:textStyle="bold" />
 
@@ -62,7 +62,7 @@
                 android:layout_marginBottom="32dp"
                 android:gravity="center"
                 android:text="@string/preferences_subtitle"
-                android:textColor="@color/text_gray"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 android:textSize="16sp" />
 
             <LinearLayout
@@ -78,13 +78,13 @@
                     android:layout_marginEnd="12dp"
                     android:importantForAccessibility="no"
                     app:srcCompat="@drawable/ic_sun"
-                    app:tint="@color/dark_blue" />
+                    app:tint="?attr/colorSecondary" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/preferences_theme"
-                    android:textColor="@color/text_dark"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -115,7 +115,7 @@
                     android:textColor="@color/toggle_foreground"
                     app:backgroundTint="@color/toggle_background"
                     app:iconTint="@color/toggle_foreground"
-                    app:strokeColor="@color/input_border"
+                    app:strokeColor="?attr/colorOutline"
                     app:strokeWidth="1dp"/>
 
                 <com.google.android.material.button.MaterialButton
@@ -134,7 +134,7 @@
                     android:textColor="@color/toggle_foreground"
                     app:backgroundTint="@color/toggle_background"
                     app:iconTint="@color/toggle_foreground"
-                    app:strokeColor="@color/input_border"
+                    app:strokeColor="?attr/colorOutline"
                     app:strokeWidth="1dp"/>
 
             </com.google.android.material.button.MaterialButtonToggleGroup>
@@ -151,13 +151,13 @@
                     android:layout_marginEnd="12dp"
                     android:importantForAccessibility="no"
                     app:srcCompat="@drawable/ic_sort"
-                    app:tint="@color/dark_blue" />
+                    app:tint="?attr/colorSecondary" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/preferences_order_title"
-                    android:textColor="@color/text_dark"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -185,7 +185,7 @@
                     android:textColor="@color/toggle_foreground"
                     app:backgroundTint="@color/toggle_background"
                     app:cornerRadius="12dp"
-                    app:strokeColor="@color/input_border"
+                    app:strokeColor="?attr/colorOutline"
                     app:strokeWidth="1dp" />
 
                 <com.google.android.material.button.MaterialButton
@@ -200,7 +200,7 @@
                     android:textColor="@color/toggle_foreground"
                     app:backgroundTint="@color/toggle_background"
                     app:cornerRadius="12dp"
-                    app:strokeColor="@color/input_border"
+                    app:strokeColor="?attr/colorOutline"
                     app:strokeWidth="1dp" />
 
             </com.google.android.material.button.MaterialButtonToggleGroup>
@@ -218,7 +218,7 @@
                     android:layout_marginEnd="12dp"
                     android:importantForAccessibility="no"
                     app:srcCompat="@drawable/ic_view"
-                    app:tint="@color/dark_blue" />
+                    app:tint="?attr/colorSecondary" />
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/showCompletedSwitch"
@@ -228,7 +228,7 @@
                     android:minHeight="48dp"
                     android:checked="true"
                     android:text="@string/preferences_show_completed"
-                    android:textColor="@color/text_dark"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="16sp"
                     app:switchPadding="12dp" />
 
@@ -248,8 +248,8 @@
         android:layout_marginTop="16dp"
         android:text="@string/save_btn"
         android:textSize="18sp"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/dark_blue"
+        android:textColor="?attr/colorOnSecondary"
+        android:backgroundTint="?attr/colorSecondary"
         app:cornerRadius="16dp" />
 
 </LinearLayout>

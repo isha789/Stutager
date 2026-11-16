@@ -22,7 +22,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
@@ -42,10 +42,13 @@ class LoginActivity : AppCompatActivity() {
                 etPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             }
             etPassword.setSelection(etPassword.text.length)
+            btnTogglePassword.contentDescription = getString(
+                if (isPasswordVisible) R.string.hide_password_desc else R.string.show_password_desc
+            )
         }
 
         findViewById<TextView>(R.id.tvForgotPassword)?.setOnClickListener {
-            Toast.makeText(this, "Recuperació de contrasenya", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.password_recovery_message, Toast.LENGTH_SHORT).show()
         }
 
         findViewById<Button>(R.id.btnEntra)?.setOnClickListener {

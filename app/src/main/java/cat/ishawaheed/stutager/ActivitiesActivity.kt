@@ -3,6 +3,7 @@ package cat.ishawaheed.stutager
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +14,8 @@ class ActivitiesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_activities_summary)
+        findViewById<LinearLayout>(R.id.activityTabs).fitTabLabels()
+        applySystemBarInsets()
 
         // Menu button -> Shows PopupMenu using menu_stutager.xml
         findViewById<ImageView>(R.id.btnMenu).setOnClickListener { view ->
@@ -42,16 +45,6 @@ class ActivitiesActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewTasks)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val sampleTasks = listOf(
-            TaskItem("Prototip DSAM", "Mòdul: DSAM", "📅 30 oct 2026", "En curs", false, BadgeType.BLUE),
-            TaskItem("Examen Kotlin", "Mòdul: Programació", "📅 4 nov 2026", "Pendent", true, BadgeType.YELLOW),
-            TaskItem("Java fitxers", "Mòdul: Programació", "📅 6 nov 2026", "Pendent", false, BadgeType.YELLOW)
-        )
-
-        recyclerView.adapter = TaskAdapter(sampleTasks) { _ ->
-            startActivity(Intent(this, TaskDetailActivity::class.java))
-        }
-
         findViewById<FloatingActionButton>(R.id.btnAddActivity).setOnClickListener {
             val intent = Intent(this, TaskEditActivity::class.java)
             intent.putExtra("is_edit", false)
@@ -60,6 +53,20 @@ class ActivitiesActivity : AppCompatActivity() {
 
         findViewById<FloatingActionButton>(R.id.btnAllTasks).setOnClickListener {
             startActivity(Intent(this, AllTasksActivity::class.java))
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val tasks = TaskRepository(this).tasks(summary = true).map {
+            it.copy(date = when (it.id) {
+                "prototip" -> getString(R.string.date_prototip)
+                "examen" -> getString(R.string.date_examen)
+                else -> it.date
+            })
+        }
+        findViewById<RecyclerView>(R.id.recyclerViewTasks).adapter = TaskAdapter(tasks) { task ->
+            startActivity(Intent(this, TaskDetailActivity::class.java).putExtra(TaskRepository.EXTRA_TASK_ID, task.id))
         }
     }
 }

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="ca">
     <string name="app_name">EntregaDAM</string>
 
     <string name="help_title">EntregaDAM</string>
@@ -25,13 +25,6 @@
     <string name="forgot_password">Has oblidat la contrasenya?</string>
     <string name="btn_enter">Entra →</string>
 
-    <string name="activities_title">EntregaDAM</string>
-    <string name="hint_search_activities">Cerca activitats...</string>
-    <string name="tab_all">Totes</string>
-    <string name="tab_assignments">Treballs</string>
-    <string name="tab_exams">Exàmens</string>
-    <string name="badge_in_progress">En curs</string>
-    <string name="badge_pending">Pendent</string>
     <string name="badge_completed">Completada</string>
 
     <string name="menu_desc">Menu</string>
@@ -39,6 +32,7 @@
     <string name="menu_item_help">Ajuda</string>
     <string name="back_desc">Back</string>
     <string name="more_desc">More</string>
+    <string name="activities_title">EntregaDAM</string>
     <string name="search_activities_hint">Cerca activitats...</string>
     <string name="search_tasks_hint">Cerca tasques...</string>
     <string name="filter_all">Totes</string>
@@ -69,9 +63,7 @@
     <string name="edit_btn">Edita</string>
     <string name="delete_btn">Elimina</string>
     <string name="cancel_btn">Cancel·la</string>
-    <string name="delete_dialog_title">Eliminar activitat</string>
     <string name="delete_dialog_title_q">Eliminar activitat?</string>
-    <string name="delete_dialog_message">Vols eliminar «%1$s»? Aquesta acció no es pot desfer.</string>
     <string name="delete_dialog_message_target">Vols eliminar %1$s?\nAquesta acció no es pot desfer.</string>
     <string name="new_activity_title">Nova activitat</string>
     <string name="new_activity_subtitle">Afegeix una activitat al teu calendari.</string>
@@ -84,13 +76,11 @@
     <string name="title_label">Títol</string>
     <string name="title_hint">Ex. Prototip DSAM</string>
     <string name="module_label">Mòdul</string>
-    <string name="module_hint"> Desenvolupament d\'Aplicacions Mòbils</string>
     <string name="type_label">Tipus</string>
     <string name="type_treball">Treball</string>
     <string name="type_examen">Examen</string>
     <string name="save_btn">Desa</string>
-    <string name="task_type_desc">Tipus de tasca</string>
-    <string name="task_action_desc">Acció de tasca</string>
+    <string name="task_type_desc">Treball</string>
     <string name="preferences_title">Preferències</string>
     <string name="preferences_subtitle">Personalitza l’app al teu gust.</string>
     <string name="preferences_back">Torna enrere</string>
@@ -102,16 +92,13 @@
     <string name="sort_priority">Prioritat</string>
     <string name="preferences_show_completed">Mostra les activitats completades</string>
     <string name="filters_title">Filtres i resultats</string>
-    <string name="filters_subtitle">Troba les activitats que necessites.</string>
     <string name="filters_apply">Aplica</string>
     <string name="filters_status_label">Estat</string>
     <string name="filters_priority_label">Prioritat</string>
     <string name="filters_clear">Neteja</string>
     <string name="filters_results_count">2 resultats</string>
     <string name="filters_module_dsam">DSAM</string>
-    <string name="filters_first_metadata">30 oct 2026 · Prioritat alta</string>
     <string name="filters_second_title">Informe accessibilitat</string>
-    <string name="filters_second_metadata">8 nov 2026 · Prioritat mitjana</string>
     <string name="filter_tots">Tots</string>
     <string name="priority_alta_short">Alta</string>
     <string name="priority_mitjana_short">Mitjana</string>
@@ -159,4 +146,42 @@
         <item>En curs</item>
         <item>Completada</item>
     </string-array>
+    <string name="register_title">Crea el teu compte</string>
+    <string name="register_subtitle">Uneix-te a EntregaDAM i comença a organitzar-te.</string>
+    <string name="label_fullname">Nom complet</string>
+    <string name="hint_fullname">Laia García</string>
+    <string name="label_confirm_password">Confirma la contrasenya</string>
+    <string name="btn_create_account">Crea el compte</string>
+    <string name="already_have_account">Ja tens compte? Inicia sessió</string>
+    <string name="password_hint">••••••••</string>
+    <string name="show_password_desc">Mostra la contrasenya</string>
+    <string name="hide_password_desc">Amaga la contrasenya</string>
+    <string name="deadline_desc">Data de lliurament</string>
+    <string name="step_number_one">1</string>
+    <string name="step_number_two">2</string>
+    <string name="step_number_three">3</string>
+    <string name="page_indicator_current">●</string>
+    <string name="page_indicator_other">○</string>
+    <string name="password_recovery_message">Recuperació de contrasenya</string>
+    <string name="open_task_desc">Obre els detalls de %1$s</string>
+    <string name="task_title_appbanc">AppBanc</string>
+    <string name="task_title_sqlite">Pràctica SQLite</string>
+    <string name="task_title_exercises">Exercicis Kotlin</string>
+    <string name="module_data">Mòdul: Accés a Dades</string>
+    <string name="date_appbanc">📅 6 nov 2026   🚩 Mitjana</string>
+    <string name="date_accessibility">📅 8 nov 2026   🚩 Mitjana</string>
+    <string name="date_sqlite">📅 10 nov 2026   🚩 Baixa</string>
+    <string name="date_exercises">📅 20 oct 2026   🚩 Baixa</string>
+    <plurals name="task_count">
+        <item quantity="one">%d tasca</item>
+        <item quantity="many">%d tasques</item>
+        <item quantity="other">%d tasques</item>
+    </plurals>
+    <plurals name="filter_result_count">
+        <item quantity="one">%d resultat</item>
+        <item quantity="many">%d resultats</item>
+        <item quantity="other">%d resultats</item>
+    </plurals>
+    <string name="priority_detail">Prioritat %1$s</string>
+    <string name="priority_baixa_short">Baixa</string>
 </resources>

@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_background"
     android:orientation="vertical">
 
     <LinearLayout
@@ -17,13 +15,15 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btnBack"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/back_desc"
             android:padding="12dp"
             app:srcCompat="@drawable/ic_arrow_back"
-            app:tint="@color/dark_blue" />
+            app:tint="?attr/colorSecondary" />
 
         <TextView
             android:layout_width="0dp"
@@ -31,7 +31,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/app_name"
-            android:textColor="@color/dark_blue"
+            android:textColor="?attr/colorSecondary"
             android:textSize="26sp"
             android:textStyle="bold" />
 
@@ -69,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/new_activity_title"
-                    android:textColor="@color/dark_blue"
+                    android:textColor="?attr/colorSecondary"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -81,7 +81,7 @@
                     android:layout_marginBottom="24dp"
                     android:gravity="center"
                     android:text="@string/new_activity_subtitle"
-                    android:textColor="@color/text_gray"
+                    android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp" />
 
                 <LinearLayout
@@ -104,7 +104,7 @@
                             android:gravity="center"
                             android:labelFor="@+id/etTitle"
                             android:text="@string/title_label"
-                            android:textColor="@color/dark_blue"
+                            android:textColor="?attr/colorSecondary"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
@@ -113,11 +113,11 @@
                             android:layout_height="36dp"
                             android:layout_marginTop="4dp"
                             android:background="@drawable/bg_icon_container"
-                            android:backgroundTint="@color/icon_title_bg"
+                            android:backgroundTint="?attr/colorSurfaceContainer"
                             android:importantForAccessibility="no"
                             android:padding="7dp"
                             app:srcCompat="@drawable/ic_document_blue"
-                            app:tint="@color/icon_title" />
+                            app:tint="?attr/colorOnSurfaceVariant" />
 
                     </LinearLayout>
 
@@ -128,14 +128,14 @@
                         android:minHeight="48dp"
                         android:layout_marginStart="12dp"
                         android:layout_weight="1"
-                        android:autofillHints="name"
+                        android:importantForAutofill="no"
                         android:background="@drawable/bg_spinner_outline"
                         android:hint="@string/title_hint"
                         android:inputType="text"
                         android:paddingHorizontal="14dp"
                         android:text="@string/task_title_prototip"
-                        android:textColor="@color/text_dark"
-                        android:textColorHint="@color/text_gray"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textColorHint="?attr/colorOnSurfaceVariant"
                         android:textSize="15sp" />
 
                 </LinearLayout>
@@ -160,7 +160,7 @@
                             android:gravity="center"
                             android:labelFor="@+id/moduleSpinner"
                             android:text="@string/module_label"
-                            android:textColor="@color/dark_blue"
+                            android:textColor="?attr/colorSecondary"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
@@ -211,7 +211,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="@string/type_label"
-                            android:textColor="@color/dark_blue"
+                            android:textColor="?attr/colorSecondary"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
@@ -254,7 +254,7 @@
                             android:textSize="14sp"
                             app:backgroundTint="@color/toggle_background"
                             app:cornerRadius="12dp"
-                            app:strokeColor="@color/input_border"
+                            app:strokeColor="?attr/colorOutline"
                             app:strokeWidth="1dp" />
 
                         <com.google.android.material.button.MaterialButton
@@ -273,7 +273,7 @@
                             android:textSize="14sp"
                             app:backgroundTint="@color/toggle_background"
                             app:cornerRadius="12dp"
-                            app:strokeColor="@color/input_border"
+                            app:strokeColor="?attr/colorOutline"
                             app:strokeWidth="1dp" />
 
                     </com.google.android.material.button.MaterialButtonToggleGroup>
@@ -300,7 +300,7 @@
                             android:gravity="center"
                             android:labelFor="@+id/etDate"
                             android:text="@string/date_label"
-                            android:textColor="@color/dark_blue"
+                            android:textColor="?attr/colorSecondary"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
@@ -319,6 +319,7 @@
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etDate"
+                        android:importantForAutofill="no"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:minHeight="48dp"
@@ -331,8 +332,8 @@
                         android:inputType="date"
                         android:paddingHorizontal="14dp"
                         android:text="@string/hint_date"
-                        android:textColor="@color/text_dark"
-                        android:textColorHint="@color/text_gray"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textColorHint="?attr/colorOnSurfaceVariant"
                         android:textSize="15sp" />
 
                 </LinearLayout>
@@ -357,7 +358,7 @@
                             android:gravity="center"
                             android:labelFor="@+id/prioritySpinner"
                             android:text="@string/filters_priority_label"
-                            android:textColor="@color/dark_blue"
+                            android:textColor="?attr/colorSecondary"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
@@ -409,7 +410,7 @@
                             android:gravity="center"
                             android:labelFor="@+id/statusSpinner"
                             android:text="@string/filters_status_label"
-                            android:textColor="@color/dark_blue"
+                            android:textColor="?attr/colorSecondary"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
@@ -462,7 +463,7 @@
                             android:gravity="center"
                             android:labelFor="@+id/etNotes"
                             android:text="@string/notes_title"
-                            android:textColor="@color/dark_blue"
+                            android:textColor="?attr/colorSecondary"
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
@@ -471,16 +472,17 @@
                             android:layout_height="36dp"
                             android:layout_marginTop="4dp"
                             android:background="@drawable/bg_icon_container"
-                            android:backgroundTint="@color/icon_notes_bg"
+                            android:backgroundTint="?attr/colorSurfaceContainer"
                             android:importantForAccessibility="no"
                             android:padding="7dp"
                             app:srcCompat="@drawable/ic_notes"
-                            app:tint="@color/icon_notes" />
+                            app:tint="?attr/colorOnSurfaceVariant" />
 
                     </LinearLayout>
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etNotes"
+                        android:importantForAutofill="no"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
@@ -492,8 +494,8 @@
                         android:minHeight="80dp"
                         android:padding="14dp"
                         android:text="@string/hint_notes_content"
-                        android:textColor="@color/text_dark"
-                        android:textColorHint="@color/text_gray"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textColorHint="?attr/colorOnSurfaceVariant"
                         android:textSize="15sp" />
 
                 </LinearLayout>
@@ -501,33 +503,35 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnSave"
                     android:layout_gravity="center"
-                    android:layout_width="320dp"
+                    android:layout_width="wrap_content"
+                    android:minWidth="320dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     android:minHeight="50dp"
                     android:text="@string/save_changes_btn"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorOnSecondary"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:backgroundTint="@color/dark_blue"
+                    app:backgroundTint="?attr/colorSecondary"
                     app:cornerRadius="16dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnCancel"
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_gravity="center"
-                    android:layout_width="320dp"
+                    android:layout_width="wrap_content"
+                    android:minWidth="320dp"
                     android:layout_height="wrap_content"
                     android:minHeight="50dp"
                     android:text="@string/cancel_btn"
                     android:textAllCaps="false"
-                    android:textColor="@color/dark_blue"
+                    android:textColor="?attr/colorSecondary"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:backgroundTint="@color/white_background"
+                    app:backgroundTint="?attr/colorSurface"
                     app:cornerRadius="16dp"
-                    app:strokeColor="@color/dark_blue"
+                    app:strokeColor="?attr/colorSecondary"
                     app:strokeWidth="1.5dp" />
 
             </LinearLayout>

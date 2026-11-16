@@ -3,6 +3,9 @@ package cat.ishawaheed.stutager
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.LinearLayout
+import com.google.android.material.button.MaterialButtonToggleGroup
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -14,6 +17,9 @@ class FiltersActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_filters)
+        findViewById<MaterialButtonToggleGroup>(R.id.typeFilterToggleGroup).allowLabelWrapping()
+        findViewById<LinearLayout>(R.id.firstFilterResult).stackResultWhenConstrained()
+        findViewById<LinearLayout>(R.id.secondFilterResult).stackResultWhenConstrained()
 
         val filtersContent = findViewById<View>(R.id.filtersContent)
 
@@ -25,7 +31,7 @@ class FiltersActivity : AppCompatActivity() {
 
         ViewCompat.setOnApplyWindowInsetsListener(filtersContent) { v, insets ->
             val systemBars = insets.getInsets(
-                WindowInsetsCompat.Type.systemBars()
+                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime()
             )
 
             v.setPadding(
@@ -47,5 +53,21 @@ class FiltersActivity : AppCompatActivity() {
         findViewById<View>(R.id.applyFiltersButton)?.setOnClickListener {
             finish()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val store = TaskRepository(this)
+        val results = listOf(R.id.firstFilterResult to "prototip", R.id.secondFilterResult to "accessibility")
+        var count = 0
+        for ((viewId, taskId) in results) {
+            val row = findViewById<View>(viewId)
+            val exists = store.find(taskId) != null
+            row.visibility = if (exists) View.VISIBLE else View.GONE
+            if (exists) count++
+        }
+        findViewById<TextView>(R.id.tvFilterResultsCount).text = resources.getQuantityString(
+            R.plurals.filter_result_count, count, count
+        )
     }
 }

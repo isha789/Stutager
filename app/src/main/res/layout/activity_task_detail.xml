@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light"
     android:orientation="vertical">
 
     <LinearLayout
@@ -15,13 +13,15 @@
 
         <ImageView
             android:id="@+id/btnBack"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/back_desc"
-            android:padding="4dp"
+            android:padding="10dp"
             android:src="@drawable/ic_back"
-            app:tint="@color/text_dark" />
+            app:tint="?attr/colorOnSurface" />
 
         <TextView
             android:layout_width="0dp"
@@ -30,19 +30,19 @@
             android:layout_weight="1"
             android:fontFamily="sans-serif-medium"
             android:text="@string/detail_title"
-            android:textColor="@color/text_dark"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/btnMore"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:importantForAccessibility="no"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/more_desc"
-            android:padding="4dp"
+            android:padding="10dp"
             android:src="@drawable/ic_more"
-            app:tint="@color/text_dark" />
+            app:tint="?attr/colorOnSurface" />
     </LinearLayout>
 
     <ScrollView
@@ -70,7 +70,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="?attr/colorSurface">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -87,7 +88,8 @@
                             <ImageView
                                 android:layout_width="32dp"
                                 android:layout_height="32dp"
-                                android:contentDescription="Task icon"
+                                android:id="@+id/ivDetailTaskType"
+                                android:contentDescription="@string/task_type_desc"
                                 android:src="@drawable/ic_task" />
 
                             <TextView
@@ -98,10 +100,11 @@
                                 android:layout_weight="1"
                                 android:fontFamily="sans-serif-medium"
                                 android:text="@string/task_title_prototip"
-                                android:textColor="@color/text_dark"
+                                android:textColor="?attr/colorOnSurface"
                                 android:textSize="20sp" />
 
                             <TextView
+                                android:id="@+id/tvTaskStatus"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/badge_blue"
@@ -109,7 +112,7 @@
                                 android:paddingHorizontal="10dp"
                                 android:paddingVertical="4dp"
                                 android:text="@string/status_in_progress"
-                                android:textColor="@color/badge_blue_text"
+                                android:textColor="?attr/colorOnSecondaryContainer"
                                 android:textSize="12sp" />
                         </LinearLayout>
 
@@ -117,7 +120,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginVertical="16dp"
-                            android:background="@color/divider_color" />
+                            android:background="?attr/colorOutlineVariant" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -129,39 +132,31 @@
                             <ImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:contentDescription="Calendar icon"
+                                android:contentDescription="@string/deadline_desc"
                                 android:src="@drawable/ic_calendar" />
 
                             <TextView
+                                android:id="@+id/tvTaskDate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="12dp"
                                 android:text="@string/full_date_prototip"
-                                android:textColor="@color/text_dark"
+                                android:textColor="?attr/colorOnSurface"
                                 android:textSize="14sp" />
                         </LinearLayout>
 
-                        <LinearLayout
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvTaskPriority"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="12dp"
+                            android:drawablePadding="12dp"
                             android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:contentDescription="Info icon"
-                                android:src="@drawable/ic_info" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="12dp"
-                                android:text="@string/priority_alta_text"
-                                android:textColor="@color/badge_red_text"
-                                android:textSize="14sp" />
-                        </LinearLayout>
+                            android:text="@string/priority_alta_text"
+                            android:textColor="?attr/colorError"
+                            android:textSize="14sp"
+                            app:drawableStartCompat="@drawable/ic_info_20"
+                            app:drawableTint="?attr/colorError" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -172,15 +167,16 @@
                             <ImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:contentDescription="Module icon"
+                                android:contentDescription="@string/module_label"
                                 android:src="@drawable/ic_module" />
 
                             <TextView
+                                android:id="@+id/tvTaskModule"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="12dp"
                                 android:text="@string/module_full_dsam"
-                                android:textColor="@color/text_dark"
+                                android:textColor="?attr/colorOnSurface"
                                 android:textSize="14sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -191,7 +187,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="24dp"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="?attr/colorSurface">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -204,15 +201,16 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-medium"
                             android:text="@string/notes_title"
-                            android:textColor="@color/text_dark"
+                            android:textColor="?attr/colorOnSurface"
                             android:textSize="16sp" />
 
                         <TextView
+                            android:id="@+id/tvTaskNotes"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/notes_content"
-                            android:textColor="@color/text_gray"
+                            android:textColor="?attr/colorOnSurfaceVariant"
                             android:textSize="14sp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -226,29 +224,29 @@
                         android:id="@+id/btnEdit"
                         style="?attr/materialButtonOutlinedStyle"
                         android:layout_width="0dp"
-                        android:layout_height="48dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_weight="1"
                         android:minHeight="48dp"
                         android:text="@string/edit_btn"
-                        android:textColor="@color/dark_blue"
+                        android:textColor="?attr/colorSecondary"
                         app:icon="@drawable/ic_edit"
-                        app:iconTint="@color/dark_blue"
-                        app:strokeColor="@color/dark_blue" />
+                        app:iconTint="?attr/colorSecondary"
+                        app:strokeColor="?attr/colorSecondary" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnDelete"
                         style="?attr/materialButtonOutlinedStyle"
                         android:layout_width="0dp"
-                        android:layout_height="48dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_weight="1"
                         android:minHeight="48dp"
                         android:text="@string/delete_btn"
-                        android:textColor="@color/badge_red_text"
+                        android:textColor="?attr/colorError"
                         app:icon="@drawable/ic_delete"
-                        app:iconTint="@color/badge_red_text"
-                        app:strokeColor="@color/badge_red_text" />
+                        app:iconTint="?attr/colorError"
+                        app:strokeColor="?attr/colorError" />
                 </LinearLayout>
 
             </LinearLayout>
