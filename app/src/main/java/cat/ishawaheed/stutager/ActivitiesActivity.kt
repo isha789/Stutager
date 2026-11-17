@@ -10,14 +10,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
+/**
+ * ActivitiesActivity
+ * 
+ * Activities summary screen providing RecyclerView task list, top popup menu, and FAB actions.
+ */
 class ActivitiesActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_activities_summary)
         findViewById<LinearLayout>(R.id.activityTabs).fitTabLabels()
         applySystemBarInsets()
 
-        // Menu button -> Shows PopupMenu using menu_stutager.xml
+        // Inflate top navigation dropdown menu (res/menu/menu_stutager.xml) on menu icon click
         findViewById<ImageView>(R.id.btnMenu).setOnClickListener { view ->
             val popup = PopupMenu(this, view)
             popup.menuInflater.inflate(R.menu.menu_stutager, popup.menu)
@@ -45,17 +51,22 @@ class ActivitiesActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewTasks)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        // Add Activity FAB button -> opens TaskEditActivity
         findViewById<FloatingActionButton>(R.id.btnAddActivity).setOnClickListener {
             val intent = Intent(this, TaskEditActivity::class.java)
             intent.putExtra("is_edit", false)
             startActivity(intent)
         }
 
+        // All Tasks FAB button -> opens AllTasksActivity
         findViewById<FloatingActionButton>(R.id.btnAllTasks).setOnClickListener {
             startActivity(Intent(this, AllTasksActivity::class.java))
         }
     }
 
+    /**
+     * Refresh task list when resuming activity and bind task click handlers passing EXTRA_TASK_ID
+     */
     override fun onResume() {
         super.onResume()
         val tasks = TaskRepository(this).tasks(summary = true).map {

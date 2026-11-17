@@ -13,7 +13,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
+/**
+ * LoginActivity
+ * 
+ * Login form screen with email input, password visibility toggle, password recovery Toast, and login navigation.
+ */
 class LoginActivity : AppCompatActivity() {
+
     private var isPasswordVisible = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,12 +27,14 @@ class LoginActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
 
+        // Apply system bar and IME (keyboard) insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
+        // Back button action
         findViewById<ImageView>(R.id.btnBack)?.setOnClickListener {
             finish()
         }
@@ -34,6 +42,7 @@ class LoginActivity : AppCompatActivity() {
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val btnTogglePassword = findViewById<ImageView>(R.id.btnTogglePassword)
 
+        // Toggle password visibility mode (visible text vs hidden dots)
         btnTogglePassword?.setOnClickListener {
             isPasswordVisible = !isPasswordVisible
             if (isPasswordVisible) {
@@ -47,10 +56,12 @@ class LoginActivity : AppCompatActivity() {
             )
         }
 
+        // Forgot password link action
         findViewById<TextView>(R.id.tvForgotPassword)?.setOnClickListener {
             Toast.makeText(this, R.string.password_recovery_message, Toast.LENGTH_SHORT).show()
         }
 
+        // Enter / Login button -> opens MainActivity
         findViewById<Button>(R.id.btnEntra)?.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
