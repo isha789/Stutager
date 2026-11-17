@@ -20,11 +20,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 class AllTasksActivity : AppCompatActivity() {
     private lateinit var taskAdapter: TaskAdapter
 
-    /**
-     * Prepara el RecyclerView vertical i crea l'Adapter una sola vegada.
-     * El clic d'una fila passa el seu task_id als detalls amb un Intent.
-     * Afegir obre el formulari amb is_edit=false; Filtres obre la pantalla existent.
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -38,8 +33,13 @@ class AllTasksActivity : AppCompatActivity() {
             WindowInsetsCompat.CONSUMED
         }
 
-        // Menu button -> Shows PopupMenu using menu_stutager.xml
-        findViewById<ImageView>(R.id.btnMenu).setOnClickListener { view ->
+        // Left back arrow -> finishes activity and returns to previous screen
+        findViewById<ImageView>(R.id.btnBack)?.setOnClickListener {
+            finish()
+        }
+
+        // Right hamburger menu icon -> Shows PopupMenu using menu_stutager.xml
+        findViewById<ImageView>(R.id.btnMenu)?.setOnClickListener { view ->
             val popup = PopupMenu(this, view)
             popup.menuInflater.inflate(R.menu.menu_stutager, popup.menu)
             popup.setOnMenuItemClickListener { menuItem ->
@@ -81,11 +81,6 @@ class AllTasksActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * Consulta el repositori quan es torna a la pantalla i actualitza el mateix Adapter.
-     * Així es reflecteixen les eliminacions. També actualitza el comptador i mostra
-     * un missatge en lloc de la llista quan no queden tasques.
-     */
     override fun onResume() {
         super.onResume()
         val tasks = TaskRepository(this).tasks()
