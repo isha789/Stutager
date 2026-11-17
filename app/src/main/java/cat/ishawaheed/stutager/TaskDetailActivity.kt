@@ -65,7 +65,7 @@ class TaskDetailActivity : AppCompatActivity() {
         findViewById<MaterialButton>(R.id.btnEdit).setOnClickListener {
             val intent = Intent(this, TaskEditActivity::class.java)
             intent.putExtra("is_edit", true)
-            intent.putExtra("task_title", task.title)
+            intent.putExtra(TaskRepository.EXTRA_TASK_ID, task.id)
             startActivity(intent)
         }
 

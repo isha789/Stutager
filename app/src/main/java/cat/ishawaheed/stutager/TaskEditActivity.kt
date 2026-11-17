@@ -35,6 +35,8 @@ class TaskEditActivity : AppCompatActivity() {
         }
 
         val isEdit = intent.getBooleanExtra("is_edit", false)
+        val taskId = intent.getStringExtra(TaskRepository.EXTRA_TASK_ID) ?: "prototip"
+        val existingTask = if (isEdit) TaskRepository(this).find(taskId) else null
 
         val tvFormTitle = findViewById<TextView>(R.id.tvFormTitle)
         val tvFormSubtitle = findViewById<TextView>(R.id.tvFormSubtitle)
@@ -48,17 +50,30 @@ class TaskEditActivity : AppCompatActivity() {
         val btnSave = findViewById<MaterialButton>(R.id.btnSave)
         val btnCancel = findViewById<MaterialButton>(R.id.btnCancel)
 
-        if (isEdit) {
-            // Mode EDICIÓ
+        if (isEdit && existingTask != null) {
+            // Mode EDICIÓ - Carreguem la tasca seleccionada des de TaskRepository
             tvFormTitle?.text = getString(R.string.edit_activity_title)
             tvFormSubtitle?.text = getString(R.string.edit_activity_subtitle)
-            etTitle?.setText(R.string.task_title_prototip)
-            etDate?.setText(R.string.hint_date)
-            etNotes?.setText(R.string.hint_notes_content)
-            moduleSpinner?.setSelection(0) // DSAM
-            prioritySpinner?.setSelection(2) // Alta
-            statusSpinner?.setSelection(1) // En curs
-            typeToggleGroup?.check(R.id.typeWorksButton)
+            etTitle?.setText(existingTask.title)
+            etDate?.setText(existingTask.detailDate.ifEmpty { getString(R.string.hint_date) })
+            etNotes?.setText(existingTask.notes.ifEmpty { getString(R.string.hint_notes_content) })
+
+            val moduleIndex = if (existingTask.module.contains("Programació")) 1 else 0
+            moduleSpinner?.setSelection(moduleIndex)
+            prioritySpinner?.setSelection(existingTask.priorityIndex)
+
+            val statusIndex = when (existingTask.status) {
+                getString(R.string.status_pending) -> 0
+                getString(R.string.badge_completed) -> 2
+                else -> 1 // En curs
+            }
+            statusSpinner?.setSelection(statusIndex)
+
+            if (existingTask.isExam) {
+                typeToggleGroup?.check(R.id.typeExamsButton)
+            } else {
+                typeToggleGroup?.check(R.id.typeWorksButton)
+            }
             btnSave?.text = getString(R.string.save_changes_btn)
         } else {
             // Mode CREACIÓ ("Nova activitat")
@@ -67,9 +82,9 @@ class TaskEditActivity : AppCompatActivity() {
             etTitle?.setText("")
             etDate?.setText("")
             etNotes?.setText("")
-            moduleSpinner?.setSelection(0) // DSAM
-            prioritySpinner?.setSelection(1) // Mitjana
-            statusSpinner?.setSelection(0) // Pendent
+            moduleSpinner?.setSelection(0)
+            prioritySpinner?.setSelection(1)
+            statusSpinner?.setSelection(0)
             typeToggleGroup?.check(R.id.typeWorksButton)
             btnSave?.text = getString(R.string.save_btn)
         }
@@ -81,7 +96,14 @@ class TaskEditActivity : AppCompatActivity() {
         }
 
         btnSave?.setOnClickListener {
-            finish()
+            val titleText = etTitle?.text?.toString()?.trim().orEmpty()
+            if (titleText.isEmpty()) {
+                android.widget.Toast.makeText(this, "El títol no pot estar buit", android.widget.Toast.LENGTH_SHORT).show()
+            } else {
+                val message = if (isEdit) "Canvis desats correctament" else "Activitat creada"
+                android.widget.Toast.makeText(this, message, android.widget.Toast.LENGTH_SHORT).show()
+                finish()
+            }
         }
 
         btnCancel?.setOnClickListener {
