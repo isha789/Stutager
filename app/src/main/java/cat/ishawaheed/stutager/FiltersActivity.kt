@@ -5,6 +5,10 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.LinearLayout
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.button.MaterialButtonToggleGroup
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -44,13 +48,31 @@ class FiltersActivity : AppCompatActivity() {
             insets
         }
 
+        // Referències als elements del formulari de filtres
+        val filterSearchEditText = findViewById<EditText>(R.id.filterSearchEditText)
+        val moduleFilterSpinner = findViewById<Spinner>(R.id.moduleFilterSpinner)
+        val statusFilterSpinner = findViewById<Spinner>(R.id.statusFilterSpinner)
+        val priorityFilterSpinner = findViewById<Spinner>(R.id.priorityFilterSpinner)
+        val typeFilterToggleGroup = findViewById<MaterialButtonToggleGroup>(R.id.typeFilterToggleGroup)
+
         // Botó de retorn enrere
         findViewById<ImageButton>(R.id.backFiltersButton)?.setOnClickListener {
             finish()
         }
 
-        // Botó d'aplicar filtres (tanca la pantalla per simular l'aplicació)
-        findViewById<View>(R.id.applyFiltersButton)?.setOnClickListener {
+        // Botó de netejar filtres
+        findViewById<MaterialButton>(R.id.clearFiltersButton)?.setOnClickListener {
+            filterSearchEditText?.setText("")
+            moduleFilterSpinner?.setSelection(0)
+            statusFilterSpinner?.setSelection(0)
+            priorityFilterSpinner?.setSelection(0)
+            typeFilterToggleGroup?.check(R.id.typeFilterAllButton)
+            Toast.makeText(this, "Filtres reiniciats", Toast.LENGTH_SHORT).show()
+        }
+
+        // Botó d'aplicar filtres
+        findViewById<MaterialButton>(R.id.applyFiltersButton)?.setOnClickListener {
+            Toast.makeText(this, "Filtres aplicats", Toast.LENGTH_SHORT).show()
             finish()
         }
     }
