@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Form & Detail Strings (Prefix form_) -->
+    <string name="form_edit_title">Edita l\'activitat</string>
+    <string name="form_edit_subtitle">Modifica la informació de l\'activitat.</string>
+    <string name="form_new_title">Nova activitat</string>
+    <string name="form_new_subtitle">Afegeix una activitat al teu calendari.</string>
+    <string name="form_save_changes_btn">Desa els canvis</string>
+    <string name="form_save_btn">Desa</string>
+    <string name="form_cancel_btn">Cancel·la</string>
+    <string name="form_delete_btn">Elimina</string>
+    <string name="form_edit_btn">Edita</string>
+
+    <!-- Dialog Strings -->
+    <string name="form_delete_dialog_title">Eliminar activitat</string>
+    <string name="form_delete_dialog_title_q">Eliminar activitat?</string>
+    <string name="form_delete_dialog_message">Vols eliminar «%1$s»? Aquesta acció no es pot desfer.</string>
+    <string name="form_delete_dialog_message_target">Vols eliminar %1$s?\nAquesta acció no es pot desfer.</string>
+
+    <!-- Filter & Preference Strings -->
+    <string name="form_filters_title">Filtres i resultats</string>
+    <string name="form_filters_subtitle">Troba les activitats que necessites.</string>
+    <string name="form_filters_apply">Aplica</string>
+    <string name="form_filters_clear">Neteja</string>
+    <string name="form_preferences_title">Preferències</string>
+    <string name="form_preferences_subtitle">Personalitza l’app al teu gust.</string>
+</resources>
