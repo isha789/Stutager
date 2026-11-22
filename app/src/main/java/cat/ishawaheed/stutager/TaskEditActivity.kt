@@ -65,7 +65,12 @@ class TaskEditActivity : AppCompatActivity() {
             etDate?.setText(existingTask.detailDate.ifEmpty { getString(R.string.hint_date) })
             etNotes?.setText(existingTask.notes.ifEmpty { getString(R.string.hint_notes_content) })
 
-            val moduleIndex = if (existingTask.module.contains("Programació")) 1 else 0
+            val moduleIndex = when {
+                existingTask.module.contains("Programació", ignoreCase = true) -> 1
+                existingTask.module.contains("Dades", ignoreCase = true) || existingTask.module.contains("Data", ignoreCase = true) -> 2
+                existingTask.module.contains("Digitalització", ignoreCase = true) -> 3
+                else -> 0
+            }
             moduleSpinner?.setSelection(moduleIndex)
             prioritySpinner?.setSelection(existingTask.priorityIndex)
 
