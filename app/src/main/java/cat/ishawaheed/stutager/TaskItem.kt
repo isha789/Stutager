@@ -13,10 +13,16 @@ data class TaskItem(
     val isExam: Boolean,
     val badgeType: BadgeType = BadgeType.BLUE,
     val id: String = "",
-    val detailDate: String = date,
     val notes: String = "",
     val priorityIndex: Int = 1
-)
+) {
+    val priorityLabel: Int
+        get() = when (priorityIndex) {
+            0 -> R.string.priority_baixa_short
+            2 -> R.string.priority_alta_short
+            else -> R.string.priority_mitjana_short
+        }
+}
 
 /** Colors disponibles per a la insígnia de l'estat d'una tasca. */
 enum class BadgeType {

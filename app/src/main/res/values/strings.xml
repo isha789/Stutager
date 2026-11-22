@@ -1,14 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:locale="ca">
-    <string name="app_name">EntregaDAM</string>
+    <string name="app_name">Stutager</string>
 
-    <string name="help_title">EntregaDAM</string>
     <string name="help_subtitle">Organitza els teus treballs i exàmens de manera senzilla.</string>
     <string name="step1_title">Afegeix</string>
-    <string name="step1_desc">Crea les teves activitats.</string>
+    <string name="step1_desc">Prova el formulari d’una activitat nova.</string>
     <string name="step2_title">Organitza</string>
-    <string name="step2_desc">Filtra i prioritza el que toca.</string>
+    <string name="step2_desc">Consulta les dates i prioritats de les tasques.</string>
     <string name="step3_title">Actualitza</string>
-    <string name="step3_desc">Mantén el teu progrés sempre al dia.</string>
+    <string name="step3_desc">Prova l’edició o elimina una tasca d’exemple.</string>
     <string name="btn_start">Comença →</string>
 
     <string name="welcome_tagline">Planifica · Organitza · Assoleix</string>
@@ -20,44 +19,34 @@
     <string name="login_welcome">Benvingut de nou!</string>
     <string name="login_subtitle">Entra per continuar amb el teu progrés.</string>
     <string name="label_email">Correu electrònic</string>
-    <string name="hint_email">nom@exemple.cat</string>
     <string name="label_password">Contrasenya</string>
     <string name="forgot_password">Has oblidat la contrasenya?</string>
     <string name="btn_enter">Entra →</string>
 
     <string name="badge_completed">Completada</string>
 
-    <string name="menu_desc">Menu</string>
-    <string name="menu_item_activities">Activitats</string>
-    <string name="menu_item_help">Ajuda</string>
-    <string name="back_desc">Back</string>
-    <string name="more_desc">More</string>
-    <string name="activities_title">EntregaDAM</string>
-    <string name="search_activities_hint">Cerca activitats...</string>
-    <string name="search_tasks_hint">Cerca tasques...</string>
+    <string name="menu_desc">Menú</string>
+    <string name="back_desc">Torna enrere</string>
+    <string name="search_activities_hint">Cerca d’activitats (demostració)</string>
+    <string name="search_tasks_hint">Cerca de tasques (demostració)</string>
     <string name="filter_all">Totes</string>
     <string name="filter_works">Treballs</string>
     <string name="filter_exams">Exàmens</string>
     <string name="task_title_prototip">Prototip DSAM</string>
     <string name="module_dsam">Mòdul: DSAM</string>
-    <string name="date_prototip">📅 30 oct 2026</string>
+    <string name="date_prototip" translatable="false">30/10/2026</string>
     <string name="status_in_progress">En curs</string>
     <string name="task_title_examen">Examen Kotlin</string>
     <string name="module_programacio">Mòdul: Programació</string>
-    <string name="date_examen">📅 4 nov 2026</string>
+    <string name="date_examen" translatable="false">04/11/2026</string>
     <string name="status_pending">Pendent</string>
     <string name="task_title_java">Java fitxers</string>
-    <string name="date_java">📅 6 nov 2026</string>
+    <string name="date_java" translatable="false">06/11/2026</string>
     <string name="fab_all_tasks_desc">Totes les tasques</string>
     <string name="fab_add_activity_desc">Nova activitat</string>
     <string name="filters_btn">Filtres</string>
-    <string name="tasks_count_6">6 tasques</string>
-    <string name="date_priority_alta">📅 30 oct 2026   🚩 Alta</string>
-    <string name="date_priority_mitjana">📅 4 nov 2026   🚩 Mitjana</string>
     <string name="detail_title">Detall d\'activitat</string>
-    <string name="full_date_prototip">30 d\'octubre de 2026</string>
     <string name="priority_alta_text">Prioritat alta</string>
-    <string name="module_full_dsam">Desenvolupament d\'Aplicacions Mòbils</string>
     <string name="notes_title">Notes</string>
     <string name="notes_content">Fer el prototip de les pantalles principals. Incloure navegació i flux bàsic. Revisar amb el professor.</string>
     <string name="edit_btn">Edita</string>
@@ -66,12 +55,12 @@
     <string name="delete_dialog_title_q">Eliminar activitat?</string>
     <string name="delete_dialog_message_target">Vols eliminar %1$s?\nAquesta acció no es pot desfer.</string>
     <string name="new_activity_title">Nova activitat</string>
-    <string name="new_activity_subtitle">Afegeix una activitat al teu calendari.</string>
+    <string name="new_activity_subtitle">Prova el formulari d’una activitat nova.</string>
     <string name="edit_activity_title">Edita l\'activitat</string>
-    <string name="edit_activity_subtitle">Modifica la informació de l\'activitat.</string>
+    <string name="edit_activity_subtitle">Prova el formulari amb les dades de l’activitat.</string>
     <string name="save_changes_btn">Desa els canvis</string>
     <string name="date_label">Data</string>
-    <string name="hint_date">02/11/2026</string>
+    <string name="hint_date">dd/mm/aaaa</string>
     <string name="hint_notes_content">Revisar les pantalles</string>
     <string name="title_label">Títol</string>
     <string name="title_hint">Ex. Prototip DSAM</string>
@@ -82,7 +71,7 @@
     <string name="save_btn">Desa</string>
     <string name="task_type_desc">Treball</string>
     <string name="preferences_title">Preferències</string>
-    <string name="preferences_subtitle">Personalitza l’app al teu gust.</string>
+    <string name="preferences_subtitle">Prova les opcions de configuració.</string>
     <string name="preferences_back">Torna enrere</string>
     <string name="preferences_theme">Tema</string>
     <string name="theme_light">Clar</string>
@@ -102,8 +91,6 @@
     <string name="filter_tots">Tots</string>
     <string name="priority_alta_short">Alta</string>
     <string name="priority_mitjana_short">Mitjana</string>
-    <string name="date_prototip_clean">30 oct 2026</string>
-    <string name="date_second_clean">8 nov 2026</string>
 
     <string-array name="filter_status_options">
         <item>Pendents i en curs</item>
@@ -147,16 +134,13 @@
         <item>Completada</item>
     </string-array>
     <string name="register_title">Crea el teu compte</string>
-    <string name="register_subtitle">Uneix-te a EntregaDAM i comença a organitzar-te.</string>
+    <string name="register_subtitle">Uneix-te a Stutager i comença a organitzar-te.</string>
     <string name="label_fullname">Nom complet</string>
-    <string name="hint_fullname">Laia García</string>
     <string name="label_confirm_password">Confirma la contrasenya</string>
     <string name="btn_create_account">Crea el compte</string>
     <string name="already_have_account">Ja tens compte? Inicia sessió</string>
-    <string name="password_hint">••••••••</string>
     <string name="show_password_desc">Mostra la contrasenya</string>
     <string name="hide_password_desc">Amaga la contrasenya</string>
-    <string name="deadline_desc">Data de lliurament</string>
     <string name="step_number_one">1</string>
     <string name="step_number_two">2</string>
     <string name="step_number_three">3</string>
@@ -168,10 +152,10 @@
     <string name="task_title_sqlite">Pràctica SQLite</string>
     <string name="task_title_exercises">Exercicis Kotlin</string>
     <string name="module_data">Mòdul: Accés a Dades</string>
-    <string name="date_appbanc">📅 6 nov 2026   🚩 Mitjana</string>
-    <string name="date_accessibility">📅 8 nov 2026   🚩 Mitjana</string>
-    <string name="date_sqlite">📅 10 nov 2026   🚩 Baixa</string>
-    <string name="date_exercises">📅 20 oct 2026   🚩 Baixa</string>
+    <string name="date_appbanc" translatable="false">06/11/2026</string>
+    <string name="date_accessibility" translatable="false">08/11/2026</string>
+    <string name="date_sqlite" translatable="false">10/11/2026</string>
+    <string name="date_exercises" translatable="false">20/10/2026</string>
     <plurals name="task_count">
         <item quantity="one">%d tasca</item>
         <item quantity="many">%d tasques</item>

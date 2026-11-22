@@ -20,12 +20,12 @@ class TaskRepository(context: Context) {
     fun tasks(summary: Boolean = false): List<TaskItem> {
         val deleted = preferences.getStringSet("deleted_ids", emptySet()).orEmpty()
         return sampleTasks().filter {
-            it.id !in deleted
+            it.id !in deleted && (!summary || it.id in SUMMARY_IDS)
         }
     }
 
-    /** Busca [id] entre les tasques visibles de les dues llistes; retorna null si no hi és. */
-    fun find(id: String): TaskItem? = (tasks() + tasks(summary = true)).find { it.id == id }
+    /** Busca [id] a la llista general i retorna null si no hi és. */
+    fun find(id: String): TaskItem? = tasks().find { it.id == id }
 
     /** Desa [id] com a eliminat perquè les pantalles deixin de mostrar aquesta tasca. */
     fun delete(id: String) {
@@ -37,11 +37,11 @@ class TaskRepository(context: Context) {
     private fun sampleTasks(): List<TaskItem> = with(context) {
         listOf(
             TaskItem(getString(R.string.task_title_prototip), getString(R.string.module_dsam),
-                getString(R.string.date_priority_alta), getString(R.string.status_in_progress),
-                false, BadgeType.BLUE, "prototip", getString(R.string.full_date_prototip), getString(R.string.notes_content), priorityIndex = 2),
+                getString(R.string.date_prototip), getString(R.string.status_in_progress),
+                false, BadgeType.BLUE, "prototip", notes = getString(R.string.notes_content), priorityIndex = 2),
             TaskItem(getString(R.string.task_title_examen), getString(R.string.module_programacio),
-                getString(R.string.date_priority_mitjana), getString(R.string.status_pending),
-                true, BadgeType.YELLOW, "examen", getString(R.string.date_examen)),
+                getString(R.string.date_examen), getString(R.string.status_pending),
+                true, BadgeType.YELLOW, "examen"),
             TaskItem(getString(R.string.task_title_java), getString(R.string.module_programacio),
                 getString(R.string.date_java), getString(R.string.status_pending),
                 false, BadgeType.YELLOW, "java"),

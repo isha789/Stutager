@@ -33,7 +33,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/fab_all_tasks_desc"
+                android:contentDescription="@string/menu_desc"
                 android:src="@drawable/ic_menu"
                 app:tint="?attr/colorOnSurface" />
         </LinearLayout>

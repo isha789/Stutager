@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:fitsSystemWindows="true"
     tools:context=".LoginActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -111,7 +110,6 @@
                     android:layout_marginStart="10dp"
                     android:autofillHints="emailAddress"
                     android:background="@null"
-                    android:hint="@string/hint_email"
                     android:inputType="textEmailAddress"
                     android:textColor="?attr/colorOnSurface"
                     android:textColorHint="?attr/colorOnSurfaceVariant"
@@ -154,7 +152,6 @@
                     android:layout_weight="1"
                     android:autofillHints="password"
                     android:background="@null"
-                    android:hint="@string/password_hint"
                     android:inputType="textPassword"
                     android:textColor="?attr/colorOnSurface"
                     android:textColorHint="?attr/colorOnSurfaceVariant"

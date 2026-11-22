@@ -1,3 +1,4 @@
 <resources>
     <string name="list_empty_tasks">No hi ha tasques.</string>
+    <string name="list_empty_summary">No hi ha tasques al resum.</string>
 </resources>

@@ -18,6 +18,13 @@ import androidx.core.view.WindowInsetsCompat
  * provides a brief branding delay, and seamlessly opens the main entry flow (InitialHelpActivity).
  */
 class SplashActivity : AppCompatActivity() {
+    private val handler = Handler(Looper.getMainLooper())
+    private val openHelp = Runnable {
+        if (!isFinishing) {
+            startActivity(Intent(this, InitialHelpActivity::class.java))
+            finish()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,16 +38,18 @@ class SplashActivity : AppCompatActivity() {
             insets
         }
 
-        // Load and trigger the custom entrance logo animation (res/anim/splash_logo_in.xml)
-        val ivLogo = findViewById<ImageView>(R.id.ivSplashLogo)
-        val anim = AnimationUtils.loadAnimation(this, R.anim.splash_logo_in)
-        ivLogo.startAnimation(anim)
+    }
 
-        // Delay 1.8 seconds, launch InitialHelpActivity, and finish SplashActivity to prevent returning on Back press
-        Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, InitialHelpActivity::class.java)
-            startActivity(intent)
-            finish()
-        }, 1800)
+    override fun onResume() {
+        super.onResume()
+        val ivLogo = findViewById<ImageView>(R.id.ivSplashLogo)
+        ivLogo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.splash_logo_in))
+        handler.postDelayed(openHelp, 1800)
+    }
+
+    override fun onPause() {
+        handler.removeCallbacks(openHelp)
+        findViewById<ImageView>(R.id.ivSplashLogo).clearAnimation()
+        super.onPause()
     }
 }

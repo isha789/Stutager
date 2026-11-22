@@ -24,6 +24,7 @@ class TaskAdapter(
         val tvTaskTitle: TextView = itemView.findViewById(R.id.tvTaskTitle)
         val tvTaskModule: TextView = itemView.findViewById(R.id.tvTaskModule)
         val tvTaskDate: TextView = itemView.findViewById(R.id.tvTaskDate)
+        val tvTaskPriority: TextView = itemView.findViewById(R.id.tvTaskPriority)
         val tvTaskBadge: TextView = itemView.findViewById(R.id.tvTaskBadge)
     }
 
@@ -42,6 +43,9 @@ class TaskAdapter(
         holder.tvTaskTitle.text = task.title
         holder.tvTaskModule.text = task.module
         holder.tvTaskDate.text = task.date
+        holder.tvTaskPriority.text = holder.itemView.context.getString(
+            R.string.priority_detail, holder.itemView.context.getString(task.priorityLabel)
+        )
         holder.tvTaskBadge.text = task.status
 
         if (task.isExam) {

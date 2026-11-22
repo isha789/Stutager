@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -33,28 +34,33 @@ class TaskDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val taskId = intent.getStringExtra(TaskRepository.EXTRA_TASK_ID)
+        val selectedTask = taskId?.let { TaskRepository(this).find(it) }
+        if (selectedTask == null) {
+            Toast.makeText(this, R.string.form_task_unavailable, Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
+        task = selectedTask
         setContentView(R.layout.activity_task_detail)
-
-        task = TaskRepository(this).find(intent.getStringExtra(TaskRepository.EXTRA_TASK_ID) ?: "prototip")
-            ?: run { finish(); return }
+        applySystemBarInsets()
         findViewById<TextView>(R.id.tvTaskTitle).text = task.title
         findViewById<TextView>(R.id.tvTaskStatus).text = task.status
-        findViewById<TextView>(R.id.tvTaskDate).text = task.detailDate
-        findViewById<TextView>(R.id.tvTaskModule).text = if (task.id == "prototip") getString(R.string.module_full_dsam) else task.module
+        findViewById<TextView>(R.id.tvTaskDate).text = task.date
+        findViewById<TextView>(R.id.tvTaskModule).text = task.module
         findViewById<TextView>(R.id.tvTaskNotes).text = task.notes
         findViewById<ImageView>(R.id.ivDetailTaskType).apply {
             setImageResource(if (task.isExam) R.drawable.ic_exam else R.drawable.ic_task)
             contentDescription = getString(if (task.isExam) R.string.type_examen else R.string.type_treball)
         }
-        val priority = getString(when (task.priorityIndex) {
-            2 -> R.string.priority_alta_short
-            0 -> R.string.priority_baixa_short
-            else -> R.string.priority_mitjana_short
-        })
         findViewById<TextView>(R.id.tvTaskPriority).apply {
-            text = getString(R.string.priority_detail, priority)
-            setTextColor(themeColor(if (task.priorityIndex == 2) androidx.appcompat.R.attr.colorError
-                else com.google.android.material.R.attr.colorOnSurfaceVariant))
+            text = getString(R.string.priority_detail, getString(task.priorityLabel))
+            val priorityColor = themeColor(
+                if (task.priorityIndex == 2) androidx.appcompat.R.attr.colorError
+                else com.google.android.material.R.attr.colorOnSurfaceVariant
+            )
+            setTextColor(priorityColor)
+            compoundDrawableTintList = ColorStateList.valueOf(priorityColor)
         }
         val (badgeBackground, badgeText) = when (task.badgeType) {
             BadgeType.BLUE -> R.drawable.badge_blue to R.color.badge_blue_text
@@ -102,8 +108,7 @@ class TaskDetailActivity : AppCompatActivity() {
      */
     private fun showDeleteDialog() {
         if (deleteDialog?.isShowing == true) return
-        val taskTitle = findViewById<TextView>(R.id.tvTaskTitle)?.text?.toString()
-            ?: getString(R.string.task_title_prototip)
+        val taskTitle = task.title
 
         val context = this
         val dialogContainer = LinearLayout(context).apply {
@@ -163,6 +168,7 @@ class TaskDetailActivity : AppCompatActivity() {
                     null,
                     com.google.android.material.R.attr.materialButtonOutlinedStyle
                 ).apply {
+                    id = R.id.btnCancel
                     text = getString(R.string.cancel_btn)
                     setTextColor(themeColor(androidx.appcompat.R.attr.colorPrimary))
                     isAllCaps = false
@@ -179,6 +185,7 @@ class TaskDetailActivity : AppCompatActivity() {
                 }
 
                 val btnConfirm = MaterialButton(context).apply {
+                    id = R.id.btnDelete
                     text = getString(R.string.delete_btn)
                     setTextColor(themeColor(com.google.android.material.R.attr.colorOnError))
                     isAllCaps = false
@@ -207,9 +214,8 @@ class TaskDetailActivity : AppCompatActivity() {
 
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        val buttonsRow = dialogContainer.getChildAt(3) as LinearLayout
-        val btnCancel = buttonsRow.getChildAt(0) as MaterialButton
-        val btnConfirm = buttonsRow.getChildAt(1) as MaterialButton
+        val btnCancel = dialogContainer.findViewById<MaterialButton>(R.id.btnCancel)
+        val btnConfirm = dialogContainer.findViewById<MaterialButton>(R.id.btnDelete)
 
         btnCancel.setOnClickListener {
             dialog.dismiss()
@@ -217,7 +223,7 @@ class TaskDetailActivity : AppCompatActivity() {
 
         btnConfirm.setOnClickListener {
             TaskRepository(this).delete(task.id)
-            android.widget.Toast.makeText(this, "Activitat «${task.title}» eliminada", android.widget.Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.form_task_deleted, task.title), Toast.LENGTH_SHORT).show()
             android.util.Log.d("TaskDetailActivity", "Eliminada la tasca amb ID: ${task.id}")
             dialog.dismiss()
             finish()

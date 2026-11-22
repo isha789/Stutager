@@ -5,10 +5,8 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.button.MaterialButtonToggleGroup
 /**
@@ -23,27 +21,17 @@ class TaskEditActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_task_edit)
-        findViewById<MaterialButtonToggleGroup>(R.id.typeToggleGroup).allowLabelWrapping()
-
-        val rootLayout = findViewById<View>(R.id.rootLayout)
-        if (rootLayout != null) {
-            ViewCompat.setOnApplyWindowInsetsListener(rootLayout) { v, insets ->
-                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
-                v.setPadding(
-                    systemBars.left,
-                    systemBars.top,
-                    systemBars.right,
-                    systemBars.bottom,
-                )
-                insets
-            }
+        val isEdit = intent.getBooleanExtra("is_edit", false)
+        val taskId = intent.getStringExtra(TaskRepository.EXTRA_TASK_ID)
+        val existingTask = if (isEdit && taskId != null) TaskRepository(this).find(taskId) else null
+        if (isEdit && existingTask == null) {
+            Toast.makeText(this, R.string.form_task_unavailable, Toast.LENGTH_SHORT).show()
+            finish()
+            return
         }
 
-        val isEdit = intent.getBooleanExtra("is_edit", false)
-        val taskId = intent.getStringExtra(TaskRepository.EXTRA_TASK_ID) ?: "prototip"
-        val existingTask = if (isEdit) TaskRepository(this).find(taskId) else null
+        setContentView(R.layout.activity_task_edit)
+        applySystemBarInsets()
 
         val tvFormTitle = findViewById<TextView>(R.id.tvFormTitle)
         val tvFormSubtitle = findViewById<TextView>(R.id.tvFormSubtitle)
@@ -54,21 +42,21 @@ class TaskEditActivity : AppCompatActivity() {
         val prioritySpinner = findViewById<Spinner>(R.id.prioritySpinner)
         val statusSpinner = findViewById<Spinner>(R.id.statusSpinner)
         val typeToggleGroup = findViewById<MaterialButtonToggleGroup>(R.id.typeToggleGroup)
+        typeToggleGroup.allowLabelWrapping()
         val btnSave = findViewById<MaterialButton>(R.id.btnSave)
         val btnCancel = findViewById<MaterialButton>(R.id.btnCancel)
 
-        if (isEdit && existingTask != null) {
+        if (existingTask != null) {
             // Mode EDICIÓ - Carreguem la tasca seleccionada des de TaskRepository
             tvFormTitle?.text = getString(R.string.edit_activity_title)
             tvFormSubtitle?.text = getString(R.string.edit_activity_subtitle)
-            etTitle?.setText(existingTask.title)
-            etDate?.setText(existingTask.detailDate.ifEmpty { getString(R.string.hint_date) })
-            etNotes?.setText(existingTask.notes.ifEmpty { getString(R.string.hint_notes_content) })
+            etTitle.setText(existingTask.title)
+            etDate.setText(existingTask.date)
+            etNotes.setText(existingTask.notes)
 
-            val moduleIndex = when {
-                existingTask.module.contains("Programació", ignoreCase = true) -> 1
-                existingTask.module.contains("Dades", ignoreCase = true) || existingTask.module.contains("Data", ignoreCase = true) -> 2
-                existingTask.module.contains("Digitalització", ignoreCase = true) -> 3
+            val moduleIndex = when (existingTask.module) {
+                getString(R.string.module_programacio) -> 1
+                getString(R.string.module_data) -> 2
                 else -> 0
             }
             moduleSpinner?.setSelection(moduleIndex)
@@ -91,9 +79,9 @@ class TaskEditActivity : AppCompatActivity() {
             // Mode CREACIÓ ("Nova activitat")
             tvFormTitle?.text = getString(R.string.new_activity_title)
             tvFormSubtitle?.text = getString(R.string.new_activity_subtitle)
-            etTitle?.setText("")
-            etDate?.setText("")
-            etNotes?.setText("")
+            etTitle.setText("")
+            etDate.setText("")
+            etNotes.setText("")
             moduleSpinner?.setSelection(0)
             prioritySpinner?.setSelection(1)
             statusSpinner?.setSelection(0)
@@ -108,12 +96,12 @@ class TaskEditActivity : AppCompatActivity() {
         }
 
         btnSave?.setOnClickListener {
-            val titleText = etTitle?.text?.toString()?.trim().orEmpty()
-            if (titleText.isEmpty()) {
-                android.widget.Toast.makeText(this, "El títol no pot estar buit", android.widget.Toast.LENGTH_SHORT).show()
+            if (etTitle.text.isBlank()) {
+                etTitle.requestFocus()
+                etTitle.error = getString(R.string.form_title_required)
             } else {
-                val message = if (isEdit) "Canvis desats correctament" else "Activitat creada"
-                android.widget.Toast.makeText(this, message, android.widget.Toast.LENGTH_SHORT).show()
+                val message = if (isEdit) R.string.form_edit_demo else R.string.form_add_demo
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                 finish()
             }
         }

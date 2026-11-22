@@ -129,11 +129,10 @@
                         android:layout_marginStart="12dp"
                         android:layout_weight="1"
                         android:importantForAutofill="no"
-                        android:background="@drawable/bg_spinner_outline"
+                        android:background="@drawable/bg_input_field"
                         android:hint="@string/title_hint"
                         android:inputType="text"
                         android:paddingHorizontal="14dp"
-                        android:text="@string/task_title_prototip"
                         android:textColor="?attr/colorOnSurface"
                         android:textColorHint="?attr/colorOnSurfaceVariant"
                         android:textSize="15sp" />
@@ -325,13 +324,10 @@
                         android:minHeight="48dp"
                         android:layout_marginStart="12dp"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_spinner_outline"
-                        android:drawableEnd="@drawable/ic_calendar"
-                        android:drawableTint="@color/icon_date"
+                        android:background="@drawable/bg_input_field"
                         android:hint="@string/hint_date"
                         android:inputType="date"
                         android:paddingHorizontal="14dp"
-                        android:text="@string/hint_date"
                         android:textColor="?attr/colorOnSurface"
                         android:textColorHint="?attr/colorOnSurfaceVariant"
                         android:textSize="15sp" />
@@ -346,8 +342,9 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="72dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:minWidth="72dp"
                         android:gravity="center_horizontal"
                         android:importantForAccessibility="no"
                         android:orientation="vertical">
@@ -487,13 +484,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
                         android:layout_weight="1"
-                        android:background="@drawable/bg_spinner_outline"
+                        android:background="@drawable/bg_input_field"
                         android:gravity="top|start"
                         android:hint="@string/hint_notes_content"
                         android:inputType="textMultiLine"
                         android:minHeight="80dp"
                         android:padding="14dp"
-                        android:text="@string/hint_notes_content"
                         android:textColor="?attr/colorOnSurface"
                         android:textColorHint="?attr/colorOnSurfaceVariant"
                         android:textSize="15sp" />
@@ -502,9 +498,8 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnSave"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:minWidth="320dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="16dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     android:minHeight="50dp"
@@ -519,9 +514,8 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnCancel"
                     style="?attr/materialButtonOutlinedStyle"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:minWidth="320dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="16dp"
                     android:layout_height="wrap_content"
                     android:minHeight="50dp"
                     android:text="@string/cancel_btn"

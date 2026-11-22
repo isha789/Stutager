@@ -32,7 +32,7 @@ class PreferencesActivity : AppCompatActivity() {
 
         // Botó de desar preferències
         findViewById<MaterialButton>(R.id.savePreferencesButton)?.setOnClickListener {
-            Toast.makeText(this, "Preferències desades", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.form_preferences_demo, Toast.LENGTH_SHORT).show()
             finish()
         }
     }

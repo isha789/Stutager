@@ -34,15 +34,6 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/btnMore"
-            android:importantForAccessibility="no"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:padding="10dp"
-            android:src="@drawable/ic_more"
-            app:tint="?attr/colorOnSurface" />
     </LinearLayout>
 
     <ScrollView
@@ -132,7 +123,7 @@
                             <ImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:contentDescription="@string/deadline_desc"
+                                android:importantForAccessibility="no"
                                 android:src="@drawable/ic_calendar" />
 
                             <TextView
@@ -140,7 +131,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="12dp"
-                                android:text="@string/full_date_prototip"
                                 android:textColor="?attr/colorOnSurface"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -155,8 +145,7 @@
                             android:text="@string/priority_alta_text"
                             android:textColor="?attr/colorError"
                             android:textSize="14sp"
-                            app:drawableStartCompat="@drawable/ic_info_20"
-                            app:drawableTint="?attr/colorError" />
+                            app:drawableStartCompat="@drawable/ic_info_20" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -167,7 +156,7 @@
                             <ImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:contentDescription="@string/module_label"
+                                android:importantForAccessibility="no"
                                 android:src="@drawable/ic_module" />
 
                             <TextView
@@ -175,7 +164,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="12dp"
-                                android:text="@string/module_full_dsam"
                                 android:textColor="?attr/colorOnSurface"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -228,6 +216,8 @@
                         android:layout_marginEnd="8dp"
                         android:layout_weight="1"
                         android:minHeight="48dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
                         android:text="@string/edit_btn"
                         android:textColor="?attr/colorSecondary"
                         app:icon="@drawable/ic_edit"
@@ -242,6 +232,8 @@
                         android:layout_marginStart="8dp"
                         android:layout_weight="1"
                         android:minHeight="48dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
                         android:text="@string/delete_btn"
                         android:textColor="?attr/colorError"
                         app:icon="@drawable/ic_delete"

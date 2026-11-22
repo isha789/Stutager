@@ -39,7 +39,13 @@ class ActivitiesActivity : AppCompatActivity() {
                         true
                     }
                     R.id.menu_help -> {
-                        startActivity(Intent(this, InitialHelpActivity::class.java))
+                        startActivity(Intent(this, InitialHelpActivity::class.java)
+                            .putExtra(InitialHelpActivity.EXTRA_FROM_MENU, true))
+                        true
+                    }
+                    R.id.menu_account -> {
+                        startActivity(Intent(this, WelcomeActivity::class.java)
+                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP))
                         true
                     }
                     else -> false
@@ -69,13 +75,7 @@ class ActivitiesActivity : AppCompatActivity() {
      */
     override fun onResume() {
         super.onResume()
-        val tasks = TaskRepository(this).tasks(summary = true).map {
-            it.copy(date = when (it.id) {
-                "prototip" -> getString(R.string.date_prototip)
-                "examen" -> getString(R.string.date_examen)
-                else -> it.date
-            })
-        }
+        val tasks = TaskRepository(this).tasks(summary = true)
         findViewById<RecyclerView>(R.id.recyclerViewTasks).adapter = TaskAdapter(tasks) { task ->
             startActivity(Intent(this, TaskDetailActivity::class.java).putExtra(TaskRepository.EXTRA_TASK_ID, task.id))
         }

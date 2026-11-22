@@ -2,12 +2,13 @@ package cat.ishawaheed.stutager
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
-import androidx.activity.enableEdgeToEdge
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -19,18 +20,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
  * Handles top navigation popup menu, FAB creation actions, and passes selected task ID to TaskDetailActivity.
  */
 class MainActivity : AppCompatActivity() {
+    private lateinit var taskAdapter: TaskAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-
-        // Apply edge-to-edge system window insets
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        applySystemBarInsets()
+        findViewById<LinearLayout>(R.id.activityTabs).fitTabLabels()
 
         // Top navigation back button
         findViewById<ImageView>(R.id.btnBack).setOnClickListener {
@@ -53,7 +49,13 @@ class MainActivity : AppCompatActivity() {
                         true
                     }
                     R.id.menu_help -> {
-                        startActivity(Intent(this, InitialHelpActivity::class.java))
+                        startActivity(Intent(this, InitialHelpActivity::class.java)
+                            .putExtra(InitialHelpActivity.EXTRA_FROM_MENU, true))
+                        true
+                    }
+                    R.id.menu_account -> {
+                        startActivity(Intent(this, WelcomeActivity::class.java)
+                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP))
                         true
                     }
                     else -> false
@@ -65,6 +67,11 @@ class MainActivity : AppCompatActivity() {
         // Initialize RecyclerView with vertical layout manager
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewTasks)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        taskAdapter = TaskAdapter(emptyList()) { task ->
+            startActivity(Intent(this, TaskDetailActivity::class.java)
+                .putExtra(TaskRepository.EXTRA_TASK_ID, task.id))
+        }
+        recyclerView.adapter = taskAdapter
 
         // Add Activity FAB button -> opens TaskEditActivity
         findViewById<FloatingActionButton>(R.id.btnAddActivity).setOnClickListener {
@@ -79,24 +86,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * Refresh task list when resuming activity and bind task click handlers passing EXTRA_TASK_ID
-     */
     override fun onResume() {
         super.onResume()
-        val tasks = TaskRepository(this).tasks(summary = true).map {
-            it.copy(date = when (it.id) {
-                "prototip" -> getString(R.string.date_prototip)
-                "examen" -> getString(R.string.date_examen)
-                else -> it.date
-            })
-        }
-
-        // Pass selected task ID to TaskDetailActivity on item click
-        findViewById<RecyclerView>(R.id.recyclerViewTasks).adapter = TaskAdapter(tasks) { task ->
-            val intent = Intent(this, TaskDetailActivity::class.java)
-            intent.putExtra(TaskRepository.EXTRA_TASK_ID, task.id)
-            startActivity(intent)
-        }
+        val tasks = TaskRepository(this).tasks(summary = true)
+        taskAdapter.updateTasks(tasks)
+        findViewById<View>(R.id.recyclerViewTasks).isVisible = tasks.isNotEmpty()
+        findViewById<View>(R.id.tvEmptyTasks).isVisible = tasks.isEmpty()
+        findViewById<TextView>(R.id.tvTasksCount).text =
+            resources.getQuantityString(R.plurals.task_count, tasks.size, tasks.size)
     }
 }

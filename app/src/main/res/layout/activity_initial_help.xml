@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:fitsSystemWindows="true"
     tools:context=".InitialHelpActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@string/help_title"
+                android:text="@string/app_name"
                 android:textColor="?attr/colorSecondary"
                 android:textSize="28sp"
                 android:textStyle="bold" />

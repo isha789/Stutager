@@ -6,12 +6,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -22,16 +18,9 @@ class AllTasksActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_all_tasks)
         findViewById<LinearLayout>(R.id.activityTabs).fitTabLabels()
-
-        val rootView = findViewById<View>(R.id.main)
-        ViewCompat.setOnApplyWindowInsetsListener(rootView) { v, windowInsets ->
-            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.updatePadding(top = insets.top, bottom = insets.bottom, left = insets.left, right = insets.right)
-            WindowInsetsCompat.CONSUMED
-        }
+        applySystemBarInsets()
 
         // Left back arrow -> finishes activity and returns to previous screen
         findViewById<ImageView>(R.id.btnBack)?.setOnClickListener {
@@ -45,7 +34,7 @@ class AllTasksActivity : AppCompatActivity() {
             popup.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.menu_activities -> {
-                        startActivity(Intent(this, MainActivity::class.java))
+                        finish()
                         true
                     }
                     R.id.menu_all_tasks -> true
@@ -54,7 +43,13 @@ class AllTasksActivity : AppCompatActivity() {
                         true
                     }
                     R.id.menu_help -> {
-                        startActivity(Intent(this, InitialHelpActivity::class.java))
+                        startActivity(Intent(this, InitialHelpActivity::class.java)
+                            .putExtra(InitialHelpActivity.EXTRA_FROM_MENU, true))
+                        true
+                    }
+                    R.id.menu_account -> {
+                        startActivity(Intent(this, WelcomeActivity::class.java)
+                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP))
                         true
                     }
                     else -> false

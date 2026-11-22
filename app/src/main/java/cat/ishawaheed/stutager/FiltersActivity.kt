@@ -76,12 +76,12 @@ class FiltersActivity : AppCompatActivity() {
             statusFilterSpinner?.setSelection(0)
             priorityFilterSpinner?.setSelection(0)
             typeFilterToggleGroup?.check(R.id.typeFilterAllButton)
-            Toast.makeText(this, "Filtres reiniciats", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.form_filters_reset, Toast.LENGTH_SHORT).show()
         }
 
         // Botó d'aplicar filtres
         findViewById<MaterialButton>(R.id.applyFiltersButton)?.setOnClickListener {
-            Toast.makeText(this, "Filtres aplicats", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.form_filters_demo, Toast.LENGTH_SHORT).show()
             finish()
         }
     }

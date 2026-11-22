@@ -4,6 +4,5 @@
     <string name="nav_all_tasks">Totes les tasques</string>
     <string name="nav_preferences">Preferències</string>
     <string name="nav_help">Ajuda</string>
-    <string name="nav_splash_title">EntregaDAM</string>
-    <string name="nav_splash_subtitle">Organitza els teus treballs i exàmens de manera senzilla.</string>
+    <string name="nav_account">Inicia sessió o registra’t</string>
 </resources>

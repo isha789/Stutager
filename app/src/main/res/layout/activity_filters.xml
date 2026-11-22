@@ -402,7 +402,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="12dp"
-                        android:text="@string/date_prototip_clean"
+                        android:text="@string/date_prototip"
                         android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="13sp" />
 
@@ -515,7 +515,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="12dp"
-                        android:text="@string/date_second_clean"
+                        android:text="@string/date_accessibility"
                         android:textColor="?attr/colorOnSurfaceVariant"
                         android:textSize="13sp" />
 

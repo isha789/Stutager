@@ -8,9 +8,9 @@ Desenvolupem el projecte amb Kotlin i layouts XML dins de l’assignatura de Des
 
 ## Documentació del codi
 
-La documentació es genera en format HTML amb Dokka a partir dels comentaris KDoc del codi Kotlin.
+La referència HTML de Dokka es genera a partir dels comentaris KDoc del codi Kotlin. El README descriu el comportament de la versió actual.
 
-[Obrir la documentació HTML](docs/index.html)
+[Obrir la documentació HTML](app/docs/html/index.html)
 
 ## Estat actual
 
@@ -24,12 +24,12 @@ La versió actual és un prototip funcional de navegació i interacció. Algunes
 | Ajuda i benvinguda | Presenten l’app i permeten seguir el recorregut d’entrada. |
 | Inici de sessió i registre | Mostren formularis i accessos de navegació; no autentiquen usuaris. |
 | Menú | Obre el resum, totes les tasques, preferències i ajuda. |
-| Llistes | Mostren tasques de prova amb RecyclerView, icones i insígnies d’estat. |
+| Llistes | El resum mostra tres tasques de prova i la llista general en mostra set, abans de fer cap eliminació. Cada llista actualitza el recompte i mostra un missatge quan queda buida. |
 | Detall | Carrega la informació de la tasca seleccionada mitjançant el seu ID. |
-| Creació i edició | Validen que el títol no sigui buit i mostren un Toast; no desen les dades. |
+| Creació i edició | Comproven que hi hagi un títol i mostren un Toast de demostració. Les dades del formulari no es desen. |
 | Eliminació | Demana confirmació, elimina la tasca de les llistes i conserva aquesta eliminació entre obertures. |
-| Filtres | Permeten seleccionar criteris i netejar els camps; Aplica mostra un Toast, però no filtra la llista. |
-| Preferències | Mostren opcions de tema, ordre i visibilitat; Desa no conserva ni aplica les seleccions. |
+| Filtres | Permeten seleccionar criteris i netejar els camps. Aplica mostra un Toast de demostració. |
+| Preferències | Permeten provar les opcions de tema, ordre i visibilitat. Desa mostra un Toast de demostració. |
 
 ## Tecnologies
 
@@ -43,7 +43,9 @@ La versió actual és un prototip funcional de navegació i interacció. Algunes
 
 No utilitzem una base de dades ni un servidor en aquesta versió.
 
-```
+## Compilació local
+
+Amb el SDK d’Android 37 i el JDK del projecte configurats, executa `./gradlew assembleDebug` (`gradlew.bat assembleDebug` al Windows).
 
 Si la compilació acaba correctament, l’APK de depuració es genera a `app/build/outputs/apk/debug/app-debug.apk`.
 
@@ -69,19 +71,19 @@ El recorregut inicial és:
 
 El projecte també conserva `ActivitiesActivity` i `activity_activities_summary.xml`, una altra vista de resum. El recorregut principal de benvinguda i login utilitza `MainActivity`.
 
-Obrim les pantalles amb Intents explícits. Per consultar o editar una tasca passem el seu ID amb `TaskRepository.EXTRA_TASK_ID`. L’extra `is_edit` diferencia els dos modes del formulari. Els botons de retorn tanquen la pantalla amb `finish()`.
+Obrim les pantalles amb Intents explícits. Per consultar o editar una tasca passem el seu ID amb `TaskRepository.EXTRA_TASK_ID`. L’extra `is_edit` diferencia els dos modes del formulari. Si falta l’ID o la tasca ja no està disponible, la pantalla mostra un avís i torna enrere.
 
 ### Logo i splash
 
 El logo escollit pel grup és **Academic Milestone**, format per tres barres i una marca de verificació.
 
-`SplashActivity` és el launcher del Manifest. Utilitza `activity_splash.xml`, `ic_stutager_logo.xml` i `splash_logo_in.xml`. L’animació combina aparició i escala del logo. Després d’un retard programat de 1,8 segons obre l’ajuda i es tanca per evitar tornar al splash amb el botó enrere.
+`SplashActivity` és el launcher del Manifest. Utilitza `activity_splash.xml`, `ic_stutager_logo.xml` i `splash_logo_in.xml`. L’animació combina aparició i escala del logo. Després d’1,8 segons en primer pla obre l’ajuda i es tanca. Si l’Activity es posa en pausa abans del final, es cancel·la el pas a l’ajuda.
 
 ### Menú
 
-Les pantalles de llistes obren un `PopupMenu` des de la icona de menú. Inflem `res/menu/menu_stutager.xml` i un listener identifica l’opció seleccionada per obrir el resum, totes les tasques, preferències o ajuda.
+Les pantalles de llistes obren un `PopupMenu` d’AppCompat des de la icona de menú. Inflem `res/menu/menu_stutager.xml` i un listener tracta l’opció seleccionada. **Activitats** tanca la llista general i torna al resum existent. **Ajuda** obre la guia amb un botó de retorn a la pantalla que l’ha obert. **Inicia sessió o registra’t** torna explícitament a la benvinguda. El menú també permet obrir totes les tasques i les preferències.
 
-El fitxer `include_stutager_toolbar.xml` existeix, però en la versió documentada no està integrat a les pantalles. El menú desplegable sí que té listeners de navegació; no donem per implementada una Toolbar compartida.
+Cada llista té una capçalera pròpia amb botons de navegació i accions.
 
 ## Organització del projecte
 
@@ -109,7 +111,7 @@ Les classes Kotlin es troben a `app/src/main/java/cat/ishawaheed/stutager/`.
 
 `TaskRepository` construeix les dades de prova amb els recursos de text. `tasks()` retorna les tasques que no s’han eliminat, `find(id)` en busca una i `delete(id)` desa l’ID eliminat a SharedPreferences.
 
-Només es conserven els identificadors eliminats, no totes les dades de les tasques. En la versió actual, el paràmetre `summary` encara no aplica `SUMMARY_IDS`: el resum i la llista general obtenen el mateix conjunt de tasques visibles.
+Només es conserven els identificadors eliminats. Amb `summary = true` el repositori limita el resultat als identificadors de `SUMMARY_IDS`. Totes dues llistes exclouen les activitats eliminades. El model manté la data en format `dd/mm/aaaa` i la prioritat en camps separats.
 
 ### Adapter i ViewHolder
 
@@ -124,15 +126,15 @@ A `TaskAdapter`:
 
 `TaskViewHolder` guarda les referències als components de cada fila perquè es puguin reutilitzar durant el scroll.
 
-El callback `onItemClick(task)` comunica la selecció a l’Activity, que obre el detall amb l’ID. Les llistes es tornen a consultar a `onResume()`. La pantalla general també actualitza el recompte i mostra un missatge si no queden tasques.
+El callback `onItemClick(task)` comunica la selecció a l’Activity, que obre el detall amb l’ID. Les dues pantalles consulten les dades a `onResume()`, actualitzen el seu Adapter i el recompte, i mostren un missatge quan la llista és buida.
 
 ## Formularis i accions
 
 ### Crear i editar
 
-El formulari comparteix layout entre els dos modes. En editar, busca la tasca per ID i omple els camps. La selecció del mòdul distingeix DSAM, Programació, Accés a dades i Digitalització.
+El formulari comparteix layout entre els dos modes. En editar, busca la tasca per ID i omple els camps amb les seves dades. Manté les notes buides quan la tasca no en té. La data és un camp de text en format `dd/mm/aaaa`.
 
-Desar comprova que el títol, sense espais als extrems, no sigui buit. Si és vàlid, mostra un Toast i tanca el formulari. Tot i el text dels missatges de confirmació actuals, aquesta acció encara no crea ni actualitza dades.
+Desar comprova que el títol, sense espais als extrems, no sigui buit. Si és vàlid, mostra un Toast que identifica l’acció de demostració i tanca el formulari. La creació i l’edició no modifiquen el repositori.
 
 ### Eliminar
 
@@ -142,9 +144,9 @@ En tornar a la llista, la tasca ja no es mostra. Aquesta eliminació es conserva
 
 ### Filtres i preferències
 
-Neteja reinicia els camps dels filtres i mostra un Toast. Aplica mostra un missatge i tanca la pantalla, sense aplicar els criteris a les llistes. Les dues targetes de resultats són exemples que s’oculten si s’ha eliminat la tasca corresponent.
+Neteja restableix els camps dels filtres i mostra un Toast. Aplica mostra un missatge i tanca la pantalla. Les dues targetes de resultats són exemples que s’oculten si s’ha eliminat la tasca corresponent. La cerca i les pestanyes de tipus de les pantalles de llistes formen part de la maqueta.
 
-Les preferències permeten seleccionar tema, ordre i visibilitat de completades, però Desa només mostra un Toast i tanca la pantalla. No hi ha persistència ni aplicació global d’aquestes seleccions.
+Les preferències permeten provar els selectors de tema, ordre i visibilitat de completades. Desa mostra un Toast de demostració i tanca la pantalla. El tema de l’aplicació segueix el mode del sistema.
 
 ## Usabilitat i accessibilitat
 
@@ -155,8 +157,8 @@ Hem incorporat mesures al codi per facilitar la interacció:
 - Acció accessible per obrir una tasca i agrupació de les files per al lector de pantalla.
 - Icones decoratives excloses de la lectura quan correspon.
 - Títol accessible del diàleg d’eliminació.
-- Ajustos de selectors i de distribució per a text ampliat.
-- Tractament d’insets de barres del sistema i del teclat en diferents pantalles.
+- Ajustos de selectors i de l’amplada de l’etiqueta de prioritat per a text ampliat.
+- Tractament d’insets de les barres del sistema i del teclat al formulari i a les pantalles principals.
 
 La implementació d’insets varia entre pantalles. Cal comprovar en un dispositiu les àrees tàctils, les etiquetes, el contrast, el text ampliat i la lectura amb TalkBack; no donem aquestes proves per superades només perquè hi hagi atributs d’accessibilitat.
 

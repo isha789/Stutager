@@ -7,7 +7,7 @@
     android:background="?attr/colorSurface"
     tools:context=".SplashActivity">
 
-    <!-- Stutager / EntregaDAM Logo -->
+    <!-- Logotip de Stutager -->
     <ImageView
         android:id="@+id/ivSplashLogo"
         android:importantForAccessibility="no"
