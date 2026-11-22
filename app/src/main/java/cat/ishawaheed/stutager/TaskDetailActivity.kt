@@ -18,6 +18,15 @@ import com.google.android.material.color.MaterialColors
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
+/**
+ * TaskDetailActivity
+ *
+ * Activity that displays detailed information about a specific task.
+ *
+ * Loads task data from [TaskRepository] using the task ID passed in the Intent
+ * and provides navigation to edit the task or display a deletion confirmation dialog.
+ */
+
 class TaskDetailActivity : AppCompatActivity() {
     private lateinit var task: TaskItem
     private var deleteDialog: AlertDialog? = null
@@ -84,7 +93,13 @@ class TaskDetailActivity : AppCompatActivity() {
         deleteDialog?.dismiss()
         super.onDestroy()
     }
-
+    /**
+     *
+     * TaskDetailActivity - showDetaileDialog()
+     *
+     * Constructs and displays a custom modal confirmation dialog for deleting the current task.
+     *
+     */
     private fun showDeleteDialog() {
         if (deleteDialog?.isShowing == true) return
         val taskTitle = findViewById<TextView>(R.id.tvTaskTitle)?.text?.toString()

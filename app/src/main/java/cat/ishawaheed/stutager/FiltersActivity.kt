@@ -15,6 +15,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
+
+/**
+ * FiltersActivity
+ *
+ * Activity responsible for managing the search and filter screen for activities.
+ *
+ * Allows filtering tasks by search text, Module, Type, Status, and Priority,
+ * providing options to reset form fields and apply active filters.
+ */
 class FiltersActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

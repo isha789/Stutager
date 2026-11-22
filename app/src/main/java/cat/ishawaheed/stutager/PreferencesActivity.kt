@@ -6,6 +6,15 @@ import com.google.android.material.button.MaterialButton
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButtonToggleGroup
 
+
+/**
+ * PreferencesActivity
+ *
+ * Activity for managing user settings and application preferences.
+ *
+ * Allows customizing options such as visual theme (Light/Dark), task sorting order,
+ * and visibility of completed activities.
+ */
 class PreferencesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

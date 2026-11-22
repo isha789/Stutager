@@ -11,7 +11,14 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.button.MaterialButtonToggleGroup
-
+/**
+ * TaskEditActivity
+ *
+ * Activity responsible for managing the task creation and editing form.
+ *
+ * Automatically differentiates between creation mode ("Nova activitat") and edit mode
+ * ("Edita l'activitat") using the "is_edit" boolean extra passed in the Intent.
+ */
 class TaskEditActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
