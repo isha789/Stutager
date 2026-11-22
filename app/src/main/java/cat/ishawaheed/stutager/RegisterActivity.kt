@@ -7,6 +7,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 
+
+/**
+ * RegisterActivity
+ *
+ * User registration form screen with full name, email, password input fields,
+ * account creation button, and navigation to LoginActivity.
+ */
 class RegisterActivity :AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
