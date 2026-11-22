@@ -6,6 +6,12 @@ Desenvolupem el projecte amb Kotlin i layouts XML dins de l’assignatura de Des
 
 **Equip:** Isha Waheed, Fedor Sokolov i Andrei Azarin Podolchuk.
 
+## Documentació del codi
+
+La documentació es genera en format HTML amb Dokka a partir dels comentaris KDoc del codi Kotlin.
+
+[Obrir la documentació HTML](app/build/docs/html/index.html)
+
 ## Estat actual
 
 Hem passat del prototip de pantalles a una aplicació amb navegació, un logo propi, una pantalla inicial animada i llistes personalitzades amb dades de prova.
