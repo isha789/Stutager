@@ -10,7 +10,7 @@ Desenvolupem el projecte amb Kotlin i layouts XML dins de l’assignatura de Des
 
 La documentació es genera en format HTML amb Dokka a partir dels comentaris KDoc del codi Kotlin.
 
-[Obrir la documentació HTML](app/build/docs/html/index.html)
+[Obrir la documentació HTML](docs/index.html)
 
 ## Estat actual
 
@@ -42,6 +42,8 @@ La versió actual és un prototip funcional de navegació i interacció. Algunes
 - Git i GitHub per compartir els canvis de l’equip.
 
 No utilitzem una base de dades ni un servidor en aquesta versió.
+
+```
 
 Si la compilació acaba correctament, l’APK de depuració es genera a `app/build/outputs/apk/debug/app-debug.apk`.
 

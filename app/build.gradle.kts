@@ -45,6 +45,6 @@ dependencies {
 
 dokka {
     dokkaPublications.html {
-        outputDirectory.set(layout.buildDirectory.dir("docs/html"))
+        outputDirectory.set(layout.projectDirectory.dir("docs/html"))
     }
 }
