@@ -217,6 +217,8 @@ class TaskDetailActivity : AppCompatActivity() {
 
         btnConfirm.setOnClickListener {
             TaskRepository(this).delete(task.id)
+            android.widget.Toast.makeText(this, "Activitat «${task.title}» eliminada", android.widget.Toast.LENGTH_SHORT).show()
+            android.util.Log.d("TaskDetailActivity", "Eliminada la tasca amb ID: ${task.id}")
             dialog.dismiss()
             finish()
         }
