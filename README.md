@@ -43,8 +43,6 @@ La versió actual és un prototip funcional de navegació i interacció. Algunes
 
 No utilitzem una base de dades ni un servidor en aquesta versió.
 
-```
-
 Si la compilació acaba correctament, l’APK de depuració es genera a `app/build/outputs/apk/debug/app-debug.apk`.
 
 ## Pantalles i navegació
