@@ -10,7 +10,7 @@ Desenvolupem el projecte amb Kotlin i layouts XML dins de l’assignatura de Des
 
 La referència HTML de Dokka es genera a partir dels comentaris KDoc del codi Kotlin. El README descriu el comportament de la versió actual.
 
-[Obrir la documentació HTML](app/docs/html/index.html)
+[Obrir la documentació HTML](https://isha789.github.io/Stutager/)
 
 ## Estat actual
 
