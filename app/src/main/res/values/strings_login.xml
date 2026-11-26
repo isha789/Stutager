@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Login error messages -->
+    <string name="login_error_required">Aquest camp és obligatori.</string>
+    <string name="login_error_invalid_email">El format del correu electrònic no és vàlid.</string>
+    <string name="login_error_email_too_long">El correu electrònic no pot superar els 254 caràcters.</string>
+    <string name="login_error_password_too_short">La contrasenya ha de tenir almenys 8 caràcters.</string>
+    <string name="login_error_password_too_long">La contrasenya no pot superar els 128 caràcters.</string>
+    <string name="login_error_password_missing_letter">La contrasenya ha de contenir almenys una lletra.</string>
+    <string name="login_error_password_missing_digit">La contrasenya ha de contenir almenys un número.</string>
+</resources>
