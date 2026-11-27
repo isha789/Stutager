@@ -74,6 +74,16 @@
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp" />
 
+            <TextView
+                android:id="@+id/registerFullNameError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:accessibilityLiveRegion="polite"
+                android:textColor="?attr/colorError"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
             <EditText
                 android:id="@+id/registerFullName"
                 android:importantForAutofill="yes"
@@ -101,6 +111,16 @@
                 android:text="@string/label_email"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/registerEmailError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:accessibilityLiveRegion="polite"
+                android:textColor="?attr/colorError"
+                android:textSize="14sp"
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/registerEmail"
@@ -130,6 +150,16 @@
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp" />
 
+            <TextView
+                android:id="@+id/registerPasswordError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:accessibilityLiveRegion="polite"
+                android:textColor="?attr/colorError"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
             <EditText
                 android:id="@+id/registerPassword"
                 android:importantForAutofill="yes"
@@ -157,6 +187,16 @@
                 android:text="@string/label_confirm_password"
                 android:textColor="?attr/colorOnSurface"
                 android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/registerConfirmationError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:accessibilityLiveRegion="polite"
+                android:textColor="?attr/colorError"
+                android:textSize="14sp"
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/registerConfirmPassword"

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="register_full_name_required">Introdueix el nom complet.</string>
+    <string name="register_full_name_too_short">El nom ha de tenir com a mínim 2 caràcters.</string>
+    <string name="register_full_name_too_long">El nom pot tenir com a màxim 80 caràcters.</string>
+    <string name="register_email_required">Introdueix el correu electrònic.</string>
+    <string name="register_invalid_email">Introdueix un correu electrònic vàlid.</string>
+    <string name="register_email_too_long">El correu electrònic pot tenir com a màxim 254 caràcters.</string>
+    <string name="register_password_required">Introdueix una contrasenya.</string>
+    <string name="register_password_too_short">La contrasenya ha de tenir com a mínim 8 caràcters.</string>
+    <string name="register_password_too_long">La contrasenya pot tenir com a màxim 128 caràcters.</string>
+    <string name="register_password_missing_letter">La contrasenya ha de contenir com a mínim una lletra.</string>
+    <string name="register_password_missing_digit">La contrasenya ha de contenir com a mínim un dígit.</string>
+    <string name="register_confirmation_required">Confirma la contrasenya.</string>
+    <string name="register_password_mismatch">Les contrasenyes no coincideixen.</string>
+</resources>
