@@ -19,7 +19,7 @@ Hem passat del prototip de pantalles a una aplicació amb navegació, un logo pr
 La versió actual permet crear, editar i eliminar tasques. Les dues llistes comparteixen les dades durant el procés de l’aplicació.
 
 | Funcionalitat | Comportament actual |
-| --- | --- |
+| Inici de sessió i registre | Formularis amb validació desacoblada en temps real (nom, correu, contrasenya i confirmació) mitjançant ViewModels i LiveData. |
 | Pantalla inicial | Mostra el logo Academic Milestone amb una animació d’aparició i escala. |
 | Ajuda i benvinguda | Presenten l’app i permeten seguir el recorregut d’entrada. |
 | Inici de sessió i registre | Mostren formularis i accessos de navegació; no autentiquen usuaris. |
@@ -104,6 +104,9 @@ Les classes Kotlin es troben a `app/src/main/java/cat/ishawaheed/stutager/`.
 | `res/menu/` | Defineix les opcions del menú. |
 | `res/anim/` | Defineix l’animació del splash. |
 | `AndroidManifest.xml` | Registra les Activities, els temes i l’entrada de l’app. |
+| `AuthValidator.kt` | Engine pur en Kotlin per a la validació de noms, correus i contrasenyes. |
+| `LoginViewModel.kt` i `RegisterViewModel.kt` | Gestió d'estat i publicació de LiveData per als formularis d'accés. |
+| `LoginUiState.kt` i `RegisterUiState.kt` | Estats immutables de la interfície d'usuari per a Login i Registre. |
 
 ## Dades i llistes
 
@@ -150,6 +153,29 @@ Neteja restableix els camps dels filtres i mostra un Toast. Aplica mostra un mis
 
 Les preferències permeten provar els selectors de tema, ordre i visibilitat de completades. Desa mostra un Toast de demostració i tanca la pantalla. El tema de l’aplicació segueix el mode del sistema.
 
+## Validació i arquitectura d'accés (MVVM i LiveData)
+
+Els formularis d'Inici de sessió i Registre utilitzen l'arquitectura **MVVM (Model-View-ViewModel)** amb **LiveData**, desacoblant completament la interfície d'usuari de la lògica de validació de dades.
+
+### Motor de Validació (`AuthValidator`)
+
+La classe `AuthValidator` actua com el motor de validació pur en Kotlin, sense dependències del framework d'Android:
+
+- **Nom complet:** Obligatori, entre 2 i 80 caràcters després de la normalització `.trim()`.
+- **Correu electrònic:** Màxim 254 caràcters, `.trim()` als extrems i verificació de sintaxi estàndard amb l'expressió regular `^[^\\s@]+@[^\\s@.]+(?:\\.[^\\s@.]+)+$`.
+- **Contrasenya:** Entre 8 i 128 caràcters, amb l'obligació de incloure almenys una lletra (`isLetter()`) i almenys un dígit (`isDigit()`). No s'aplica `.trim()` a les contrasenyes per no alterar-ne la longitud real.
+- **Confirmació de contrasenya:** Coincidència exacta (sensible a majúscules/minúscules) amb la contrasenya original.
+- **Ordre de precedència d'errors:** Avalua les regles en l'ordre estricte definit per l'enum `Error` (`REQUIRED`, `TOO_SHORT`, `TOO_LONG`, `INVALID_EMAIL`, `MISSING_LETTER`, `MISSING_DIGIT`, `MISMATCH`).
+- **Resultats agregats:** Retorna objectes `LoginResult` i `RegistrationResult` amb la propietat `isValid`.
+
+### Arquitectura de Pantalles i Observabilitat
+
+- **`LoginViewModel` i `RegisterViewModel`**: Mantenen un `MutableLiveData` privat i exposen un `LiveData` públic immutable (`uiState`). En rebre les dades de la vista, avaluen `AuthValidator` i publiquen el nou estat d'errors o de confirmació.
+- **`LoginActivity` i `RegisterActivity`**: Observen `uiState` amb `.observe(this)`, mostren els missatges d'error localitzats a les vistes o els netegen quan es corregeixen. Quan la validació és correcta (`submissionAccepted == true`), realitzen la navegació corresponent.
+
+### Limitació d'Autenticació
+La validació d'aquests formularis s'executa localment en temps d'execució als ViewModels. No s'ha implementat un servei d'autenticació real ni persistència de comptes d'usuari a base de dades.
+
 ## Usabilitat i accessibilitat
 
 Hem incorporat mesures al codi per facilitar la interacció:
@@ -171,5 +197,7 @@ La implementació d’insets varia entre pantalles. Cal comprovar en un disposit
 | Isha Waheed | Splash, navegació, menú, resum i configuració de les Activities. |
 | Fedor Sokolov | Model, repositori, Adapter, ViewHolder i llista general. |
 | Andrei Azarin Podolchuk | Formularis, detall, confirmació d’eliminació, filtres i preferències. |
+
+
 
 Coordinem els canvis dels fitxers compartits per evitar conflictes. Les correccions pendents del repositori o de la navegació s’han d’acordar amb el membre responsable.
