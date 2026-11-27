@@ -1,6 +1,7 @@
 package cat.ishawaheed.stutager
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Spinner
@@ -23,7 +24,7 @@ class TaskEditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val isEdit = intent.getBooleanExtra("is_edit", false)
         val taskId = intent.getStringExtra(TaskRepository.EXTRA_TASK_ID)
-        val existingTask = if (isEdit && taskId != null) TaskRepository(this).find(taskId) else null
+        val existingTask = if (isEdit && taskId != null) TaskRepository.find(this, taskId) else null
         if (isEdit && existingTask == null) {
             Toast.makeText(this, R.string.form_task_unavailable, Toast.LENGTH_SHORT).show()
             finish()
@@ -39,6 +40,7 @@ class TaskEditActivity : AppCompatActivity() {
         val etDate = findViewById<EditText>(R.id.etDate)
         val etNotes = findViewById<EditText>(R.id.etNotes)
         val moduleSpinner = findViewById<Spinner>(R.id.moduleSpinner)
+        val modules = resources.getStringArray(R.array.form_module_options)
         val prioritySpinner = findViewById<Spinner>(R.id.prioritySpinner)
         val statusSpinner = findViewById<Spinner>(R.id.statusSpinner)
         val typeToggleGroup = findViewById<MaterialButtonToggleGroup>(R.id.typeToggleGroup)
@@ -54,12 +56,10 @@ class TaskEditActivity : AppCompatActivity() {
             etDate.setText(existingTask.date)
             etNotes.setText(existingTask.notes)
 
-            val moduleIndex = when (existingTask.module) {
-                getString(R.string.module_programacio) -> 1
-                getString(R.string.module_data) -> 2
-                else -> 0
+            val moduleIndex = modules.indexOfFirst { label ->
+                getString(R.string.form_module_value, label).equals(existingTask.module, ignoreCase = true)
             }
-            moduleSpinner?.setSelection(moduleIndex)
+            moduleSpinner.setSelection(moduleIndex.coerceAtLeast(0))
             prioritySpinner?.setSelection(existingTask.priorityIndex)
 
             val statusIndex = when (existingTask.status) {
@@ -95,15 +95,42 @@ class TaskEditActivity : AppCompatActivity() {
             finish()
         }
 
-        btnSave?.setOnClickListener {
-            if (etTitle.text.isBlank()) {
+        btnSave.setOnClickListener {
+            val title = etTitle.text.toString().trim()
+            if (title.isEmpty()) {
                 etTitle.requestFocus()
                 etTitle.error = getString(R.string.form_title_required)
-            } else {
-                val message = if (isEdit) R.string.form_edit_demo else R.string.form_add_demo
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-                finish()
+                return@setOnClickListener
             }
+
+            val badge = when (statusSpinner.selectedItemPosition) {
+                1 -> BadgeType.BLUE
+                2 -> BadgeType.GREEN
+                else -> BadgeType.YELLOW
+            }
+            val task = TaskItem(
+                title = title,
+                module = getString(R.string.form_module_value, moduleSpinner.selectedItem.toString()),
+                date = etDate.text.toString().trim(),
+                status = statusSpinner.selectedItem.toString(),
+                isExam = typeToggleGroup.checkedButtonId == R.id.typeExamsButton,
+                badgeType = badge,
+                id = existingTask?.id.orEmpty(),
+                notes = etNotes.text.toString().trim(),
+                priorityIndex = prioritySpinner.selectedItemPosition
+            )
+
+            if (existingTask == null) {
+                val created = TaskRepository.add(this, task)
+                Log.d("TaskEditActivity", "Tasca creada amb ID: ${created.id}")
+                Toast.makeText(this, R.string.form_task_added, Toast.LENGTH_SHORT).show()
+            } else if (TaskRepository.update(this, task)) {
+                Log.d("TaskEditActivity", "Tasca editada amb ID: ${task.id}")
+                Toast.makeText(this, R.string.form_task_updated, Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, R.string.form_task_unavailable, Toast.LENGTH_SHORT).show()
+            }
+            finish()
         }
 
         btnCancel?.setOnClickListener {

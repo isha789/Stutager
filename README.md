@@ -16,18 +16,18 @@ La referència HTML de Dokka es genera a partir dels comentaris KDoc del codi Ko
 
 Hem passat del prototip de pantalles a una aplicació amb navegació, un logo propi, una pantalla inicial animada i llistes personalitzades amb dades de prova.
 
-La versió actual és un prototip funcional de navegació i interacció. Algunes accions ja modifiquen dades i d’altres només mostren el comportament previst amb missatges de demostració.
+La versió actual permet crear, editar i eliminar tasques. Les dues llistes comparteixen les dades durant el procés de l’aplicació.
 
 | Funcionalitat | Comportament actual |
 | --- | --- |
 | Pantalla inicial | Mostra el logo Academic Milestone amb una animació d’aparició i escala. |
 | Ajuda i benvinguda | Presenten l’app i permeten seguir el recorregut d’entrada. |
 | Inici de sessió i registre | Mostren formularis i accessos de navegació; no autentiquen usuaris. |
-| Menú | Obre el resum, totes les tasques, preferències i ajuda. |
-| Llistes | El resum mostra tres tasques de prova i la llista general en mostra set, abans de fer cap eliminació. Cada llista actualitza el recompte i mostra un missatge quan queda buida. |
+| Menú | Mostra dues seccions principals i un menú amb preferències, ajuda i accés al compte. |
+| Llistes | Inicialment, el resum mostra tres tasques de prova i la llista general en mostra set. Les tasques noves apareixen a l’inici de totes dues llistes. Cada llista actualitza el recompte i mostra un missatge quan queda buida. |
 | Detall | Carrega la informació de la tasca seleccionada mitjançant el seu ID. |
-| Creació i edició | Comproven que hi hagi un títol i mostren un Toast de demostració. Les dades del formulari no es desen. |
-| Eliminació | Demana confirmació, elimina la tasca de les llistes i conserva aquesta eliminació entre obertures. |
+| Creació i edició | Comproven que hi hagi un títol i actualitzen la llista en memòria. Un Toast confirma el resultat. |
+| Eliminació | Demana confirmació i treu la tasca de les llistes. Les eliminacions de tasques d’exemple es conserven entre processos. |
 | Filtres | Permeten seleccionar criteris i netejar els camps. Aplica mostra un Toast de demostració. |
 | Preferències | Permeten provar les opcions de tema, ordre i visibilitat. Desa mostra un Toast de demostració. |
 
@@ -37,7 +37,7 @@ La versió actual és un prototip funcional de navegació i interacció. Algunes
 - XML per als layouts, textos, colors, temes i recursos gràfics.
 - AndroidX, AppCompat i components Material.
 - RecyclerView per a les llistes personalitzades.
-- SharedPreferences per conservar els identificadors de les tasques eliminades.
+- SharedPreferences per conservar els identificadors de les tasques d’exemple eliminades.
 - Android Studio i Gradle per desenvolupar i compilar.
 - Git i GitHub per compartir els canvis de l’equip.
 
@@ -62,16 +62,14 @@ El recorregut inicial és:
 | Benvinguda | `WelcomeActivity` | Dona accés al login, registre i mode convidat. |
 | Login | `LoginActivity` | Presenta el formulari d’entrada i el control de visibilitat de la contrasenya. |
 | Registre | `RegisterActivity` | Presenta el formulari per crear un compte. |
-| Resum | `MainActivity` | Mostra tasques i accessos al menú, al detall i a la creació. |
-| Totes les tasques | `AllTasksActivity` | Mostra la llista general, el recompte i l’estat buit. |
+| Resum | `SummaryFragment` | Mostra fins a tres tasques, el recompte i l’estat buit. |
+| Totes les tasques | `AllTasksFragment` | Mostra la llista general i l’accés als filtres. |
 | Detall | `TaskDetailActivity` | Mostra les dades i dona accés a editar o eliminar. |
 | Formulari | `TaskEditActivity` | Comparteix els modes de creació i edició. |
 | Filtres | `FiltersActivity` | Presenta la cerca, els selectors i els resultats d’exemple. |
 | Preferències | `PreferencesActivity` | Presenta les opcions de configuració. |
 
-El projecte també conserva `ActivitiesActivity` i `activity_activities_summary.xml`, una altra vista de resum. El recorregut principal de benvinguda i login utilitza `MainActivity`.
-
-Obrim les pantalles amb Intents explícits. Per consultar o editar una tasca passem el seu ID amb `TaskRepository.EXTRA_TASK_ID`. L’extra `is_edit` diferencia els dos modes del formulari. Si falta l’ID o la tasca ja no està disponible, la pantalla mostra un avís i torna enrere.
+Obrim les pantalles secundàries amb Intents explícits. Per consultar o editar una tasca passem el seu ID amb `TaskRepository.EXTRA_TASK_ID`. L’extra `is_edit` diferencia els dos modes del formulari. Si falta l’ID o la tasca ja no està disponible, la pantalla mostra un avís i torna enrere.
 
 ### Logo i splash
 
@@ -79,11 +77,13 @@ El logo escollit pel grup és **Academic Milestone**, format per tres barres i u
 
 `SplashActivity` és el launcher del Manifest. Utilitza `activity_splash.xml`, `ic_stutager_logo.xml` i `splash_logo_in.xml`. L’animació combina aparició i escala del logo. Després d’1,8 segons en primer pla obre l’ajuda i es tanca. Si l’Activity es posa en pausa abans del final, es cancel·la el pas a l’ajuda.
 
-### Menú
+### Activity, Fragments i menú
 
-Les pantalles de llistes obren un `PopupMenu` d’AppCompat des de la icona de menú. Inflem `res/menu/menu_stutager.xml` i un listener tracta l’opció seleccionada. **Activitats** tanca la llista general i torna al resum existent. **Ajuda** obre la guia amb un botó de retorn a la pantalla que l’ha obert. **Inicia sessió o registra’t** torna explícitament a la benvinguda. El menú també permet obrir totes les tasques i les preferències.
+`MainActivity` allotja els dos Fragments. La Toolbar amb el nom Stutager i els botons **Activitats** i **Totes les tasques** es mantenen visibles. El menú de la Toolbar conté **Preferències**, **Ajuda** i **Inicia sessió o registra’t**. Cada opció obre l’Activity corresponent.
 
-Cada llista té una capçalera pròpia amb botons de navegació i accions.
+El `FragmentContainerView` conté la secció seleccionada. Fem servir `supportFragmentManager` i una transacció amb `replace()` i `commitNow()` per canviar-la. La transacció s’aplica abans d’actualitzar el botó actiu. Si la secció ja està oberta, es conserva el seu Fragment. Quan Android recrea l’Activity, el FragmentManager restaura la secció i l’Activity marca el botó corresponent.
+
+Les seccions principals no s’afegeixen a l’historial de Fragments. Enrere des de la llista general torna al resum. Enrere des del resum torna a la pantalla anterior.
 
 ## Organització del projecte
 
@@ -91,9 +91,11 @@ Les classes Kotlin es troben a `app/src/main/java/cat/ishawaheed/stutager/`.
 
 | Fitxer o carpeta | Responsabilitat |
 | --- | --- |
-| Activities | Gestionen la pantalla, els clics i la navegació. |
+| `MainActivity.kt` | Allotja la Toolbar, els botons principals i el contenidor de Fragments. |
+| `SummaryFragment.kt` i `AllTasksFragment.kt` | Gestionen el contingut, la selecció i el RecyclerView de cada secció. |
+| Altres Activities | Gestionen el detall, el formulari i la resta de pantalles secundàries. |
 | `TaskItem.kt` | Defineix la `data class TaskItem` i l’enumeració `BadgeType`. |
-| `TaskRepository.kt` | Proporciona dades de prova, cerca per ID i conserva les eliminacions. |
+| `TaskRepository.kt` | Comparteix una llista mutable amb les operacions de cerca, alta, edició i eliminació. |
 | `TaskAdapter.kt` | Connecta les tasques amb les files del RecyclerView; inclou el ViewHolder. |
 | `WindowInsetsSupport.kt` | Agrupa funcions d’ajuda per a insets i adaptació del text i de la distribució. |
 | `res/layout/` | Conté els layouts de les pantalles i `item_task.xml`. |
@@ -109,13 +111,13 @@ Les classes Kotlin es troben a `app/src/main/java/cat/ishawaheed/stutager/`.
 
 `TaskItem` conté el títol, el mòdul, les dates de presentació, l’estat, el tipus, la prioritat, les notes i l’ID. Aquest identificador permet obrir la tasca correcta encara que canviï de posició.
 
-`TaskRepository` construeix les dades de prova amb els recursos de text. `tasks()` retorna les tasques que no s’han eliminat, `find(id)` en busca una i `delete(id)` desa l’ID eliminat a SharedPreferences.
+`TaskRepository` és un `object` amb una sola `MutableList<TaskItem>`. La primera consulta carrega les dades d’exemple. `tasks()` retorna una còpia per mostrar i `find()` busca la tasca pel seu ID. Amb `summary = true` es mostren fins a tres tasques. Primer hi apareixen les més noves i les places lliures s’omplen amb les tasques de `SUMMARY_IDS` que encara existeixen.
 
-Només es conserven els identificadors eliminats. Amb `summary = true` el repositori limita el resultat als identificadors de `SUMMARY_IDS`. Totes dues llistes exclouen les activitats eliminades. El model manté la data en format `dd/mm/aaaa` i la prioritat en camps separats.
+Les tasques noves i les edicions duren mentre viu el procés. Girar la pantalla o obrir una altra Activity conserva la llista compartida. Quan el procés es torna a iniciar, es perden les tasques noves i les edicions. SharedPreferences desa els ID de les tasques d’exemple eliminades perquè no es tornin a carregar.
 
 ### Adapter i ViewHolder
 
-`MainActivity` i `AllTasksActivity` configuren un RecyclerView amb `LinearLayoutManager` vertical.
+Cada Fragment infla el seu XML a `onCreateView()` i configura el RecyclerView vertical i el seu Adapter a `onViewCreated()`.
 
 A `TaskAdapter`:
 
@@ -126,7 +128,7 @@ A `TaskAdapter`:
 
 `TaskViewHolder` guarda les referències als components de cada fila perquè es puguin reutilitzar durant el scroll.
 
-El callback `onItemClick(task)` comunica la selecció a l’Activity, que obre el detall amb l’ID. Les dues pantalles consulten les dades a `onResume()`, actualitzen el seu Adapter i el recompte, i mostren un missatge quan la llista és buida.
+El callback `onItemClick(task)` comunica la selecció al Fragment, que obre el detall amb l’ID. A `onResume()` cada Fragment consulta les dades, actualitza el mateix Adapter i el recompte, i mostra un missatge quan la llista és buida. A `onDestroyView()` desconnecta l’Adapter i allibera la referència.
 
 ## Formularis i accions
 
@@ -134,13 +136,13 @@ El callback `onItemClick(task)` comunica la selecció a l’Activity, que obre e
 
 El formulari comparteix layout entre els dos modes. En editar, busca la tasca per ID i omple els camps amb les seves dades. Manté les notes buides quan la tasca no en té. La data és un camp de text en format `dd/mm/aaaa`.
 
-Desar comprova que el títol, sense espais als extrems, no sigui buit. Si és vàlid, mostra un Toast que identifica l’acció de demostració i tanca el formulari. La creació i l’edició no modifiquen el repositori.
+Desar comprova que el títol, sense espais als extrems, no sigui buit. Quan és vàlid, el formulari construeix un `TaskItem` amb els camps seleccionats i escrits. En crear, el repositori assigna un ID únic durant el procés i afegeix la tasca a l’inici de la llista, de manera que també es veu al resum. En editar, `indexOfFirst()` troba la posició pel seu ID i l’element se substitueix al mateix lloc. El Toast confirma el resultat i el detall torna a llegir la tasca quan es tanca el formulari.
 
 ### Eliminar
 
 El detall construeix un diàleg amb `MaterialAlertDialogBuilder` que mostra el nom de la tasca. Cancel·la tanca el diàleg. Elimina crida el repositori, mostra un Toast, escriu un Log i tanca el detall.
 
-En tornar a la llista, la tasca ja no es mostra. Aquesta eliminació es conserva entre obertures de l’app. També es guarda si el diàleg estava obert en recrear el detall.
+En tornar a la llista, la tasca ja no es mostra. L’eliminació queda registrada a SharedPreferences quan la tasca és d’exemple, encara que s’hagi editat durant el procés. Si es recrea el detall amb el diàleg obert, es torna a mostrar la confirmació.
 
 ### Filtres i preferències
 

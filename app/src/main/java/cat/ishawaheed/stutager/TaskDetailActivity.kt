@@ -35,7 +35,7 @@ class TaskDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val taskId = intent.getStringExtra(TaskRepository.EXTRA_TASK_ID)
-        val selectedTask = taskId?.let { TaskRepository(this).find(it) }
+        val selectedTask = taskId?.let { TaskRepository.find(this, it) }
         if (selectedTask == null) {
             Toast.makeText(this, R.string.form_task_unavailable, Toast.LENGTH_SHORT).show()
             finish()
@@ -44,6 +44,34 @@ class TaskDetailActivity : AppCompatActivity() {
         task = selectedTask
         setContentView(R.layout.activity_task_detail)
         applySystemBarInsets()
+        findViewById<ImageView>(R.id.btnBack).setOnClickListener {
+            finish()
+        }
+
+        findViewById<MaterialButton>(R.id.btnEdit).setOnClickListener {
+            val intent = Intent(this, TaskEditActivity::class.java)
+            intent.putExtra("is_edit", true)
+            intent.putExtra(TaskRepository.EXTRA_TASK_ID, task.id)
+            startActivity(intent)
+        }
+
+        findViewById<MaterialButton>(R.id.btnDelete).setOnClickListener {
+            showDeleteDialog()
+        }
+        if (savedInstanceState?.getBoolean("delete_dialog_open") == true) showDeleteDialog()
+    }
+
+    /** Actualitza totes les dades visibles quan es torna del formulari d'edició. */
+    override fun onResume() {
+        super.onResume()
+        if (isFinishing) return
+        val updated = TaskRepository.find(this, task.id)
+        if (updated == null) {
+            Toast.makeText(this, R.string.form_task_unavailable, Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
+        task = updated
         findViewById<TextView>(R.id.tvTaskTitle).text = task.title
         findViewById<TextView>(R.id.tvTaskStatus).text = task.status
         findViewById<TextView>(R.id.tvTaskDate).text = task.date
@@ -73,21 +101,6 @@ class TaskDetailActivity : AppCompatActivity() {
             setTextColor(getColor(badgeText))
         }
 
-        findViewById<ImageView>(R.id.btnBack).setOnClickListener {
-            finish()
-        }
-
-        findViewById<MaterialButton>(R.id.btnEdit).setOnClickListener {
-            val intent = Intent(this, TaskEditActivity::class.java)
-            intent.putExtra("is_edit", true)
-            intent.putExtra(TaskRepository.EXTRA_TASK_ID, task.id)
-            startActivity(intent)
-        }
-
-        findViewById<MaterialButton>(R.id.btnDelete).setOnClickListener {
-            showDeleteDialog()
-        }
-        if (savedInstanceState?.getBoolean("delete_dialog_open") == true) showDeleteDialog()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -222,9 +235,12 @@ class TaskDetailActivity : AppCompatActivity() {
         }
 
         btnConfirm.setOnClickListener {
-            TaskRepository(this).delete(task.id)
-            Toast.makeText(this, getString(R.string.form_task_deleted, task.title), Toast.LENGTH_SHORT).show()
-            android.util.Log.d("TaskDetailActivity", "Eliminada la tasca amb ID: ${task.id}")
+            if (TaskRepository.delete(this, task.id)) {
+                Toast.makeText(this, getString(R.string.form_task_deleted, task.title), Toast.LENGTH_SHORT).show()
+                android.util.Log.d("TaskDetailActivity", "Eliminada la tasca amb ID: ${task.id}")
+            } else {
+                Toast.makeText(this, R.string.form_task_unavailable, Toast.LENGTH_SHORT).show()
+            }
             dialog.dismiss()
             finish()
         }

@@ -4,37 +4,71 @@ import android.content.Context
 import androidx.core.content.edit
 
 /**
- * Comparteix les tasques de prova entre les pantalles.
- * Desa els identificadors eliminats a SharedPreferences per conservar les
- * eliminacions quan es torna a obrir l'aplicació.
+ * Comparteix una única llista mutable de tasques durant el procés.
+ * Només els identificadors de les tasques d'exemple eliminades es desen a SharedPreferences.
  */
-class TaskRepository(context: Context) {
-    private val context = context.applicationContext
-    private val preferences = this.context.getSharedPreferences("task_state", Context.MODE_PRIVATE)
+object TaskRepository {
+    const val EXTRA_TASK_ID = "task_id"
+    private const val USER_ID_PREFIX = "user-"
+    private val SUMMARY_IDS = setOf("prototip", "examen", "java")
+    private val items = mutableListOf<TaskItem>()
+    private var initialized = false
+    private var nextUserId = 1L
 
-    /**
-     * Retorna una nova llista sense les tasques eliminades.
-     * Amb [summary] es mostren les tasques del resum. La llista general manté
-     * el comportament existent.
-     */
-    fun tasks(summary: Boolean = false): List<TaskItem> {
+    private fun initialize(context: Context) {
+        if (initialized) return
+        val preferences = context.getSharedPreferences("task_state", Context.MODE_PRIVATE)
         val deleted = preferences.getStringSet("deleted_ids", emptySet()).orEmpty()
-        return sampleTasks().filter {
-            it.id !in deleted && (!summary || it.id in SUMMARY_IDS)
-        }
+        items.addAll(sampleTasks(context).filter { it.id !in deleted })
+        initialized = true
     }
 
-    /** Busca [id] a la llista general i retorna null si no hi és. */
-    fun find(id: String): TaskItem? = tasks().find { it.id == id }
+    /** Retorna la llista general o un resum amb les tasques noves abans de les d'exemple. */
+    fun tasks(context: Context, summary: Boolean = false): List<TaskItem> {
+        initialize(context)
+        if (!summary) return items.toList()
+        return items.filter { it.id.startsWith(USER_ID_PREFIX) || it.id in SUMMARY_IDS }
+            .take(SUMMARY_IDS.size)
+    }
 
-    /** Desa [id] com a eliminat perquè les pantalles deixin de mostrar aquesta tasca. */
-    fun delete(id: String) {
-        val deleted = preferences.getStringSet("deleted_ids", emptySet()).orEmpty() + id
-        preferences.edit { putStringSet("deleted_ids", deleted) }
+    fun find(context: Context, id: String): TaskItem? {
+        initialize(context)
+        return items.find { it.id == id }
+    }
+
+    /** Afegeix una tasca amb un ID reservat a les creacions d'aquest procés. */
+    fun add(context: Context, task: TaskItem): TaskItem {
+        initialize(context)
+        val created = task.copy(id = "$USER_ID_PREFIX${nextUserId++}")
+        items.add(0, created)
+        return created
+    }
+
+    /** Substitueix la tasca a la mateixa posició conservant el seu ID. */
+    fun update(context: Context, task: TaskItem): Boolean {
+        initialize(context)
+        val index = items.indexOfFirst { it.id == task.id }
+        if (index == -1) return false
+        items[index] = task
+        return true
+    }
+
+    /** Elimina la tasca i recorda l'ID després del reinici si és d'exemple. */
+    fun delete(context: Context, id: String): Boolean {
+        initialize(context)
+        val index = items.indexOfFirst { it.id == id }
+        if (index == -1) return false
+        items.removeAt(index)
+        if (!id.startsWith(USER_ID_PREFIX)) {
+            val preferences = context.getSharedPreferences("task_state", Context.MODE_PRIVATE)
+            val deleted = preferences.getStringSet("deleted_ids", emptySet()).orEmpty() + id
+            preferences.edit { putStringSet("deleted_ids", deleted) }
+        }
+        return true
     }
 
     /** Crea les tasques de prova amb identificadors fixos i textos dels recursos. */
-    private fun sampleTasks(): List<TaskItem> = with(context) {
+    private fun sampleTasks(context: Context): List<TaskItem> = with(context) {
         listOf(
             TaskItem(getString(R.string.task_title_prototip), getString(R.string.module_dsam),
                 getString(R.string.date_prototip), getString(R.string.status_in_progress),
@@ -60,8 +94,4 @@ class TaskRepository(context: Context) {
         )
     }
 
-    companion object {
-        const val EXTRA_TASK_ID = "task_id"
-        private val SUMMARY_IDS = setOf("prototip", "examen", "java")
-    }
 }

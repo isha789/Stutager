@@ -3,11 +3,11 @@
 
     <string name="help_subtitle">Organitza els teus treballs i exàmens de manera senzilla.</string>
     <string name="step1_title">Afegeix</string>
-    <string name="step1_desc">Prova el formulari d’una activitat nova.</string>
+    <string name="step1_desc">Afegeix una tasca des del formulari.</string>
     <string name="step2_title">Organitza</string>
     <string name="step2_desc">Consulta les dates i prioritats de les tasques.</string>
     <string name="step3_title">Actualitza</string>
-    <string name="step3_desc">Prova l’edició o elimina una tasca d’exemple.</string>
+    <string name="step3_desc">Edita o elimina una tasca des del detall.</string>
     <string name="btn_start">Comença →</string>
 
     <string name="welcome_tagline">Planifica · Organitza · Assoleix</string>
@@ -55,9 +55,9 @@
     <string name="delete_dialog_title_q">Eliminar activitat?</string>
     <string name="delete_dialog_message_target">Vols eliminar %1$s?\nAquesta acció no es pot desfer.</string>
     <string name="new_activity_title">Nova activitat</string>
-    <string name="new_activity_subtitle">Prova el formulari d’una activitat nova.</string>
+    <string name="new_activity_subtitle">Omple les dades de l’activitat nova.</string>
     <string name="edit_activity_title">Edita l\'activitat</string>
-    <string name="edit_activity_subtitle">Prova el formulari amb les dades de l’activitat.</string>
+    <string name="edit_activity_subtitle">Modifica les dades de l’activitat.</string>
     <string name="save_changes_btn">Desa els canvis</string>
     <string name="date_label">Data</string>
     <string name="hint_date">dd/mm/aaaa</string>

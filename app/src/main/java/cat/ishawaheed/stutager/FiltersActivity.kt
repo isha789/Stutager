@@ -88,12 +88,11 @@ class FiltersActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val store = TaskRepository(this)
         val results = listOf(R.id.firstFilterResult to "prototip", R.id.secondFilterResult to "accessibility")
         var count = 0
         for ((viewId, taskId) in results) {
             val row = findViewById<View>(viewId)
-            val exists = store.find(taskId) != null
+            val exists = TaskRepository.find(this, taskId) != null
             row.visibility = if (exists) View.VISIBLE else View.GONE
             if (exists) count++
         }

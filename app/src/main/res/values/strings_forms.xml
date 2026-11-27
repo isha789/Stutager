@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="form_add_demo">Demostració de creació. No s’ha desat cap activitat.</string>
-    <string name="form_edit_demo">Demostració d’edició. No s’han desat els canvis.</string>
+    <string name="form_task_added">S’ha afegit la tasca.</string>
+    <string name="form_task_updated">S’ha actualitzat la tasca.</string>
+    <string name="form_module_value">Mòdul: %1$s</string>
     <string name="form_title_required">Escriu un títol.</string>
     <string name="form_task_unavailable">Aquesta tasca ja no està disponible.</string>
     <string name="form_task_deleted">S’ha eliminat «%1$s».</string>
