@@ -19,6 +19,7 @@ Hem passat del prototip de pantalles a una aplicació amb navegació, un logo pr
 La versió actual permet crear, editar i eliminar tasques. Les dues llistes comparteixen les dades durant el procés de l’aplicació.
 
 | Funcionalitat | Comportament actual |
+| --- | --- |
 | Inici de sessió i registre | Formularis amb validació desacoblada en temps real (nom, correu, contrasenya i confirmació) mitjançant ViewModels i LiveData. |
 | Pantalla inicial | Mostra el logo Academic Milestone amb una animació d’aparició i escala. |
 | Ajuda i benvinguda | Presenten l’app i permeten seguir el recorregut d’entrada. |
